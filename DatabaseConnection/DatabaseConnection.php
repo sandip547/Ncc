@@ -1,5 +1,6 @@
 <?php
 require "DatabaseCredentials.php";
+
 class DatabaseConnection{
 
   private $connection;
@@ -18,14 +19,22 @@ class DatabaseConnection{
    }
 
    function executePrepare($query,$type,$pararray){
-     $stm = $this->connection->prepare($query);
-     $stm->bind_param($type,...$pararray);
 
-  $stm->execute();
-   }
+     $stm = $this->connection->prepare($query);
+     echo $this->connection->error;
+     $stm->bind_param($type,...$pararray);
+     return $stm->execute();
+    }
+    function executePrepareReturn($query,$type,$pararray){
+
+        $stm = $this->connection->prepare($query);
+        echo $this->connection->error;
+        $stm->bind_param($type,...$pararray);
+        $stm->execute();
+        return $result = $stm->get_result();
+       }
 
 }
-
 
 
  ?>
