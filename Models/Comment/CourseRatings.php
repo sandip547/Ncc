@@ -15,7 +15,7 @@ class CourseRatings{
     }
 
     function setCourseId($course_id){$this->course_id=$course_id;}
-    function getCourseId($){$this->course_id;}
+    function getCourseId(){$this->course_id;}
 
     function setStudentId($student_id){$this->student_id=$student_id;}
     function getStudentId(){$this->student_id;}

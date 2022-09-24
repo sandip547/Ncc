@@ -14,36 +14,8 @@ class ProductCategoryUpdate{
         $this->update_date = $update_date;
         $this->updated_by = $updated_by;
     }
-    function setProductCategoryId($product_cat_id){
-        $this->product_cat_id = $product_cat_id;
-    }
 
-    public function getProductCategoryId(){
-        return $this->product_cat_id;
-    }
 
-    function setProductCi($product_c_iu){
-        $this->product_c_iu= $product_c_iu;
-    }
 
-    function getProductCi(){
-        return $this->product_c_iu;
-    }
-
-    function setUpdateDate($update_date){
-        $this->update_date = $update_date;
-    }
-
-    function getUpdateDate(){
-        return $this->update_date;
-    }
-
-    function setUpdatedBy($updated_by){
-        $this->updated_by = $updated_by;
-    }
-
-    function getUpdatedBy(){
-        return $this->updated_by;
-    }
 }
 ?>

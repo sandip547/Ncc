@@ -7,11 +7,11 @@ class ProductDisplay{
     private $price;
 
     function __construct($product_name,$level,$image,$duration,$price){
-        $this->$product_name = $product_name;
-        $this->$level = $level;
-        $this->$image = $image;
-        $this->$duration = $duration;
-        $this->$price = $price;
+        $this->product_name = $product_name;
+        $this->level = $level;
+        $this->image = $image;
+        $this->duration = $duration;
+        $this->price = $price;
     }
 
     function setProductName($product_name){$this->product_name=$product_name;}

@@ -17,14 +17,18 @@ class GetComments{
         $m_comments = array();
         $result = $this->connection->executePrepareReturn($query,"i",array($id));
         while($row = mysqli_fetch_array($result)){
-            $s_comments = array();
-            array_push($s_comments,$this->getStudentName($row[0]),$row[1],$row[2]);
-            array_push($m_comments,$s_comments);
+            array_push($m_comments,new GetCourseComments($row[1],$row[2],$this->getStudentName($row[0])));
         }
+        echo sizeOf($m_comments);
         return $m_comments;
     }
 }
-
-
+/*$gc = new GetComments();
+$res = $gc->getProductComments(7);
+foreach($res as $value){
+    echo $value->getDate();
+    break;
+}
+*/
 
 ?>

@@ -7,7 +7,6 @@ class ProductCategory{
     private $entered_date;
     private $entered_by;
 
-
     function __construct($category_name,$active_status,$entered_date,$entered_by){
         $this->product_c_iu = new ProductCategoryIu();
         $this->product_c_iu->setCategoryName($category_name);

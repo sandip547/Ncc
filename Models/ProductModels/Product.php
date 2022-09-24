@@ -1,5 +1,6 @@
 <?php
 class Product{
+    private $product_id;
     private $product_name;
     private $description;
     private $learning;
@@ -39,6 +40,8 @@ class Product{
         $this->active_status = $active_status;
         $this->image = $image;
     }
+    function setProductId($product_id){$this->product_id=$product_id;}
+    function getProductId(){return $this->product_id;}
 
     function setProductName($product_name){$this->product_name=$product_name;}
     function getProductName(){return $this->product_name;}

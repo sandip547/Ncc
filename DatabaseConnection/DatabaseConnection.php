@@ -25,6 +25,7 @@ class DatabaseConnection{
      $stm->bind_param($type,...$pararray);
      return $stm->execute();
     }
+
     function executePrepareReturn($query,$type,$pararray){
 
         $stm = $this->connection->prepare($query);

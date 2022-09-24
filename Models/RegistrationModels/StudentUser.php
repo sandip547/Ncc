@@ -1,12 +1,12 @@
 <?php
-require_once("../../Models/RegistrationModels/TsUser.php");
+require_once("TsUser.php");
 
 class StudentUser
 {
   private $tsuser;
   private $regdate;
 
-  function __construct($tsuser,$firstname,$lastname,$dob,$email,$gender,$username,$password,$mobile,$address,$regdate)
+  function __construct($firstname,$lastname,$dob,$email,$gender,$username,$password,$mobile,$address,$regdate)
   {
   $this->tsuser = new TsUser();
   $this->tsuser->setFirstName($firstname);

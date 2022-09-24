@@ -6,12 +6,11 @@ class TeacherUser{
     private $expertise;
     private $experience;
     private $cv_location;
-    private $phone;
     private $join_date;
     private $type;
 
 
-    function __construct($tuser,$firstname,$lastname,$dob,$email,$gender,$mobile,$address,$qualification,$expertise,$experience,$cv_location,$join_date,$username,$password,$type){
+    function __construct($firstname,$lastname,$dob,$email,$gender,$mobile,$address,$qualification,$expertise,$experience,$cv_location,$join_date,$username,$password){
       $this->tsuser = new TsUser();
       $this->tsuser->setFirstName($firstname);
       $this->tsuser->setLastName($lastname);
@@ -27,7 +26,7 @@ class TeacherUser{
       $this->join_date = $join_date;
       $this->tsuser->setUsername($username);
       $this->tsuser->setPassword($password);
-      $this->type= $type;
+      $this->type= 2;
     }
     function setTsUser($tsuser){
     $this->tsuser = $tsuser;

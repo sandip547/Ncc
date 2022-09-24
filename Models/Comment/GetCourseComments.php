@@ -10,7 +10,7 @@ class GetCourseComments{
         $this->student_name = $student_name;
     }
 
-    function getComments($comments){return $this->comments;}
+    function getComments(){return $this->comments;}
 
     function getDate(){return $this->date;}
 
