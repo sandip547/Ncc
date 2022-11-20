@@ -58,7 +58,7 @@ class GetProductDetails
         $result = $this->connection->executeQuery($sql);
         $product = array();
         while ($row = mysqli_fetch_array($result)) {
-            require_once('../../Models/ProductModels/ProductGet.php');
+
             array_push($product, new ProductGet($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $this->getStaffName($row[6]), $this->getCategoryName($row[7]), $row[8], $row[9], $row[10], $row[11], $row[12], $row[13], $row[14], $row[15], $row[16], $row[17], $row[18], $row[19]));
         }
         return $product;
@@ -95,7 +95,7 @@ class GetProductDetails
         $gs = new GetStudentDetails();
         $id = $gs->getStudentIdOn(new GetStudentUsername($username));
         $date = date("Y-m-d");
-        $sql = "SELECT courseName,level,image,duration,price from course WHERE course.courseId in(SELECT courseId from enrollment where studentId = ? and status = 2 and expiryDate>'$date')";
+        $sql = "SELECT courseName,level,image,duration,price from course WHERE course.courseId in(SELECT courseId from enrollment where studentId = ? and status = 2 )";
         $result = $this->connection->executePrepareReturn($sql,"i",array($id));
         $product_display = array();
         while ($row = mysqli_fetch_array($result)) {

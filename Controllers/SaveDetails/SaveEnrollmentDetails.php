@@ -1,11 +1,12 @@
 <?php
 require_once("../../DatabaseConnection/DatabaseConnection.php");
+require_once("../../Models/Enrollment/Enrollment.php");
 class SaveEnrollmentDetails{
     private $conn;
     function __construct(){
         $this->conn = new DatabaseConnection();
     }
-    function getExpiryDate($code){
+    function getExpiryDateRes($code){
 
         $date = date("Y-m-d");
         $query = "";
@@ -28,8 +29,8 @@ class SaveEnrollmentDetails{
     }
 
     function getEnrollmentValidityCode($courseId){
-        $query = "select enrollmentValidity from enrollment where courseId =?";
-        $result = $this->connection->executePrepareReturn($query, "i",array($courseId));
+        $query = "select enrollmentValidity from course where courseId =?";
+        $result = $this->conn->executePrepareReturn($query, "i",array($courseId));
         return mysqli_fetch_row($result)[0];
 
     }
@@ -39,14 +40,14 @@ class SaveEnrollmentDetails{
         $query = "insert into Enrollment(courseId,studentId,enrollDate,expiryDate,status) values(?,?,?,?,?)";
         $this->conn->executePrepare($query,"iissi",array($se->getCourseId(),$se->getStudentId(),$se->getEnrollDate(),$se->getExpiryDate(),
                                                                $se->getStatus()));
-        $this->conn->close();
+       mysqli_close($this->conn->getConnection());
     }
 
     function changeEnrollementStatus($st){
 
         $query = "update Enrollment set status=? where courseId=? and studentId=?";
         $this->conn->executePrepare($query,"iii",array($st->getStatus(),$st->getCourseId(),$st->getStudentId()));
-        $this->conn->close();
+        mysqli_close($this->conn->getConnection());
 
     }
 
@@ -58,6 +59,9 @@ class SaveEnrollmentDetails{
     }
 
 }
-$se = new SaveEnrollmentDetails();
-echo $se->getExpiryDate(0);
+//$se = new SaveEnrollmentDetails();
+//echo $se->getExpiryDate(0);
+//$se->saveEnrollment(new Enrollment(26,6,date("y-m-d"),$se->getExpiryDateRes($se->getEnrollmentValidityCode(26)),0));
+
+
 ?>

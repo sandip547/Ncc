@@ -21,7 +21,7 @@ class SaveProductCategory{
             $query = "update category set categoryname=?,activestatus=?,updatedate=?,updatedby=? where categoryid=?";
             $this->connection->executePrepare($query,"sisii",array($cu->getProductCi()->getCategoryName(),$cu->getProductCi()->getActiveStatus(),
                                                                    $cu->getUpdateDate(),$cu->getUpdatedBy(),$cu->getProductCategoryId()));
-            $mysqli_close($this->connection->getConnection());
+            mysqli_close($this->connection->getConnection());
         }
 
      function deleteCategory($cd){
