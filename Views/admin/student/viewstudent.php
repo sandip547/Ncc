@@ -1,3 +1,11 @@
+<?php
+
+require_once("../../Controllers/GetDetails/GetStudentDetails.php");
+$sd = new GetStudentDetails();
+$details = $sd->getStudentDetails();
+
+?>
+
 <div class="input-group my-5">
     <input type="search" id="form1" class="form-control fs-6" placeholder="Search by id or name..." />
     <button type="button" class="bg-primary text-light px-3" style="border: none;">
@@ -27,86 +35,32 @@
             </tr>
         </thead>
         <tbody>
+            <?php foreach ($details as $det) { ?>
             <tr>
-            <th class="px-3"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">View</button></th>
-                <th class="px-3">1</th>
-                <th class="px-3">Sushma Shrestha</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">xsa@cdsd.cdc</th>
-                <th class="px-3">Female</th>
-                <th class="px-3">Sushma123</th>
-                <th class="px-3">sushma##12517</th>
-                <th class="px-3">9999999999</th>
-                <th class="px-3">Chauthe</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">2022-06-21</th>
-                <th class="px-3">Active</th>
-                <th class="px-3">2022-04-21</th>
-            </tr>
+                <th>
+                    <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#exampleModalLong<?php echo $det->getStudentId(); ?>">Edit</button>
+                </th>
+                <th class="px-3"><?php echo $det->getStudentId(); ?></th>
+                <th class="px-3"><?php echo $det->getFullName(); ?></th>
+                <th class="px-3"><?php echo $det->getDOB(); ?></th>
+                <th class="px-3"><?php echo $det->getEmail(); ?></th>
+                <th class="px-3"><?php echo $det->getGender(); ?></th>
+                <th class="px-3"><?php echo $det->getUsername(); ?></th>
+                <th class="px-3"><?php echo $det->getUsername() ?></th>
+                <th class="px-3"><?php echo $det->getMobile(); ?></th>
+                <th class="px-3"><?php echo $det->getAddress(); ?></th>
+                <th class="px-3"><?php echo $det->getRegDate(); ?></th>
+                <th class="px-3"><?php echo $det->getRegDate(); ?></th>
+                <th class="px-3"><?php echo $det->getActiveStatus(); ?></th>
+                <th class="px-3"><?php echo $det->getLastLogin(); ?></th>
             <tr>
-            <th class="px-3"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">View</button></th>
-                <th class="px-3">1</th>
-                <th class="px-3">Sushma Shrestha</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">xsa@cdsd.cdc</th>
-                <th class="px-3">Female</th>
-                <th class="px-3">Sushma123</th>
-                <th class="px-3">sushma##12517</th>
-                <th class="px-3">9999999999</th>
-                <th class="px-3">Chauthe</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">2022-06-21</th>
-                <th class="px-3">Active</th>
-                <th class="px-3">2022-04-21</th>
-            </tr>
-            <tr>
-            <th class="px-3"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">View</button></th>
-                <th class="px-3">1</th>
-                <th class="px-3">Sushma Shrestha</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">xsa@cdsd.cdc</th>
-                <th class="px-3">Female</th>
-                <th class="px-3">Sushma123</th>
-                <th class="px-3">sushma##12517</th>
-                <th class="px-3">9999999999</th>
-                <th class="px-3">Chauthe</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">2022-06-21</th>
-                <th class="px-3">Active</th>
-                <th class="px-3">2022-04-21</th>
-            </tr>
-            <tr>
-            <th class="px-3"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">View</button></th>
-                <th class="px-3">1</th>
-                <th class="px-3">Sushma Shrestha</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">xsa@cdsd.cdc</th>
-                <th class="px-3">Female</th>
-                <th class="px-3">Sushma123</th>
-                <th class="px-3">sushma##12517</th>
-                <th class="px-3">9999999999</th>
-                <th class="px-3">Chauthe</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">2022-06-21</th>
-                <th class="px-3">Active</th>
-                <th class="px-3">2022-04-21</th>
-            </tr>
-            <tr>
-            <th class="px-3"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">View</button></th>
-                <th class="px-3">1</th>
-                <th class="px-3">Sushma Shrestha</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">xsa@cdsd.cdc</th>
-                <th class="px-3">Female</th>
-                <th class="px-3">Sushma123</th>
-                <th class="px-3">sushma##12517</th>
-                <th class="px-3">9999999999</th>
-                <th class="px-3">Chauthe</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">2022-06-21</th>
-                <th class="px-3">Active</th>
-                <th class="px-3">2022-04-21</th>
-            </tr>
+
+                <?php
+            }
+                ?>
+
+
         </tbody>
     </table>
 </div>
@@ -131,7 +85,11 @@
         </li>
     </ul>
 </nav>
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+
+<?php foreach ($details as $det) { ?>
+
+<div class="modal fade" id="exampleModalLong<?php echo $det->getStudentId(); ?>" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -148,7 +106,8 @@
 
                     </div>
                     <div class="col-md-7">
-                        <input type="text" id="fullName" class="form-control inputcolor fs-6" placeholder="Full Name" aria-label="fullName" value="Sushma Shrestha">
+                        <input type="text" id="fullName" class="form-control inputcolor fs-6" placeholder="Full Name"
+                            aria-label="fullName" value="<?php echo $det->getFullName(); ?>">
                     </div>
                 </div>
                 <div class="row align-items-center my-2">
@@ -157,7 +116,8 @@
                     </div>
                     <div class="col-md-7">
                         <div id="time-span" class="form-control inputcolor fs-6 align-items-center d-flex">
-                            <input type="date" id="dob" class="form-control inputcolor fs-6 border-0" aria-label="dob">
+                            <input type="date" id="dob" class="form-control inputcolor fs-6 border-0" aria-label="dob"
+                                value="<?php echo $det->getDob(); ?>">
                         </div>
                     </div>
                 </div>
@@ -166,7 +126,8 @@
                         <label for="email" class="form-label">E-mail</label>
                     </div>
                     <div class="col-md-7">
-                        <input type="email" class="form-control inputcolor fs-6" placeholder="E-mail" aria-label="email" value="xsa@cdsd.cdc">
+                        <input type="email" class="form-control inputcolor fs-6" placeholder="E-mail" aria-label="email"
+                            value="<?php echo $det->getEmail(); ?>">
                     </div>
                 </div>
                 <div class="row my-2 align-items-center">
@@ -174,7 +135,11 @@
                         <label for="gender" class="form-label">Gender</label>
                     </div>
                     <div class="col-md-7">
-                        <select name="gender" id="gender" class="form-select form-select-lg inputcolor fs-6">
+                        <select name="gender" id="gender" va class="form-select form-select-lg inputcolor ">
+                            <sel></sel>
+                            <option selected value="<?php echo $det->getGender(); ?>">
+                                <?php echo $det->getGender(); ?>
+                            </option>
                             <option value="1">
                                 Male
                             </option>
@@ -192,7 +157,8 @@
                         <label for="userName" class="form-label">Username</label>
                     </div>
                     <div class="col-md-7">
-                        <input type="text" id="userName" class="form-control inputcolor fs-6" placeholder="Username" aria-label="userName">
+                        <input type="text" id="userName" class="form-control inputcolor fs-6" placeholder="Username"
+                            aria-label="userName" value="<?php echo $det->getUsername(); ?>">
                     </div>
                 </div>
                 <div class="row my-2 align-items-center">
@@ -208,7 +174,8 @@
                         <label for="mobileNo" class="form-label">Mobile Number</label>
                     </div>
                     <div class="col-md-7">
-                        <input type="tel" id="mobileNo" class="form-control inputcolor fs-6" placeholder="Phone Number" aria-label="Phone Number">
+                        <input type="tel" id="mobileNo" class="form-control inputcolor fs-6" placeholder="Phone Number"
+                            aria-label="Phone Number" value="<?php echo $det->getMobile(); ?>">
                     </div>
                 </div>
 
@@ -217,7 +184,8 @@
                         <label for="mobileNo" class="form-label">Address</label>
                     </div>
                     <div class="col-md-7">
-                        <input type="tel" id="mobileNo" class="form-control inputcolor fs-6" placeholder="Address" aria-label="Mobile Number">
+                        <input type="tel" id="mobileNo" class="form-control inputcolor fs-6" placeholder="Address"
+                            aria-label="Mobile Number" value="<?php echo $det->getAddress(); ?>">
                     </div>
                 </div>
 
@@ -226,7 +194,9 @@
                         <label for="registrationDate" class="form-label">Registration Date</label>
                     </div>
                     <div class="col-md-7">
-                        <input type="date" id="registrationDate" class="form-control inputcolor fs-6" aria-label="joinDate">
+                        <input type="date" id="registrationDate" class="form-control inputcolor fs-6"
+                            aria-label="joinDate" value="<?php echo $det->getRegDate(); ?>">
+
                     </div>
                 </div>
                 <div class="row my-2 align-items-center">
@@ -234,7 +204,8 @@
                         <label for="expiryDate" class="form-label">Expiry Date</label>
                     </div>
                     <div class="col-md-7">
-                        <input type="date" id="expiryDate" class="form-control inputcolor fs-6" aria-label="retireDate">
+                        <input type="date" id="expiryDate" class="form-control inputcolor fs-6" aria-label="retireDate"
+                            value="<?php echo $det->getRegDate(); ?>">
                     </div>
                 </div>
 
@@ -243,7 +214,8 @@
                         <label for="activeStatus" class="form-label">Active Status</label>
                     </div>
                     <div class="col-md-7">
-                        <select name="activeStatus" id="activeStatus" class="form-select form-select-lg inputcolor fs-6">
+                        <select name="activeStatus" id="activeStatus"
+                            class="form-select form-select-lg inputcolor fs-6">
                             <option value="na">
                                 Select Active Status
                             </option>
@@ -256,13 +228,14 @@
                         </select>
                     </div>
                 </div>
-                                
+
                 <div class="row align-items-center my-2">
                     <div class="col-md-5 text-orangered font-weight-bold fs-6">
                         <label for="lastLogin" class="form-label">Last Login</label>
                     </div>
                     <div class="col-md-7">
-                        <input type="date" id="lastLogin" class="form-control inputcolor fs-6" aria-label="joinDate">
+                        <input type="date" id="lastLogin" class="form-control inputcolor fs-6" aria-label="joinDate"
+                            <?php echo $det->getLastLogin(); ?>>
                     </div>
                 </div>
             </div>
@@ -273,6 +246,10 @@
         </div>
     </div>
 </div>
+
+<?php
+}
+?>
 
 
 

@@ -1,3 +1,12 @@
+<?php
+
+require_once("../../Controllers/GetDetails/GetTeacherUser.php");
+$td = new GetTeacherUser();
+$details = $td->getTeacherDetails();
+
+?>
+
+
 <div class="input-group my-5">
     <input type="search" id="form1" class="form-control fs-6" placeholder="Search by id or name..." />
     <button type="button" class="bg-primary text-light px-3" style="border: none;">
@@ -31,106 +40,33 @@
             </tr>
         </thead>
         <tbody>
+
+            <?php foreach ($details as $det) { ?>
             <tr>
-            <th class="px-3"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">View</button></th>
-                <th class="px-3">1</th>
-                <th class="px-3">Sushma Shrestha</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">xsa@cdsd.cdc</th>
-                <th class="px-3">9888888888</th>
-                <th class="px-3">9888888888</th>
-                <th class="px-3">Chauthe</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">Qualification</th>
-                <th class="px-3">Subject Expertise</th>
-                <th class="px-3">2</th>
-                <th class="px-3">this/that.pdf</th>
-                <th class="px-3">Active</th>
-                <th class="px-3">Admin</th>
-                <th class="px-3">Sushma123</th>
-                <th class="px-3">sushma##12571</th>
-                <th class="px-3">2022-04-21</th>
+                <th class="px-3"><button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#exampleModalLong<?php echo $det->getTeacherId(); ?>">Edit</button></th>
+                <th class="px-3"><?php echo $det->getTeacherId(); ?></th>
+                <th class="px-3"><?php echo $det->getFullName(); ?></th>
+                <th class="px-3"><?php echo $det->getDOB(); ?></th>
+                <th class="px-3"><?php echo $det->getEmail(); ?></th>
+                <th class="px-3"><?php echo $det->getMobile(); ?></th>
+                <th class="px-3"><?php echo $det->getMobile(); ?></th>
+                <th class="px-3"><?php echo $det->getAddresses(); ?></th>
+                <th class="px-3"><?php echo $det->getJoinDate(); ?></th>
+                <th class="px-3"><?php echo $det->getQualification(); ?></th>
+                <th class="px-3"><?php echo $det->getExpertise(); ?></th>
+                <th class="px-3"><?php echo $det->getExperience(); ?></th>
+                <th class="px-3"><?php echo $det->getCvLocation(); ?></th>
+                <th class="px-3"><?php echo $det->getActiveStatus(); ?></th>
+                <th class="px-3"><?php echo $det->getType(); ?></th>
+                <th class="px-3"><?php echo $det->getUsername(); ?></th>
+                <th class="px-3"><?php echo $det->getTeacherId(); ?></th>
+                <th class="px-3"><?php echo $det->getTeacherId(); ?></th>
             </tr>
-            <tr>
-            <th class="px-3"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">View</button></th>
-                <th class="px-3">1</th>
-                <th class="px-3">Sushma Shrestha</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">xsa@cdsd.cdc</th>
-                <th class="px-3">9888888888</th>
-                <th class="px-3">9888888888</th>
-                <th class="px-3">Chauthe</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">Qualification</th>
-                <th class="px-3">Subject Expertise</th>
-                <th class="px-3">2</th>
-                <th class="px-3">this/that.pdf</th>
-                <th class="px-3">Active</th>
-                <th class="px-3">Admin</th>
-                <th class="px-3">Sushma123</th>
-                <th class="px-3">sushma##12571</th>
-                <th class="px-3">2022-04-21</th>
-            </tr>
-            <tr>
-            <th class="px-3"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">View</button></th>
-                <th class="px-3">1</th>
-                <th class="px-3">Sushma Shrestha</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">xsa@cdsd.cdc</th>
-                <th class="px-3">9888888888</th>
-                <th class="px-3">9888888888</th>
-                <th class="px-3">Chauthe</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">Qualification</th>
-                <th class="px-3">Subject Expertise</th>
-                <th class="px-3">2</th>
-                <th class="px-3">this/that.pdf</th>
-                <th class="px-3">Active</th>
-                <th class="px-3">Admin</th>
-                <th class="px-3">Sushma123</th>
-                <th class="px-3">sushma##12571</th>
-                <th class="px-3">2022-04-21</th>
-            </tr>
-            <tr>
-            <th class="px-3"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">View</button></th>
-                <th class="px-3">1</th>
-                <th class="px-3">Sushma Shrestha</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">xsa@cdsd.cdc</th>
-                <th class="px-3">9888888888</th>
-                <th class="px-3">9888888888</th>
-                <th class="px-3">Chauthe</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">Qualification</th>
-                <th class="px-3">Subject Expertise</th>
-                <th class="px-3">2</th>
-                <th class="px-3">this/that.pdf</th>
-                <th class="px-3">Active</th>
-                <th class="px-3">Admin</th>
-                <th class="px-3">Sushma123</th>
-                <th class="px-3">sushma##12571</th>
-                <th class="px-3">2022-04-21</th>
-            </tr>
-            <tr>
-                <th class="px-3"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">View</button></th>
-                <th class="px-3">1</th>
-                <th class="px-3">Sushma Shrestha</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">xsa@cdsd.cdc</th>
-                <th class="px-3">9888888888</th>
-                <th class="px-3">9888888888</th>
-                <th class="px-3">Chauthe</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">Qualification</th>
-                <th class="px-3">Subject Expertise</th>
-                <th class="px-3">2</th>
-                <th class="px-3">this/that.pdf</th>
-                <th class="px-3">Active</th>
-                <th class="px-3">Admin</th>
-                <th class="px-3">Sushma123</th>
-                <th class="px-3">sushma##12571</th>
-                <th class="px-3">2022-04-21</th>
-            </tr>
+            <?php
+            }
+            ?>
+
         </tbody>
     </table>
 </div>
@@ -155,7 +91,11 @@
         </li>
     </ul>
 </nav>
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+
+
+<?php foreach ($details as $det) { ?>
+<div class="modal fade" id="exampleModalLong<?php echo $det->getTeacherId(); ?>" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -172,7 +112,8 @@
 
                     </div>
                     <div class="col-md-7">
-                        <input type="text" id="fullName" class="form-control inputcolor fs-6" placeholder="Full Name" aria-label="fullName" value="Sushma Shrestha">
+                        <input type="text" id="fullName" class="form-control inputcolor fs-6" placeholder="Full Name"
+                            aria-label="fullName" value="<?php echo $det->getFullName(); ?>">
                     </div>
                 </div>
                 <div class="row align-items-center my-2">
@@ -181,7 +122,8 @@
                     </div>
                     <div class="col-md-7">
                         <div id="time-span" class="form-control inputcolor fs-6 align-items-center d-flex">
-                            <input type="date" id="dob" class="form-control inputcolor fs-6 border-0" aria-label="dob">
+                            <input type="date" id="dob" class="form-control inputcolor fs-6 border-0" aria-label="dob"
+                                value="<?php echo $det->getDOB(); ?>">
                         </div>
                     </div>
                 </div>
@@ -190,7 +132,8 @@
                         <label for="email" class="form-label">E-mail</label>
                     </div>
                     <div class="col-md-7">
-                        <input type="email" class="form-control inputcolor fs-6" placeholder="E-mail" aria-label="email" value="xsa@cdsd.cdc">
+                        <input type="email" value="<?php echo $det->getEmail(); ?>" class="form-control inputcolor fs-6"
+                            placeholder="E-mail" aria-label="email" value="xsa@cdsd.cdc">
                     </div>
                 </div>
                 <div class="row align-items-center my-2">
@@ -198,7 +141,8 @@
                         <label for="phoneNo" class="form-label">Phone Number</label>
                     </div>
                     <div class="col-md-7">
-                        <input type="tel" id="phoneNo" class="form-control inputcolor fs-6" placeholder="Phone Number" aria-label="Phone Number">
+                        <input type="tel" value="<?php echo $det->getMobile(); ?>" id="phoneNo"
+                            class="form-control inputcolor fs-6" placeholder="Phone Number" aria-label="Phone Number">
                     </div>
                 </div>
 
@@ -207,7 +151,8 @@
                         <label for="mobileNo" class="form-label">Address</label>
                     </div>
                     <div class="col-md-7">
-                        <input type="tel" id="mobileNo" class="form-control inputcolor fs-6" placeholder="Address" aria-label="Mobile Number">
+                        <input type="tel" id="mobileNo" class="form-control inputcolor fs-6" placeholder="Address"
+                            aria-label="Mobile Number" value="<?php echo $det->getAddresses(); ?>">
                     </div>
                 </div>
 
@@ -216,7 +161,8 @@
                         <label for="joinDate" class="form-label">Join Date</label>
                     </div>
                     <div class="col-md-7">
-                        <input type="date" id="joinDate" class="form-control inputcolor fs-6" aria-label="joinDate">
+                        <input type="date" <?php echo $det->getJoinDate(); ?> id="joinDate"
+                            class="form-control inputcolor fs-6" aria-label="joinDate">
                     </div>
                 </div>
 
@@ -226,7 +172,8 @@
                         <label for="Qualification" class="form-label">Qualification (Choose highest)</label>
                     </div>
                     <div class="col-md-7 my-3">
-                        <select name="Qualification" id="Qualification" class="form-select form-select-lg inputcolor fs-6">
+                        <select name="Qualification" id="Qualification"
+                            class="form-select form-select-lg inputcolor fs-6">
                             <option value="bsc">
                                 1) Bachelor in Civil Engineering
                             </option>
@@ -241,7 +188,8 @@
                         <label for="Expertise" class="form-label">Subject Expertise</label>
                     </div>
                     <div class="col-md-7 my-3">
-                        <select name="Expertise" id="Expertise" class="form-select form-select-lg inputcolor fs-6" required>
+                        <select name="Expertise" id="Expertise" class="form-select form-select-lg inputcolor fs-6"
+                            required>
                             <option value="bsc">
                                 1) Hydropower
                             </option>
@@ -289,7 +237,8 @@
                         <label for="noOfExperience" class="form-label">Experience (In years)</label>
                     </div>
                     <div class="col-md-7 my-3">
-                        <input type="number" class="form-control inputcolor fs-6" placeholder="Experience (In years)" aria-label="noOfExperience">
+                        <input type="number" class="form-control inputcolor fs-6" placeholder="Experience (In years)"
+                            aria-label="noOfExperience" value="<?php echo $det->getExperience(); ?>">
                     </div>
                 </div>
                 <div class="row my-2 align-items-center">
@@ -297,7 +246,8 @@
                         <label for="cvLocation" class="form-label">Resume/CV (Less than 10 Mb and pdf only)</label>
                     </div>
                     <div class="col-md-7 my-3">
-                        <input type="file" id="cvLocation" class="form-control form-control-custom fs-6 inputcolor" placeholder="Upload Resume" aria-label="Upload Resume">
+                        <input type="file" id="cvLocation" class="form-control form-control-custom fs-6 inputcolor"
+                            placeholder="Upload Resume" aria-label="Upload Resume">
                     </div>
                 </div>
                 <div class="row my-2 align-items-center">
@@ -305,7 +255,8 @@
                         <label for="activeStatus" class="form-label">Active Status</label>
                     </div>
                     <div class="col-md-7 my-3">
-                        <select name="activeStatus" id="activeStatus" class="form-select form-select-lg inputcolor fs-6">
+                        <select name="activeStatus" id="activeStatus"
+                            class="form-select form-select-lg inputcolor fs-6">
                             <option value="na">
                                 Select Active Status
                             </option>
@@ -341,7 +292,8 @@
                         <label for="userName" class="form-label">Username</label>
                     </div>
                     <div class="col-md-7 my-3">
-                        <input type="text" id="userName" class="form-control inputcolor fs-6" placeholder="Username" aria-label="userName">
+                        <input type="text" id="userName" class="form-control inputcolor fs-6" placeholder="Username"
+                            value="<?php echo $det->getUsername(); ?>" aria-label="userName">
                     </div>
                 </div>
                 <div class="row my-2 align-items-center">
@@ -365,7 +317,8 @@
                         <label for="cpassword" class="form-label">Confirm Password</label>
                     </div>
                     <div class="col-md-7 my-3">
-                        <input type="password" id="cpassword" class="form-control inputcolor fs-6" aria-label="cpassword">
+                        <input type="password" id="cpassword" class="form-control inputcolor fs-6"
+                            aria-label="cpassword">
                     </div>
                 </div>
             </div>
@@ -376,6 +329,10 @@
         </div>
     </div>
 </div>
+
+<?php
+}
+?>
 
 
 

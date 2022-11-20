@@ -1,5 +1,11 @@
 <?php
 
+require_once("../DatabaseConnection/DatabaseConnection.php");
+require_once("../Models/ProductModels/ProductGet.php");
+require_once("../Controllers/GetDetails/GetProductDetails.php");
+$pd = new GetProductDetails();
+$details = $pd->getProductDetails();
+
 include "header.php";
 ?>
 
@@ -8,148 +14,42 @@ include "header.php";
     <div class="text-center" id="index_bg">
         <div>
             <!-- <img src="https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTl8fHN0dWR5fGVufDB8MHwwfHw%3D&auto=format&fit=crop&w=500&q=60" alt="" class=" w-100 bg-image " style="z-index: 0; position: relative;"> -->
-            <p class="fw-bold pt-5 position-relative text-light fs-1">Best Civil Engineering Practical <br> Courses in the World</p>
+            <p class="fw-bold pt-5 position-relative text-light fs-1">Best Civil Engineering Practical <br> Courses in
+                the World</p>
             <p class="text-light">Learn from Highly Experience and Knowledgeable Civil Engineering Industry Leaders</p>
             <button class="btn btn-primary hover-orangered rounded-pill py-2 px-3 mt-5 mb-5">GET STARTED</button>
         </div>
     </div>
 </div>
 <div class=" m-0 p-0 text-center">
-    <p style="font-size: 24px;" class="text-md-center text-lg-center pt-5 ">Explore a variety of quality<span style="color:#535967;"> Civil Engineering courses</span> and gain <span style="color:#535967">new skills </span> to head start a <span style="color:#535967"> <br> successful career </span> </p>
+    <p style="font-size: 24px;" class="text-md-center text-lg-center pt-5 ">Explore a variety of quality<span
+            style="color:#535967;"> Civil Engineering courses</span> and gain <span style="color:#535967">new skills
+        </span> to head start a <span style="color:#535967"> <br> successful career </span> </p>
 </div>
 <!-- <div class="container"> -->
 <div class="col-md-10 m-auto">
     <div class="row boxes">
-
+        <?php foreach ($details as $det) { ?>
         <div class="px-2 ftco-animate">
-            <img src="https://skill-veda.com/wp-content/uploads/2022/07/Hydropower.png" alt="" class="img-fluid">
+
+            <img src="http://localhost/nccengineering/<?php echo $det->getImage(); ?>" alt="" class="img-fluid">
             <i class="bi bi-star text-warning"></i>
             <i class="bi bi-star text-warning"></i>
             <i class="bi bi-star text-warning"></i>
             <i class="bi bi-star text-warning"></i>
             <i class="bi bi-star text-warning"></i>
-            <!-- <div class="rating">
-                        <input type="radio" name="rating" id="rating-5">
-                        <label for="rating-5"></label>
-                        <input type="radio" name="rating" id="rating-4">
-                        <label for="rating-4"></label>
-                        <input type="radio" name="rating" id="rating-3">
-                        <label for="rating-3"></label>
-                        <input type="radio" name="rating" id="rating-2">
-                        <label for="rating-2"></label>
-                        <input type="radio" name="rating" id="rating-1">
-                        <label for="rating-1"></label>
-                    </div> -->
-            <p class="fs-5"><a href="#">Prestressed Bridge Superstructure (Excel)</a></p>
-            <p> <i class="bi bi-person"></i> 6 <i class="bi bi-clock"></i> 12h</p>
+
+            <p class="fs-5"><a href="#"><?php echo $det->getProductName(); ?></a></p>
+            <p> <i class="bi bi-person"></i> 6 <i class="bi bi-clock"></i> <?php echo $det->getDuration(); ?></p>
             <p> <span class="rounded-circle p-1 bg-primary text-light"> DS</span> by Dynamic Solution</p>
             <div class="fw-bold d-flex justify-content-between">
-                <div>NPR 8,000</div>
+                <div>NPR <?php echo $det->getPrice(); ?></div>
                 <div> <a href=""><i class="bi bi-cart3"></i> Enroll</a></div>
             </div>
         </div>
-
-
-
-        <div class="px-2 ftco-animate">
-            <img src="https://skill-veda.com/wp-content/uploads/2022/07/Hydropower.png" alt="" class="img-fluid">
-            <i class="bi bi-star text-warning"></i>
-            <i class="bi bi-star text-warning"></i>
-            <i class="bi bi-star text-warning"></i>
-            <i class="bi bi-star text-warning"></i>
-            <i class="bi bi-star text-warning"></i>
-            <p class="fs-5"><a href="#">Hydraulic Design of Hydropower Civil Comp.</a></p>
-            <p> <i class="bi bi-person"></i> 6 <i class="bi bi-clock"></i> 12h</p>
-            <p> <span class="rounded-circle p-1 bg-primary text-light"> DS</span> by Dynamic Solution</p>
-
-            <div class="fw-bold d-flex justify-content-between">
-                <div>NPR 5,000</div>
-                <div> <a href=""><i class="bi bi-cart3"></i> Enroll</a></div>
-            </div>
-        </div>
-
-
-        <div class="px-2 ftco-animate">
-            <img src="https://skill-veda.com/wp-content/uploads/2022/07/Hydropower.png" alt="" class="img-fluid">
-
-            <i class="bi bi-star text-warning"></i>
-            <i class="bi bi-star text-warning"></i>
-            <i class="bi bi-star text-warning"></i>
-            <i class="bi bi-star text-warning"></i>
-            <i class="bi bi-star text-warning"></i>
-            <p class="fs-5"><a href="#">Bridge Design Using Midas Civil (English Version)</a></p>
-            <p> <i class="bi bi-person"></i> 9 <i class="bi bi-clock"></i> 18h</p>
-            <p> <span class="rounded-circle p-1 bg-primary text-light"> DS</span> by Dynamic Solution</p>
-
-            <div class="fw-bold d-flex justify-content-between">
-                <div>NPR 15,000</div>
-                <div> <a href=""><i class="bi bi-cart3"></i> Enroll</a></div>
-            </div>
-        </div>
-
-
-
-
-        <div class="px-2 ftco-animate">
-            <img src="https://skill-veda.com/wp-content/uploads/2022/07/Hydropower.png" alt="" class="img-fluid">
-
-            <i class="bi bi-star text-warning"></i>
-            <i class="bi bi-star text-warning"></i>
-            <i class="bi bi-star text-warning"></i>
-            <i class="bi bi-star text-warning"></i>
-            <i class="bi bi-star text-warning"></i>
-
-            <p class="fs-5"><a href="#">Geographic Information System (GIS) for Beginners</a></p>
-
-            <p> <i class="bi bi-person"></i> 6 <i class="bi bi-clock"></i> 12h</p>
-            <p> <span class="rounded-circle p-1 bg-primary text-light"> DS</span> by Dynamic Solution</p>
-
-            <div class="fw-bold d-flex justify-content-between">
-                <div>NPR 8,000</div>
-                <div> <a href=""><i class="bi bi-cart3"></i> Enroll</a></div>
-            </div>
-        </div>
-
-
-
-        <div class="px-2 ftco-animate">
-            <img src="https://skill-veda.com/wp-content/uploads/2021/12/Excel-VBA-FOR-CIVIL-ENGINEER-1.png" alt="" class="img-fluid">
-
-            <i class="bi bi-star text-warning"></i>
-            <i class="bi bi-star text-warning"></i>
-            <i class="bi bi-star text-warning"></i>
-            <i class="bi bi-star text-warning"></i>
-            <i class="bi bi-star text-warning"></i>
-            <p class="fs-5"><a href="#">Municipal Drawing using AutoCAD</a></p>
-            <p> <i class="bi bi-person"></i> 6 <i class="bi bi-clock"></i> 12h</p>
-            <p> <span class="rounded-circle bg-primary text-light p-1"> DS</span> by Dynamic Solution</p>
-
-            <!-- <p class="fw-bold"> <span style="color: blue;"> <del>NPR 5,000</del></span> NPR 2,500</p> -->
-            <div class="fw-bold d-flex justify-content-between">
-                <div><span class="text-primary"> <del>NPR 5,000</del></span> NPR 2,500</div>
-                <div> <a href=""><i class="bi bi-cart3"></i> Enroll</a></div>
-            </div>
-        </div>
-
-
-        <div class="px-2 ftco-animate">
-            <img src="https://skill-veda.com/wp-content/uploads/2021/11/lsm-english-version.png" alt="" class="img-fluid">
-
-            <i class="bi bi-star text-warning"></i>
-            <i class="bi bi-star text-warning"></i>
-            <i class="bi bi-star text-warning"></i>
-            <i class="bi bi-star text-warning"></i>
-            <i class="bi bi-star text-warning"></i>
-            <p class="fs-5"><a href="#">Design of Bridge Using LSM (English Version)</a></p>
-            <p> <i class="bi bi-person"></i> 9 <i class="bi bi-clock"></i> 18h</p>
-            <p> <span class="rounded-circle p-1 bg-primary text-light"> DS</span> by Dynamic Solution</p>
-
-            <div class="fw-bold d-flex justify-content-between">
-                <div>NPR 15,000</div>
-                <div> <a href=""><i class="bi bi-cart3"></i> Enroll</a></div>
-            </div>
-        </div>
-
+        <?php
+        }
+        ?>
 
     </div>
 
@@ -175,7 +75,9 @@ include "header.php";
                     </div>
                 </div>
                 <div class="mt-3">
-                    <p style="font-family:'Taviraj';"><span style="font-size: 18px; color: #535967;">Npr</span> <span style="font-size: 32px; color: #535967;">35000 </span> <span style="font-size: 20px; color: black;"><sub>/ 6 Month</sub></span></p>
+                    <p style="font-family:'Taviraj';"><span style="font-size: 18px; color: #535967;">Npr</span> <span
+                            style="font-size: 32px; color: #535967;">35000 </span> <span
+                            style="font-size: 20px; color: black;"><sub>/ 6 Month</sub></span></p>
                     <p> <i class="bi bi-check text-success"></i> 6 month membership</p>
                     <p><i class="bi bi-check text-success"></i> Access to all Courses</p>
                     <p><i class="bi bi-check text-success"></i> Live course and New Course</p>
@@ -195,7 +97,9 @@ include "header.php";
                     </div>
                 </div>
                 <div class="mt-3">
-                    <p style="font-family:'Taviraj';"><span style="font-size: 18px; color: #535967;">Npr</span> <span style="font-size: 32px; color: #535967;">50000 </span> <span style="font-size: 20px; color: black;"><sub>/ 1 Year</sub></span></p>
+                    <p style="font-family:'Taviraj';"><span style="font-size: 18px; color: #535967;">Npr</span> <span
+                            style="font-size: 32px; color: #535967;">50000 </span> <span
+                            style="font-size: 20px; color: black;"><sub>/ 1 Year</sub></span></p>
                     <p> <i class="bi bi-check text-success"></i> One Year membership</p>
                     <p><i class="bi bi-check text-success"></i> Access to all Courses</p>
                     <p><i class="bi bi-check text-success"></i> Live course and New Course</p>
@@ -214,14 +118,16 @@ include "header.php";
                     <div class="card testimonial-card">
                         <div class="card-up" style="background-color: #9d789b;"></div>
                         <div class="avatar mx-auto bg-white">
-                            <img src="https://skill-veda.com/wp-content/uploads/2021/05/circle-cropped-8-1.png" class="rounded-circle img-fluid" />
+                            <img src="https://skill-veda.com/wp-content/uploads/2021/05/circle-cropped-8-1.png"
+                                class="rounded-circle img-fluid" />
                         </div>
                         <div class="card-body">
                             <h4 class="fw-bold">Subhuj Khanal</h4>
                             <h6>Master in Structural Engineering</h6>
                             <hr class="bg-primary" />
                             <p class="dark-grey-text mt-4">
-                                <i class="bi bi-quote pe-2"></i>The best part of the course by Dynamic Solution was the clear course structure & Brilliant instructor .
+                                <i class="bi bi-quote pe-2"></i>The best part of the course by Dynamic Solution was the
+                                clear course structure & Brilliant instructor .
                                 They really have given best FEM course for Civil Engineers available online.
                             </p>
                         </div>
@@ -232,15 +138,18 @@ include "header.php";
                     <div class="card testimonial-card">
                         <div class="card-up" style="background-color: #7a81a8;"></div>
                         <div class="avatar mx-auto bg-white">
-                            <img src="https://skill-veda.com/wp-content/uploads/2021/05/circle-cropped-9.png" class="rounded-circle img-fluid" />
+                            <img src="https://skill-veda.com/wp-content/uploads/2021/05/circle-cropped-9.png"
+                                class="rounded-circle img-fluid" />
                         </div>
                         <div class="card-body">
                             <h4 class="fw-bold">Data Gelal</h4>
                             <h6>Master in Structural Engineering</h6>
                             <hr class="bg-primary" />
                             <p class="dark-grey-text mt-4">
-                                <i class="bi bi-quote pe-2"></i>Best part is I came to know the start of ANSYS. And the worst part is class is about to end.
-                                Dynamic Solution was very effective in delivering course content in given time with efficiency.
+                                <i class="bi bi-quote pe-2"></i>Best part is I came to know the start of ANSYS. And the
+                                worst part is class is about to end.
+                                Dynamic Solution was very effective in delivering course content in given time with
+                                efficiency.
 
                             </p>
                         </div>
@@ -250,7 +159,8 @@ include "header.php";
                     <div class="card testimonial-card">
                         <div class="card-up" style="background-color: #6d5b98;"></div>
                         <div class="avatar mx-auto bg-white">
-                            <img src="https://skill-veda.com/wp-content/uploads/2021/05/circle-cropped-10.png" class="rounded-circle img-fluid" />
+                            <img src="https://skill-veda.com/wp-content/uploads/2021/05/circle-cropped-10.png"
+                                class="rounded-circle img-fluid" />
                         </div>
                         <div class="card-body">
                             <h4 class="fw-bold">Mahendra Singh Danga</h4>
@@ -272,7 +182,8 @@ include "header.php";
         </div>
         <div class="d-flex text-center justify-content-center">
             <div class="embed-responsive embed-responsive-16by9" style="width: 80%;">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/vlDzYIIOYmM" allowfullscreen></iframe>
+                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/vlDzYIIOYmM"
+                    allowfullscreen></iframe>
             </div>
         </div>
 
@@ -290,7 +201,8 @@ include "header.php";
                         <p>
                             <span>Posted on </span><span class="text-primary">July 22, 2021</span>
                         </p>
-                        <h3 class="heading"><a href="#">Bridge Failures in Nepal: Diagnosis and Solutions for Design</a></h3>
+                        <h3 class="heading"><a href="#">Bridge Failures in Nepal: Diagnosis and Solutions for Design</a>
+                        </h3>
                         <p>Development of road networks and bridges in Nepal started around sixty years.....
                             <a href="#">See more</a>
                         </p>

@@ -2,6 +2,7 @@
 
 header("Cache-Control: no cache");
 include 'logged_in_header.php';
+$ec = new GetEnrollmentDetails();
 ?>
 
 <!-- User Dashboard -->
@@ -23,10 +24,11 @@ include 'logged_in_header.php';
             <p class="h1 text-light">0</p>
         </div>
     </div> -->
+
         <div class="row d-flex course-info">
             <div class="card-body text-light m-3 rounded-3 col-md-auto col-lg-3 col-sm-auto course-card" style="background-color:darkkhaki;">
                 <p class="p-0 m-0">Enrolled Courses</p>
-                <p class="fs-1 m-0 p-0">0</p>
+                <p class="fs-1 m-0 p-0"><?php echo $ec->getEnrolledCourseCount(new GetStudentUsername($_SESSION['username']));?></p>
             </div>
             <div class="card-body text-light m-3 rounded-3 col-md-auto col-lg-3 col-sm-auto course-card" style="min-height:100%; background-color:coral;">
                 <p class="p-0 m-0">Active Courses</p>

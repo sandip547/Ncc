@@ -1,9 +1,13 @@
 <?php
 include 'header.php';
 require_once("../Controllers/GetDetails/GetProductDetails.php");
+require_once("../Models/ProductModels/ProductDisplay.php");
+require_once("../DatabaseConnection/DatabaseConnection.php");
 $gp = new GetProductDetails();
 $res =$gp->getProductDisplayDetails();
-print_r($res[0]->getProductName());
+if(isset($_GET["addtocart"])){
+
+}
 
 ?>
 <!-- All course page -->
@@ -100,7 +104,6 @@ print_r($res[0]->getProductName());
             <div class="courses">
             <?php
                 foreach ($res as $product){
-
 
             ?>
                 <div class="px-2 ftco-animate border">

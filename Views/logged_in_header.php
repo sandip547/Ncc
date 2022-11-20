@@ -1,9 +1,16 @@
 <?php
 require_once("../Controllers/Registration/SessionManagement.php");
+require_once("../DatabaseConnection/DatabaseConnection.php");
+require_once("../Controllers/SaveDetails/SaveCartDetails.php");
+require_once("../Controllers/GetDetails/GetStudentDetails.php");
+require_once("../Controllers/GetDetails/GetEnrollmentDetails.php");
+require_once("../Models/RegistrationModels/GetStudentUsername.php");
+require_once("../Controllers/GetDetails/GetProductDetails.php");
 $sm = new SessionManagement();
 $sm->sessionStart();
 $sm->checkLoginSession(isset($_SESSION["username"]),isset($_SESSION["user"]));
 $sm->logOutSession(isset($_GET["logout"]));
+
 ?>
 <!-- Header to be used when user is logged in -->
 <!DOCTYPE html>

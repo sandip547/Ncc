@@ -1,6 +1,13 @@
 <?php
+session_start();
 $page = 'student';
-include 'admin header.php'
+include 'admin header.php';
+
+require_once("../../Controllers/Registration/RegController.php");
+
+
+$rc = new RegController();
+
 ?>
 
 <!-- Student page-->
@@ -11,16 +18,22 @@ include 'admin header.php'
         <div class="row d-flex">
             <ul class="nav nav-tabs justify-content-start" id="myTab" role="tablist">
                 <li class="nav-item">
-                    <a class="nav-link active custom-h-tab text-dark" id="view-tab" data-toggle="tab" href="#viewStudent" role="tab" aria-controls="viewstudent" aria-selected="true">View Student</a>
+                    <a class="nav-link active custom-h-tab text-dark" id="view-tab" data-toggle="tab"
+                        href="#viewStudent" role="tab" aria-controls="viewstudent" aria-selected="true">View Student</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link custom-h-tab text-dark" id="all-courses-tab" data-toggle="tab" href="#addStudent" role="tab" aria-controls="addStudent" aria-selected="true">Add Student</a>
+                    <a class="nav-link custom-h-tab text-dark" id="all-courses-tab" data-toggle="tab" href="#addStudent"
+                        role="tab" aria-controls="addStudent" aria-selected="true">Add Student</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link custom-h-tab text-dark" id="active-courses-tab" data-toggle="tab" href="#editStudent" role="tab" aria-controls="editStudent" aria-selected="false">Edit Student</a>
+                    <a class="nav-link custom-h-tab text-dark" id="active-courses-tab" data-toggle="tab"
+                        href="#editStudent" role="tab" aria-controls="editStudent" aria-selected="false">Edit
+                        Student</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link custom-h-tab text-dark" id="completed-courses-tab" data-toggle="tab" href="#deleteStudent" role="tab" aria-controls="deleteStudent" aria-selected="false">Delete Student</a>
+                    <a class="nav-link custom-h-tab text-dark" id="completed-courses-tab" data-toggle="tab"
+                        href="#deleteStudent" role="tab" aria-controls="deleteStudent" aria-selected="false">Delete
+                        Student</a>
                 </li>
             </ul>
             <div class="clearfix tab-content">

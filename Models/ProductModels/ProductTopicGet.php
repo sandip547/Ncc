@@ -1,5 +1,6 @@
 <?php
-class ProductTopicGet{
+class ProductTopicGet
+{
     private $topic_id;
     private $course_name;
     private $sr_no;
@@ -7,8 +8,9 @@ class ProductTopicGet{
     private $duration;
     private $entered_by;
     private $entered_date;
-    private $updated_date;
     private $updated_by;
+    private $updated_date;
+
 
     /**
      * @param $topic_id
@@ -21,7 +23,7 @@ class ProductTopicGet{
      * @param $updated_date
      * @param $updated_by
      */
-    public function __construct($topic_id, $course_name, $sr_no, $topic_name, $duration, $entered_by, $entered_date, $updated_date, $updated_by)
+    public function __construct($topic_id, $course_name, $sr_no, $topic_name, $duration, $entered_by, $entered_date, $updated_by, $updated_date)
     {
         $this->topic_id = $topic_id;
         $this->course_name = $course_name;
@@ -30,8 +32,8 @@ class ProductTopicGet{
         $this->duration = $duration;
         $this->entered_by = $entered_by;
         $this->entered_date = $entered_date;
-        $this->updated_date = $updated_date;
         $this->updated_by = $updated_by;
+        $this->updated_date = $updated_date;
     }
 
     /**
@@ -179,4 +181,3 @@ class ProductTopicGet{
         $this->updated_by = $updated_by;
     }
 }
-?>

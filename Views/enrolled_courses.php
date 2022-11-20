@@ -1,6 +1,8 @@
 <?php
 $page = 'enrolled_courses';
-include 'logged_in_header.php'
+include 'logged_in_header.php';
+require_once("../Models/ProductModels/ProductDisplay.php");
+$gc = new GetProductDetails();
 ?>
 
 <!-- User Enrolled courses page-->
@@ -38,60 +40,41 @@ include 'logged_in_header.php'
                         </div>
                     </div> -->
                     <div class="d-flex flex-wrap my-5">
+                        <?php
+                        $getDetails = $gc->getProductDisplayDetailsId($_SESSION["username"]);
+                        foreach ($getDetails as $p_details){
+                        ?>
+
                         <div style="width:300px" class="mx-3 my-2">
                             <div class="px-2 ftco-animate border">
                                 <div class="" style="transform: translate(0%, -3%);">
                                     <div>
                                         <div class="d-flex justify-content-between px-3" style="bottom:100%; transform: translate(0%, 150%);">
-                                            <div class="bg-primary text-light p-1 rounded-1">Intermediate</div>
+                                            <div class="bg-primary text-light p-1 rounded-1"><?php echo $p_details->getLevel(); ?></div>
                                             <i class="bi bi-bookmark"></i>
                                         </div>
-                                        <img src="https://skill-veda.com/wp-content/uploads/2022/07/Hydropower.png" alt="" class="img-fluid">
+                                        <img src="<?php echo $p_details->getImage(); ?>" alt="" class="img-fluid">
                                     </div>
                                     <i class="bi bi-star text-warning"></i>
                                     <i class="bi bi-star text-warning"></i>
                                     <i class="bi bi-star text-warning"></i>
                                     <i class="bi bi-star text-warning"></i>
                                     <i class="bi bi-star text-warning"></i>
-                                    <p class="fs-5"><a href="#">Hydraulic Design of Hydropower Civil Comp.</a></p>
-                                    <p> <i class="bi bi-person"></i> 6 <i class="bi bi-clock"></i> 12h</p>
-                                    <p> <span class="rounded-circle p-1 bg-primary text-light"> DS</span> by Dynamic Solution</p>
+                                    <p class="fs-5"><a href="#"><?php echo $p_details->getProductName(); ?></a></p>
+                                    <p> <i class="bi bi-person"></i> <?php echo $p_details->getDuration(); ?></p>
+                                    <p> <span class="rounded-circle p-1 bg-primary text-light"> NCC</span> by Ncc Engineering</p>
 
                                     <hr class="bg-primary" />
                                     <div class="fw-bold d-flex justify-content-between">
-                                        <div>NPR 5,000</div>
+                                        <div>NPR <?php echo $p_details->getPrice(); ?></div>
                                         <div> <a href=""><i class="bi bi-cart3"></i> Enroll</a></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div style="width:300px" class="mx-3 my-2">
-                            <div class="px-2 ftco-animate border">
-                                <div class="" style="transform: translate(0%, -3%);">
-                                    <div>
-                                        <div class="d-flex justify-content-between px-3" style="bottom:100%; transform: translate(0%, 150%);">
-                                            <div class="bg-primary text-light p-1 rounded-1">Intermediate</div>
-                                            <i class="bi bi-bookmark"></i>
-                                        </div>
-                                        <img src="https://skill-veda.com/wp-content/uploads/2022/07/Hydropower.png" alt="" class="img-fluid">
-                                    </div>
-                                    <i class="bi bi-star text-warning"></i>
-                                    <i class="bi bi-star text-warning"></i>
-                                    <i class="bi bi-star text-warning"></i>
-                                    <i class="bi bi-star text-warning"></i>
-                                    <i class="bi bi-star text-warning"></i>
-                                    <p class="fs-5"><a href="#">Hydraulic Design of Hydropower Civil Comp.</a></p>
-                                    <p> <i class="bi bi-person"></i> 6 <i class="bi bi-clock"></i> 12h</p>
-                                    <p> <span class="rounded-circle p-1 bg-primary text-light"> DS</span> by Dynamic Solution</p>
-
-                                    <hr class="bg-primary" />
-                                    <div class="fw-bold d-flex justify-content-between">
-                                        <div>NPR 5,000</div>
-                                        <div> <a href=""><i class="bi bi-cart3"></i> Enroll</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            <?php
+                        }
+                            ?>
                     </div>
 
                 </div>

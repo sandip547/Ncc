@@ -7,6 +7,7 @@ class SessionManagement{
     function sessionStart(){
         session_start();
     }
+
     function checkLoginSession($username,$type){
         if(!$username && !$type){
             ?>

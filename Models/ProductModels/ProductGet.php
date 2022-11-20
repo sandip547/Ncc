@@ -43,6 +43,7 @@ class ProductGet{
         $this->active_status = $active_status;
         $this->image = $image;
     }
+
     function setProductId($product_id){$this->product_id=$product_id;}
     function getProductId(){return $this->product_id;}
 

@@ -95,6 +95,3 @@ class Product{
     function getImage(){return $this->image;}
 
 }
-
-
-?>

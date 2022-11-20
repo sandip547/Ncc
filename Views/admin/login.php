@@ -1,15 +1,16 @@
 <?php
 header("Cache-Control: no cache");
-require_once("../Controllers/Registration/SessionManagement.php");
-require_once("../DatabaseConnection/DatabaseConnection.php");
+require_once("../../DatabaseConnection/DatabaseConnection.php");
+require_once("../../Controllers/Registration/SessionManagement.php");
+require_once("../../DatabaseConnection/DatabaseConnection.php");
 $sm = new SessionManagement();
 $sm->checkLoginAgainSession(isset($_SESSION["username"]),isset($_SESSION["user"]));
-include 'header.php';
-require_once("../Controllers/Authentication/Authentication.php");
-require_once("../Models/RegistrationModels/Login.php");
+include 'headerlogin.php';
+require_once("../../Controllers/Authentication/Authentication.php");
+require_once("../../Models/RegistrationModels/Login.php");
 $auth = new Authentication();
 if(isset($_POST['submit'])){
-    $auth->authUser(new Login($_POST['username'],$_POST['password']));
+    $auth->authAdmin(new Login($_POST['username'],$_POST['password']));
 }
 ?>
 

@@ -1,3 +1,13 @@
+<?php
+
+require_once("../../Controllers/GetDetails/GetCourseTopic.php");
+
+$ct = new GetCourseTopic();
+$details = $ct->getCourseTopic();
+
+
+?>
+
 <div class="input-group my-5">
     <input type="search" id="form1" class="form-control fs-6" placeholder="Search by id or name..." />
     <button type="button" class="bg-primary text-light px-3" style="border: none;">
@@ -5,132 +15,47 @@
     </button>
 </div>
 
-<p class="h5 text-dark font-weight-bold">Product details</p>
+<p class="h5 text-dark font-weight-bold">Course Topics</p>
 <div class="table-responsive my-5">
     <table class="table table-bordered table-hover table-sm text-normal">
         <thead class="thead-light">
             <tr class="text-center">
                 <th></th>
-                <th>ID</th>
-                <th>Course name</th>
+                <th>Topic Id</th>
+                <th>Course Name</th>
+                <th>Sr No</th>
+                <th>Topic Name</th>
                 <th>Duration</th>
-                <th>Price</th>
-                <th>Enrollment Validity</th>
-                <th>Level</th>
-                <th>Description</th>
-                <th>Target Audience</th>
-                <th>Course Learning</th>
-                <th>Course Requirements</th>
-                <th>Tag</th>
-                <th>Release Date</th>
+                <th>entered by</th>
                 <th>Entered Date</th>
-                <th>Entered By</th>
-                <th>Update date</th>
-                <th>Updated by</th>
-                <th>Active Status</th>
+                <th>Updated Date</th>
+                <th>Updated By</th>
+
+
             </tr>
         </thead>
         <tbody>
+            <?php foreach ($details as $det) { ?>
             <tr>
-                <th class="px-3"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">View</button></th>
-                <th class="px-3">1</th>
-                <th class="px-3">Course name</th>
-                <th class="px-3">12 hr</th>
-                <th class="px-3">NPR 7000</th>
-                <th class="px-3">Lifetime</th>
-                <th class="px-3">Beginner</th>
-                <th class="px-3">this n that ...</th>
-                <th class="px-3">this n that ...</th>
-                <th class="px-3">this n that ...</th>
-                <th class="px-3">this n that ...</th>
-                <th class="px-3">12</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">Sushma Shrestha</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">Sushma Shrestha</th>
-                <th class="px-3">Active</th>
+                <th class="px-3"><button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#exampleModalLong">View</button></th>
+                <th class="px-3"><?php echo $det->getTopicId(); ?></th>
+                <th class="px-3"><?php echo $det->getCourseName(); ?></th>
+                <th class="px-3"><?php echo $det->getSrNo(); ?></th>
+                <th class="px-3"><?php echo $det->getTopicName(); ?></th>
+                <th class="px-3"><?php echo $det->getDuration(); ?></th>
+                <th class="px-3"><?php echo $det->getEnteredBy(); ?></th>
+                <th class="px-3"><?php echo $det->getEnteredDate(); ?></th>
+                <th class="px-3"><?php echo $det->getUpdatedDate(); ?></th>
+                <th class="px-3"><?php echo $det->getUpdatedBy(); ?></th>
+
+
             </tr>
-            <tr>
-                <th class="px-3"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">View</button></th>
-                <th class="px-3">2</th>
-                <th class="px-3">Course name</th>
-                <th class="px-3">12 hr</th>
-                <th class="px-3">NPR 7000</th>
-                <th class="px-3">Lifetime</th>
-                <th class="px-3">Beginner</th>
-                <th class="px-3">this n that ...</th>
-                <th class="px-3">this n that ...</th>
-                <th class="px-3">this n that ...</th>
-                <th class="px-3">this n that ...</th>
-                <th class="px-3">12</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">Sushma Shrestha</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">Sushma Shrestha</th>
-                <th class="px-3">Active</th>
-            </tr>
-            <tr>
-                <th class="px-3"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">View</button></th>
-                <th class="px-3">2</th>
-                <th class="px-3">Course name</th>
-                <th class="px-3">12 hr</th>
-                <th class="px-3">NPR 7000</th>
-                <th class="px-3">Lifetime</th>
-                <th class="px-3">Beginner</th>
-                <th class="px-3">this n that ...</th>
-                <th class="px-3">this n that ...</th>
-                <th class="px-3">this n that ...</th>
-                <th class="px-3">this n that ...</th>
-                <th class="px-3">12</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">Sushma Shrestha</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">Sushma Shrestha</th>
-                <th class="px-3">Active</th>
-            </tr>
-            <tr>
-                <th class="px-3"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">View</button></th>
-                <th class="px-3">2</th>
-                <th class="px-3">Course name</th>
-                <th class="px-3">12 hr</th>
-                <th class="px-3">NPR 7000</th>
-                <th class="px-3">Lifetime</th>
-                <th class="px-3">Beginner</th>
-                <th class="px-3">this n that ...</th>
-                <th class="px-3">this n that ...</th>
-                <th class="px-3">this n that ...</th>
-                <th class="px-3">this n that ...</th>
-                <th class="px-3">12</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">Sushma Shrestha</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">Sushma Shrestha</th>
-                <th class="px-3">Active</th>
-            </tr>
-            <tr>
-                <th class="px-3"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong">View</button></th>
-                <th class="px-3">2</th>
-                <th class="px-3">Course name</th>
-                <th class="px-3">12 hr</th>
-                <th class="px-3">NPR 7000</th>
-                <th class="px-3">Lifetime</th>
-                <th class="px-3">Beginner</th>
-                <th class="px-3">this n that ...</th>
-                <th class="px-3">this n that ...</th>
-                <th class="px-3">this n that ...</th>
-                <th class="px-3">this n that ...</th>
-                <th class="px-3">12</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">Sushma Shrestha</th>
-                <th class="px-3">2022-03-21</th>
-                <th class="px-3">Sushma Shrestha</th>
-                <th class="px-3">Active</th>
-            </tr>
+            <?php
+            }
+            ?>
+
+
         </tbody>
     </table>
 </div>
@@ -156,7 +81,8 @@
         </li>
     </ul>
 </nav>
-<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">

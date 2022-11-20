@@ -1,12 +1,17 @@
 <?php
 $page = 'setting';
 include 'logged_in_header.php';
+require_once("../Models/RegistrationModels/StudentProfileUpdate.php");
+require_once("../Controllers/Registration/RegController.php");
 require_once("../Models/RegistrationModels/GetStudentUser.php");
-require_once("../Models/RegistrationModels/GetStudentUsername.php");
-require_once("../Controllers/GetDetails/GetStudentDetails.php");
-$sd = new GetStudentDetails();
-echo $_SESSION["username"];
-$stdprofile = $sd->getStudentId(new GetStudentUsername($_SESSION["username"]));
+require_once("Notification/Notification.php");
+if(isset($_POST['updateProfile'])){
+    $reg = new RegController();
+    $reg->updateProfileDetails(new StudentProfileUpdate($_POST["fullname"],$_POST["dob"],$_POST["email"],$_POST["gender"],$_POST["mnumber"],$_POST["address"],$_SESSION["username"]));
+    $noti = new Notification();
+    $noti->alertUpdateSuccess();
+}
+
 
 ?>
 <!-- setting page of user -->

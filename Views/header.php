@@ -1,5 +1,6 @@
 <?php
 require_once("../Controllers/Registration/SessionManagement.php");
+require_once("../Controllers/SaveDetails/SaveCartDetails.php");
 $sm = new SessionManagement();
 $sm->sessionStart();
 $sm->logOutSession(isset($_GET["logout"]));

@@ -1,4 +1,17 @@
+<?php
+require_once("../Models/RegistrationModels/StudentProfileUpdate.php");
+require_once("../Controllers/GetDetails/GetStudentDetails.php");
+
+require_once("../Models/RegistrationModels/GetStudentUser.php");
+require_once("../Models/RegistrationModels/GetStudentUserId.php");
+require_once("../Models/RegistrationModels/GetStudentUsername.php");
+
+$sd = new GetStudentDetails();
+$stdprofile = $sd->getStudentProfileUpdate($sd->getStudentIdOn(new GetStudentUsername($_SESSION["username"])));
+
+?>
 <!-- Profile tab inside Setting -->
+<form action method="post" enctype="multipart/form-data" action="profile.php">
 <div class="col-md-11 my-3 mx-0 ml-2" id="profile">
     <div class="profile-header-cover"></div>
     <div class="d-flex justify-content-end text-right">
@@ -15,62 +28,48 @@
 </div>
 
 <div class="d-flex flex-wrap mt-5 p-0 mx-0">
-    <div class="col-md-5 col-sm-12 my-4">
-        <label for="firstname" class="form-label text-blue-shade">First Name</label>
-        <input type="text" class="form-control fs-6 inputcolor" aria-label="First name">
-    </div>
-    <div class="col-md-5 col-sm-12 my-4">
-        <label for="lastname" class="form-label text-blue-shade">Last Name</label>
-        <input type="text" class="form-control fs-6 inputcolor" aria-label="Last Name">
-    </div>
-    <div class="col-md-5 col-sm-12 my-4">
-        <label for="username" class="form-label text-blue-shade">User Name</label>
-        <input type="text" class="form-control fs-6 inputcolor" aria-label="User name">
-    </div>
-    <div class="col-md-5 col-sm-12 my-4">
-        <label for="phone" class="form-label text-blue-shade">Phone Number</label>
-        <input type="tel" class="form-control fs-6 inputcolor" aria-label="Phone Number">
-    </div>
-    <div class="col-md-10 col-sm-12 my-4">
-        <label for="bio" class="form-label text-blue-shade">Bio</label>
 
-        <textarea class="form-control fs-6 inputcolor" rows="3" placeholder="Write something here...."></textarea>
+    <div class="col-md-5 col-sm-12 my-4">
+        <label for="lastname" class="form-label text-blue-shade">Full Name</label>
+        <input type="text" class="form-control fs-6 inputcolor" value="<?php echo $stdprofile[0];  ?>" name="fullname" aria-label="fullname" required>
     </div>
     <div class="col-md-5 col-sm-12 my-4">
-        <label for="displayname" class="form-label text-blue-shade">Display Name Publicly as</label>
-        <select name="displayname" id="displayname" class="form-select inputcolor">
-            <option value="Kaira">
-                Kaira
+        <label for="Date of Birth" class="form-label text-blue-shade">Date of Birth</label>
+        <input type="date" id="registrationDate" value="<?php echo $stdprofile[1];  ?>" class="form-control inputcolor fs-6" name="dob" aria-label="Date of Birth" required>
+    </div>
+    <div class="col-md-5 col-sm-12 my-4">
+        <label for="lastname" class="form-label text-blue-shade">Email</label>
+        <input type="email" class="form-control fs-6 inputcolor" value="<?php echo $stdprofile[2];  ?>" name="email" aria-label="email" required>
+    </div>
+    <div class="col-md-5 col-sm-12 my-4">
+        <label for="displayname" class="form-label text-blue-shade">Gender</label>
+        <select name="gender" id="gender" class="form-select form-select-lg inputcolor fs-6" required>
+            <option value="1">
+                <?php echo $stdprofile[3];?>
             </option>
-            <option value="Tamrakar">
-                Tamrakar
+            <option value="1">
+                Male
+            </option>
+            <option value="2">
+                Female
+            </option>
+            <option value="3">
+                Other
             </option>
         </select>
-        <p style="font-size: 12px;">The display name is shown in all public fields, such as the author name, instructor name, student name, and name that will be printed on the certificate.</p>
     </div>
     <div class="col-md-5 col-sm-12 my-4">
-        <label for="websiteurl" class="form-label text-blue-shade">Website URL</label>
-        <input type="text" class="form-control fs-6 inputcolor" aria-label="websiteurl" placeholder="https://example.com/">
+        <label for="phone" class="form-label text-blue-shade">Mobile Number</label>
+        <input type="tel" class="form-control fs-6 inputcolor" value="<?php echo $stdprofile[4];  ?>" name="mnumber" aria-label="Mobile Number">
     </div>
     <div class="col-md-5 col-sm-12 my-4">
-        <label for="githuburl" class="form-label text-blue-shade">Github URL</label>
-        <input type="text" class="form-control fs-6 inputcolor" aria-label="githuburl" placeholder="https://github.com/username">
-    </div>
-    <div class="col-md-5 col-sm-12 my-4">
-        <label for="facebookurl" class="form-label text-blue-shade">Facbook URL</label>
-        <input type="text" class="form-control fs-6 inputcolor" aria-label="facebookurl" placeholder="https://facebook.com/username">
-    </div>
-    <div class="col-md-5 col-sm-12 my-4">
-        <label for="twitterurl" class="form-label text-blue-shade">Twitter URL</label>
-        <input type="text" class="form-control fs-6 inputcolor" aria-label="twitterurl" placeholder="https://twitter.com/username">
-    </div>
-    <div class="col-md-5 col-sm-12 my-4">
-        <label for="linkedin" class="form-label text-blue-shade">Linkedin URL</label>
-        <input type="text" class="form-control fs-6 inputcolor" aria-label="linkedin" placeholder="https://linkedin.com/username">
+        <label for="phone" class="form-label text-blue-shade">Address</label>
+        <input type="tel" class="form-control fs-6 inputcolor" value="<?php echo $stdprofile[5];  ?>" name="address" aria-label="Address">
     </div>
     <div class="col-md-10">
-        <button type="submit" class="btn btn-primary clearfix rounded-2">UPDATE PROFILE</button>
+        <button type="submit" name="updateProfile" class="btn btn-primary clearfix rounded-2">UPDATE PROFILE</button>
     </div>
     <br><br>
 </div>
+</form>
 <br><br><br><br>
