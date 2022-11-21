@@ -136,10 +136,13 @@ class RegController
 
     function  resetPassword($username, $reset)
     {
+        $check = False;
         if ($this->getPassword($username) && $this->checkPassword($reset->getNewPassword(), $reset->getConfirmPassword())) {
             $query = "update student set password=? where username=?";
-            $result = $this->connection->executePrepare($query, "s", array($this->encrypt->encrypt($reset->getPassword()), $username));
+            $this->connection->executePrepare($query, "ss", array($this->encrypt->encrypt($reset->getNewPassword()), $username));
+            $check = True;
         }
+        return $check;
     }
 }
 //$rc = new RegController();

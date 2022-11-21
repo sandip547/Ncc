@@ -30,7 +30,7 @@ class SaveComments{
     }
 }
 
-$sc = new SaveComments();
-$sc->saveProductComments(new CourseComments(7,1,"hello there",date("Y-m-d h:i:s")));
+//$sc = new SaveComments();
+//$sc->saveProductComments(new CourseComments(7,1,"hello there",date("Y-m-d h:i:s")));
 
 ?>

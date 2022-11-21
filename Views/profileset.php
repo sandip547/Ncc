@@ -1,7 +1,6 @@
 <?php
 require_once("../Models/RegistrationModels/StudentProfileUpdate.php");
 require_once("../Controllers/GetDetails/GetStudentDetails.php");
-
 require_once("../Models/RegistrationModels/GetStudentUser.php");
 require_once("../Models/RegistrationModels/GetStudentUserId.php");
 require_once("../Models/RegistrationModels/GetStudentUsername.php");

@@ -4,6 +4,7 @@ include 'logged_in_header.php';
 require_once("../Models/RegistrationModels/StudentProfileUpdate.php");
 require_once("../Controllers/Registration/RegController.php");
 require_once("../Models/RegistrationModels/GetStudentUser.php");
+require_once("../Models/RegistrationModels/ResetPassword.php");
 require_once("Notification/Notification.php");
 if(isset($_POST['updateProfile'])){
     $reg = new RegController();
@@ -12,6 +13,17 @@ if(isset($_POST['updateProfile'])){
     $noti->alertUpdateSuccess();
 }
 
+if(isset($_POST['resetPass'])){
+    $rc =  new RegController();
+    $noti = new Notification();
+    if($rc->resetPassword($_SESSION["username"],new ResetPassword($_POST['current_password'],$_POST['new_password'],$_POST['confirm_password']))){
+        $noti = new Notification();
+        $noti->alertUpdateSuccess();
+    }
+    else{
+        $noti->alertNotSuccess();
+    }
+}
 
 ?>
 <!-- setting page of user -->

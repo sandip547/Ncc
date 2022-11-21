@@ -2,17 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="735bead6-e69d-4352-9583-d16a0a5dfd20" name="Changes" comment="Latest Update">
-      <change afterPath="$PROJECT_DIR$/Views/product/images/1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models/Comment/CommentsUser.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/GetDetails/GetEnrollmentDetails.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/GetDetails/GetEnrollmentDetails.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/GetDetails/GetProductDetails.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/GetDetails/GetProductDetails.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/GetDetails/GetComments.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/GetDetails/GetComments.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/Registration/RegController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Registration/RegController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/SaveDetails/SaveEnrollmentDetails.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/SaveDetails/SaveEnrollmentDetails.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/dashboard.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/dashboard.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/enrolled_courses.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/enrolled_courses.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/logged_in_header.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/logged_in_header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/product/images/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/product/images/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/SaveDetails/SaveComments.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/SaveDetails/SaveComments.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/Notification/Notification.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Notification/Notification.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/profileset.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/profileset.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/resetpass.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/resetpass.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/review.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/review.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/setting.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/setting.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/wishlist.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/wishlist.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -30,7 +30,6 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -71,7 +70,7 @@
       <workItem from="1668561266397" duration="22333000" />
       <workItem from="1668942086832" duration="935000" />
       <workItem from="1668943812068" duration="8911000" />
-      <workItem from="1669005010456" duration="9929000" />
+      <workItem from="1669005010456" duration="16886000" />
     </task>
     <task id="LOCAL-00001" summary="Latest Update">
       <created>1668941336083</created>
@@ -94,7 +93,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668961402196</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Latest Update">
+      <created>1669025334906</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1669025334906</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

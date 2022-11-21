@@ -7,10 +7,11 @@ $logged = true;
 
 ?>
 
-<!-- Wishlist page -->
+
 <div class="text-justify p-0 m-0 tab-pane active course-info" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
 
 <p class="h5 text-dark font-weight-bold">My Wishlist</p>
+    <!-- Wishlist page
     <hr class="bg-primary"/>
   <div class="col-md-10">
     <div class="courses pb-5 my-5">
@@ -110,10 +111,12 @@ $logged = true;
   </div>
 
 </div>
-</div>
 
+</div>
+-->
 </main>
 </div>
+
 </div>
 
 <?php

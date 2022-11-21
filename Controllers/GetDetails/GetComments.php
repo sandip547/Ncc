@@ -1,6 +1,6 @@
 <?php
-require_once("../../Models/Comment/GetCourseComments.php");
-require_once("../../DatabaseConnection/DatabaseConnection.php");
+//require_once("../../Models/Comment/GetCourseComments.php");
+//require_once("../../DatabaseConnection/DatabaseConnection.php");
 class GetComments{
     private $connection;
 
@@ -19,7 +19,19 @@ class GetComments{
         while($row = mysqli_fetch_array($result)){
             array_push($m_comments,new GetCourseComments($row[1],$row[2],$this->getStudentName($row[0])));
         }
-        echo sizeOf($m_comments);
+
+        return $m_comments;
+    }
+
+    function getUserComments($username){
+        $gs = new GetStudentDetails();
+        $pd = new GetProductDetails();
+        $query = "select studentid,courseid,comment,enteredDate from comments where studentid = ?";
+        $m_comments = array();
+        $result = $this->connection->executePrepareReturn($query,"i",array($gs->getStudentIdOn($username)));
+        while($row = mysqli_fetch_array($result)){
+            array_push($m_comments,new CommentsUser($pd->getProductName($row[1]),$row[2],$row[3]));
+        }
         return $m_comments;
     }
 }
