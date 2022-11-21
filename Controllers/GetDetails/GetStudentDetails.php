@@ -1,5 +1,6 @@
 <?php
 
+require_once("../../Models/RegistrationModels/GetStudentUser.php");
 class GetStudentDetails
 {
     private $connection;

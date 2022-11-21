@@ -4,7 +4,7 @@ class DatabaseCredentials{
   private $hostname="localhost";
   private $username="root";
   private $password="";
-  private $dbname="engg";
+  private $dbname="ncc_engineering";
 
   function getHostName(){
     return $this->hostname;

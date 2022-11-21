@@ -2,6 +2,12 @@
 
 require_once("../../Models/ProductModels/ProductDisplay.php");
 require_once("../../Controllers/GetDetails/GetProductDetails.php");
+require_once("../../DatabaseConnection/DatabaseConnection.php");
+require_once("../../Controllers/GetDetails/GetStudentDetails.php");
+require_once("../../Models/ProductModels/ProductDisplay.php");
+require_once("../../Models/RegistrationModels/GetStudentUsername.php");
+require_once("../../Models/ProductModels/GetActiveProductDetails.php");
+require_once("../../Models/ProductModels/ProductGet.php");
 $pd = new GetProductDetails();
 $details = $pd->getProductDetails();
 
@@ -50,8 +56,8 @@ $details = $pd->getProductDetails();
                 <th class="px-3"><?php echo $det->getProductName(); ?></th>
                 <th class="px-3"><?php echo $det->getDuration(); ?></th>
                 <th class="px-3">NPR <?php echo $det->getPrice(); ?></th>
-                <th class="px-3"><?php echo $det->getEnrollmentValidity(); ?></th>
-                <th class="px-3"><?php echo $det->getLevel(); ?></th>
+                <th class="px-3"><?php echo $det->getEnrollmentValidityLabel(); ?></th>
+                <th class="px-3"><?php echo $det->getLevelLabel(); ?></th>
                 <th class="px-3"><?php echo $det->getDescription(); ?></th>
                 <th class="px-3"><?php echo $det->getTargetAudience(); ?></th>
                 <th class="px-3"><?php echo $det->getLearning(); ?></th>
@@ -59,10 +65,10 @@ $details = $pd->getProductDetails();
                 <th class="px-3"><?php echo $det->getTag(); ?></th>
                 <th class="px-3"><?php echo $det->getReleaseDate(); ?></th>
                 <th class="px-3"><?php echo $det->getEnteredDate(); ?></th>
-                <th class="px-3"><?php echo $det->getEnteredBy(); ?></th>
+                <th class="px-3"><?php echo $det->getEnteredByLabel(); ?></th>
                 <th class="px-3"><?php echo $det->getUpdateDate(); ?></th>
-                <th class="px-3"><?php echo $det->getUpdatedBy(); ?></th>
-                <th class="px-3"><?php echo $det->getActiveStatus(); ?></th>
+                <th class="px-3"><?php echo $det->getUpdatedByLabel(); ?></th>
+                <th class="px-3"><?php echo $det->getActiveStatusLabel(); ?></th>
             </tr>
             <?php
             }

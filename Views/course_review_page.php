@@ -1,10 +1,26 @@
 <?php
+
 // if($logged_id){
 // include 'logged_in_header.php';
 // }
 // else{
+require_once("../Models/ProductModels/ProductDisplay.php");
+require_once("../Controllers/GetDetails/GetProductDetails.php");
+// require_once("../DatabaseConnection/DatabaseConnection.php");
 include 'header.php';
 // }
+
+
+// require_once("../Controllers/GetDetails/GetStudentDetails.php");
+require_once("../Models/ProductModels/ProductDisplay.php");
+require_once("../Models/RegistrationModels/GetStudentUsername.php");
+require_once("../Models/ProductModels/GetActiveProductDetails.php");
+require_once("../Models/ProductModels/ProductGet.php");
+
+$course_id = isset($_GET['course_id']) ? $_GET['course_id'] : die('Could not find course ID.');
+$pd = new GetProductDetails();
+$det=$pd->getProductById($course_id)!=null?$pd->getProductById($course_id):die('Could not find course details.');
+
 ?>
 <!-- Course Review Paeg -->
 <!-- Design for Page when clicked in any course -->
@@ -20,13 +36,13 @@ include 'header.php';
                 <i class="bi bi-star text-warning"></i>
                 <span>0</span><span class="text-primary">(0)</span>
             </div>
-            <h1 class="text-blue-shade">Prestressed Bridge Superstructure (Excel)</h1>
+            <h1 class="text-blue-shade"><?php echo $det->getProductName(); ?></h1>
             <div style="font-size: 14px;">
                 <div>
                     <div class="d-flex flex-wrap">
-                        <div> <span class="rounded-circle p-1 bg-primary text-light"> DS</span> by <span class="text-primary">Dynamic Solution</span></div>
+                        <div> <span class="rounded-circle p-1 bg-primary text-light"> <?php echo $det->getFirstLettersFromName(); ?></span> by <span class="text-primary"><?php echo $det->getEnteredByLabel(); ?></span></div>
                         <div class="mx-3">
-                            Course Level: <span class="text-primary">Intermediate</span>
+                            Course Level: <span class="text-primary"><?php echo $det->getLevelLabel(); ?></span>
                         </div>
                     </div>
                 </div>
@@ -52,7 +68,7 @@ include 'header.php';
                             Duration
                         </div>
                         <div>
-                            12h
+                            <?php echo $det->getDuration(); ?>h
                         </div>
                     </div>
                     <div>
@@ -68,7 +84,7 @@ include 'header.php';
                             Last Update
                         </div>
                         <div>
-                            August 13, 2022
+                            <?php echo $det->getUpdateDate(); ?>
                         </div>
                     </div>
                 </div>
@@ -76,11 +92,11 @@ include 'header.php';
                 <hr class="bg-primary" />
                 <div id="course-description">
                     <h5 class="mt-5">Description</h5>
-                    <p class="text-blue-shade">
+                    <!-- <p class="text-blue-shade">
                         <span class="fw-bold">Prestressed concrete</span> is a form of concrete used in construction. It is substantially “prestressed” (compressed) during production, in a manner that strengthens it against tensile forces which will exist when in service.
-                    </p>
+                    </p> -->
                     <p class="text-blue-shade">
-                        This compression is produced by the tensioning of high-strength “tendons” located within or adjacent to the concrete and is done to improve the performance of the concrete in service. Tendons may consist of single wires, multi-wire strands or threaded bars that are most commonly made from high-tensile steels, carbon fiber or aramid fiber.  The essence of prestressed concrete is that once the initial compression has been applied, the resulting material has the characteristics of high-strength concrete when subject to any subsequent compression forces and of ductile high-strength steel when subject to tension forces. This can result in improved structural capacity and/or serviceability compared with conventionally reinforced concrete in many situations. In a prestressed concrete member, the internal stresses are introduced in a planned manner so that the stresses resulting from the imposed loads are counteracted to the desired degree.
+                    <?php echo $det->getDescription(); ?>
                     </p>
                 </div>
                 <div class="inputcolor p-4 mt-5">
@@ -199,7 +215,7 @@ include 'header.php';
             </div>
             <h5 class="fw-bold mt-5">About the Instructor</h5>
             <div class="my-4">
-                <span class="rounded-circle p-2 bg-primary text-light"> DS</span> Dynamic Solution
+                <span class="rounded-circle p-2 bg-primary text-light"> DS</span> <?php echo $det->getEnteredByLabel(); ?>
             </div>
             <div class="d-flex flex-wrap justify-content-between align-items-center">
                 <div>
@@ -228,7 +244,7 @@ include 'header.php';
                     <div class="px-2 ftco-animate border">
                         <img src="https://skill-veda.com/wp-content/uploads/2022/07/Hydropower.png" alt="" class="img-fluid">
                         <div class="p-4 ">
-                            <p class="text-blue-shade fw-bold">NPR 8,000</p>
+                            <p class="text-blue-shade fw-bold">NPR <?php echo $det->getPrice(); ?></p>
                             <h5 class="">Material Includes</h5>
                             <div class="pb-3" style="font-size: 14px;">
                                 <div><i class="bi bi-check fs-5 px-1 text-primary"></i>Excel sheets and presentations</div>

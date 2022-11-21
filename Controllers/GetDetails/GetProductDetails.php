@@ -1,9 +1,4 @@
 <?php
-//require_once("../../DatabaseConnection/DatabaseConnection.php");
-//require_once("../../Controllers/GetDetails/GetStudentDetails.php");
-//require_once("../../Models/ProductModels/ProductDisplay.php");
-//require_once("../../Models/RegistrationModels/GetStudentUsername.php");
-//require_once("../../Models/ProductModels/GetActiveProductDetails.php");
 class GetProductDetails
 {
     private $connection;
@@ -63,6 +58,16 @@ class GetProductDetails
             array_push($product, new ProductGet($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $this->getStaffName($row[6]), $this->getCategoryName($row[7]), $row[8], $row[9], $row[10], $row[11], $row[12], $row[13], $row[14], $row[15], $row[16], $row[17], $row[18], $row[19]));
         }
         return $product;
+    }
+    function getProductById($id)
+    {
+        $sql = "SELECT * FROM course where courseId=?";
+        $result = $this->connection->executePrepareReturn($sql, "i", array($id));
+        $product = array();
+        while ($row = mysqli_fetch_array($result)) {
+            array_push($product, new ProductGet($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $this->getStaffName($row[6]), $this->getCategoryName($row[7]), $row[8], $row[9], $row[10], $row[11], $row[12], $row[13], $row[14], $row[15], $row[16], $row[17], $row[18], $row[19]));
+        }
+        return $product!=null?$product[0]:null;
     }
 
     function getLevel($level)
