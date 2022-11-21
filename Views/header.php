@@ -1,4 +1,7 @@
 <?php
+require_once("../DatabaseConnection/DatabaseConnection.php");
+require_once("../Controllers/Authentication/Encryption.php");
+require_once("../Models/RegistrationModels/CheckUsername.php");
 require_once("../Controllers/Registration/SessionManagement.php");
 require_once("../Controllers/SaveDetails/SaveCartDetails.php");
 $sm = new SessionManagement();

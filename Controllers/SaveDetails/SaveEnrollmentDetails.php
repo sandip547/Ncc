@@ -6,6 +6,7 @@ class SaveEnrollmentDetails{
     function __construct(){
         $this->conn = new DatabaseConnection();
     }
+
     function getExpiryDateRes($code){
 
         $date = date("Y-m-d");

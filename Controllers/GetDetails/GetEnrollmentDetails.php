@@ -18,6 +18,16 @@ class GetEnrollmentDetails{
         return mysqli_fetch_row($result)[0];
     }
 
+    function getActiveCourseCount($username){
+        $gs = new GetStudentDetails();
+        $id = $gs->getStudentIdOn($username);
+        $date = date("Y-m-d");
+        $query = "SELECT COUNT(courseid) from course WHERE course.courseId in(SELECT courseId from enrollment where studentId = ? and status = 1 and (SELECT DATEDIFF(expirydate,'$date'))>=0 )";
+        $result = $this->conn->executePrepareReturn($query,"i",array($id));
+
+        return mysqli_fetch_row($result)[0];
+    }
+
     function getProductName($product_id)
     {
         $query = "SELECT courseName FROM course WHERE courseID=?";

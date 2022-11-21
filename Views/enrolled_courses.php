@@ -2,6 +2,7 @@
 $page = 'enrolled_courses';
 include 'logged_in_header.php';
 require_once("../Models/ProductModels/ProductDisplay.php");
+require_once("../Models/ProductModels/GetActiveProductDetails.php");
 $gc = new GetProductDetails();
 ?>
 
@@ -79,9 +80,43 @@ $gc = new GetProductDetails();
 
                 </div>
                 <div class="tab-pane" id="activecourses" role="tabpanel" aria-labelledby="active-courses-tab">
-                    
-                    <div class="my-4">
-                        You have no active courses currently.
+
+                    <div class="d-flex flex-wrap my-5">
+                        <?php
+                        $getDetails = $gc->getActiveProductDetailsId($_SESSION["username"]);
+                        foreach ($getDetails as $p_details){
+                            ?>
+
+                            <div style="width:300px" class="mx-3 my-2">
+                                <div class="px-2 ftco-animate border">
+                                    <div class="" style="transform: translate(0%, -3%);">
+                                        <div>
+                                            <div class="d-flex justify-content-between px-3" style="bottom:100%; transform: translate(0%, 150%);">
+                                                <div class="bg-primary text-light p-1 rounded-1"><?php echo $p_details->getLevel(); ?></div>
+                                                <i class="bi bi-bookmark"></i>
+                                            </div>
+                                            <img src="<?php echo $p_details->getImage(); ?>" alt="" class="img-fluid">
+                                        </div>
+                                        <i class="bi bi-star text-warning"></i>
+                                        <i class="bi bi-star text-warning"></i>
+                                        <i class="bi bi-star text-warning"></i>
+                                        <i class="bi bi-star text-warning"></i>
+                                        <i class="bi bi-star text-warning"></i>
+                                        <p class="fs-5"><a href="#"><?php echo $p_details->getProductName(); ?></a></p>
+                                        <p> <i class="bi bi-person"></i> <?php echo $p_details->getDuration(); ?></p>
+                                        <p> <span class="rounded-circle p-1 bg-primary text-light"> NCC</span> by Ncc Engineering</p>
+
+                                        <hr class="bg-primary" />
+                                        <div class="fw-bold d-flex justify-content-between">
+
+                                            <div> Days Remaining: <?php echo $p_details->getEnrollmentValidity(); ?></a></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php
+                        }
+                        ?>
                     </div>
                     <hr class="bg-primary">
                 </div>

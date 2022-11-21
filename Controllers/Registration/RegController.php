@@ -1,7 +1,7 @@
 <?php
-require_once("../../DatabaseConnection/DatabaseConnection.php");
-require_once("../../Controllers/Authentication/Encryption.php");
-require_once("../../Models/RegistrationModels/CheckUsername.php");
+//require_once("../../DatabaseConnection/DatabaseConnection.php");
+//require_once("../../Controllers/Authentication/Encryption.php");
+//require_once("../../Models/RegistrationModels/CheckUsername.php");
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 class RegController

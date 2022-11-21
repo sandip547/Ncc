@@ -32,7 +32,7 @@ $ec = new GetEnrollmentDetails();
             </div>
             <div class="card-body text-light m-3 rounded-3 col-md-auto col-lg-3 col-sm-auto course-card" style="min-height:100%; background-color:coral;">
                 <p class="p-0 m-0">Active Courses</p>
-                <p class="fs-1 m-0 p-0">0</p>
+                <p class="fs-1 m-0 p-0"><?php echo $ec->getActiveCourseCount(new GetStudentUsername($_SESSION['username']));?></p>
             </div>
             <div class="card-body bg-info text-light m-3 rounded-3 col-md-auto col-lg-3 col-sm-auto course-card" style="min-height:100%;">
                 <p class="p-0 m-0">Completed Courses</p>

@@ -3,6 +3,7 @@
 //require_once("../../Controllers/GetDetails/GetStudentDetails.php");
 //require_once("../../Models/ProductModels/ProductDisplay.php");
 //require_once("../../Models/RegistrationModels/GetStudentUsername.php");
+//require_once("../../Models/ProductModels/GetActiveProductDetails.php");
 class GetProductDetails
 {
     private $connection;
@@ -95,7 +96,7 @@ class GetProductDetails
         $gs = new GetStudentDetails();
         $id = $gs->getStudentIdOn(new GetStudentUsername($username));
         $date = date("Y-m-d");
-        $sql = "SELECT courseName,level,image,duration,price from course WHERE course.courseId in(SELECT courseId from enrollment where studentId = ? and status = 2 )";
+        $sql = "SELECT courseName,level,image,duration,price from course WHERE course.courseId in(SELECT courseId from enrollment where studentId = ? and status = 1 )";
         $result = $this->connection->executePrepareReturn($sql,"i",array($id));
         $product_display = array();
         while ($row = mysqli_fetch_array($result)) {
@@ -106,9 +107,21 @@ class GetProductDetails
 
     function getActiveProductDetailsId($username){
         $gs = new GetStudentDetails();
+        $date = date("Y-m-d");
         $id = $gs->getStudentIdOn(new GetStudentUsername($username));
-
-
+        $query = "SELECT courseid,courseName,level,image,duration,price,enrollmentValidity from course WHERE course.courseId in(SELECT courseId from enrollment where studentId = ? and status = 1 and (SELECT DATEDIFF(expirydate,'$date'))>=0 )";
+        $result = $this->connection->executePrepareReturn($query,"i",array($id));
+        $product_display = array();
+        while ($row = mysqli_fetch_array($result)) {
+            $sql = "select enrolldate,expiryDate from enrollment where studentId = '$id' and courseid='$row[0]' ";
+            $res = $this->connection->executeQuery($sql);
+            $datedif = mysqli_fetch_row($res);
+            $sqldays = "SELECT DATEDIFF('$datedif[1]','$datedif[0]')";
+            $datediffres = $this->connection->executeQuery($sqldays);
+            $days_remaining = mysqli_fetch_row($datediffres);
+            array_push($product_display, new GetActiveProductDetails($row[1],$this->getLevel($row[2]), $row[3], $row[4], $row[5], $days_remaining[0]));
+        }
+        return $product_display;
     }
 
     function getProductDisplayDetails()
@@ -141,7 +154,7 @@ class GetProductDetails
     }
 }
 //$gc = new GetProductDetails();
-//print_r($gc->getProductDisplayDetailsId("sandiprock28"));
+//print_r($gc->getActiveProductDetailsId("sandiprock28"));
 /*
 $res = $gc->getProductTopicDetails();
 foreach($res as $value){
