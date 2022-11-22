@@ -164,6 +164,11 @@ class GetStudentUser {
     {
         return $this->reg_date;
     }
+    public function getRegDateLabel()
+    {
+        $date = date_create($this->reg_date);
+        return date_format($date,"F d, Y");
+    }
 
     /**
      * @param mixed $reg_date
@@ -179,6 +184,10 @@ class GetStudentUser {
     public function getActiveStatus()
     {
         return $this->active_status;
+    }
+    public function getActiveStatusLabel()
+    {
+        return $this->active_status == 1 ? "Active" : "Inactive";
     }
 
     /**

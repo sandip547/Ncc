@@ -20,10 +20,6 @@ include 'admin header.php'
                         role="tab" aria-controls="addStaff" aria-selected="true">Add Staff</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link custom-h-tab text-dark" id="active-courses-tab" data-toggle="tab"
-                        href="#editStaff" role="tab" aria-controls="editStaff" aria-selected="false">Edit Staff</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link custom-h-tab text-dark" id="completed-courses-tab" data-toggle="tab"
                         href="#deleteStaff" role="tab" aria-controls="deleteStaff" aria-selected="false">Delete
                         Staff</a>
@@ -42,14 +38,6 @@ include 'admin header.php'
                     <div class="my-4">
                         <?php
                         include 'staff/addstaff.php'
-                        ?>
-                    </div>
-                    <br class="my-5">
-                </div>
-                <div class="tab-pane" id="editStaff" role="tabpanel" aria-labelledby="active-courses-tab">
-                    <div class="my-4">
-                        <?php
-                        include 'staff/editstaff.php'
                         ?>
                     </div>
                     <br class="my-5">

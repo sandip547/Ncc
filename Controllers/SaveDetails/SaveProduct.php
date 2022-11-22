@@ -67,6 +67,33 @@ class SaveProduct
         ));
         mysqli_close($this->connection->getConnection());
     }
+    function updateProductMinWithImage($up)
+    {
+        $path = "product/images/" . $up->getImage();
+        try {
+            mysqli_begin_transaction($this->connection->getConnection());
+            $file_name = $_FILES['productImage']['name'];
+            $ext = explode('.', $file_name);
+            $extension = end($ext);
+            move_uploaded_file($_FILES['productImage']['tmp_name'], "../../" . $path . '.' . $extension);
+
+            $query = "UPDATE course SET
+            courseName=?,description=?,learning=?,requirements=?,targetAudience=?,instructorId=?,
+            level=?,duration=?,price=?,updateDate=?,
+            updatedBy=?,activeStatus=?,image=?,where courseId=?";
+            $this->connection->executePrepare($query, "sssssiisisiii", array(
+                $up->getProductName(), $up->getDescription(), $up->getLearning(), $up->getRequirements(),
+                $up->getTargetAudience(), $up->getInstructorId(), $up->getLevel(), $up->getDuration(),
+                $up->getPrice(), $up->getUpdateDate(), $up->getUpdatedBy(), $up->getActiveStatus(), $path . '.' . $extension, $this->getProductId($up->getProductName())
+          
+
+            ));
+        } catch (mysqli_sql_exception $e) {
+            mysqli_rollback($this->connection->getConnection());
+            throw $e;
+        }
+        mysqli_close($this->connection->getConnection());
+    }
     function updateProductMin($up)
     {
         $query = "UPDATE course SET

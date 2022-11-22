@@ -17,7 +17,7 @@ class CategoryGet{
      * @param $updated_date
      * @param $updated_by
      */
-    public function __construct($category_id, $category_name, $active_status, $entered_date, $entered_by, $updated_date, $updated_by)
+    public function __construct($category_id=null, $category_name, $active_status, $entered_date, $entered_by, $updated_date, $updated_by)
     {
         $this->category_id = $category_id;
         $this->category_name = $category_name;

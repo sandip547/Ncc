@@ -98,6 +98,10 @@ class ProductGet{
 
     function setReleaseDate($release_date){$this->release_date=$release_date;}
     function getReleaseDate(){return $this->release_date;}
+    function getReleaseDateLabel(){
+        $date = date_create($this->update_date);
+        return date_format($date,"F d, Y");
+    }
 
     function setEnteredDate($entered_date){$this->entered_date=$entered_date;}
     function getEnteredDate(){

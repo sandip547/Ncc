@@ -10,8 +10,8 @@ class SaveProductCategory{
      }
 
      function saveCategory($ci){
-            $query = "insert into category(categoryname,activestatus,entereddate,enteredby) values(?,?,?,?)";
-            $this->connection->executePrepare($query,"sisi",array($ci->getProductCi()->getCategoryName(),$ci->getProductCi()->getActiveStatus(),
+            $query = "insert into category(categoryName,activeStatus,enteredDate,enteredBy) values(?,?,?,?)";
+            $this->connection->executePrepare($query,"sisi",array($ci->getCategoryName(),$ci->getActiveStatus(),
                                                     $ci->getEnteredDate(),$ci->getEnteredBy()));
             mysqli_close($this->connection->getConnection());
 

@@ -242,7 +242,7 @@ $det=$pd->getProductById($course_id)!=null?$pd->getProductById($course_id):die('
             <div>
                 <div class="courses">
                     <div class="px-2 ftco-animate border">
-                        <img src="https://skill-veda.com/wp-content/uploads/2022/07/Hydropower.png" alt="" class="img-fluid">
+                        <img src="/ncc/<?php echo $det->getImage(); ?>" alt="" class="img-fluid">
                         <div class="p-4 ">
                             <p class="text-blue-shade fw-bold">NPR <?php echo $det->getPrice(); ?></p>
                             <h5 class="">Material Includes</h5>

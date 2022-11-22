@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-md-6 my-3">
             <label for="categoryName" class="form-label text-blue-shade">Category name</label>
-            <input type="text" class="form-control inputcolor fs-6" placeholder="Category name"
+            <input type="text" class="form-control inputcolor fs-6" placeholder="Category name" name="categoryName"
                 aria-label="categoryName" id="categoryName">
         </div>
 
@@ -23,7 +23,7 @@
         </div>
     </div>
     <div class="text-left my-3">
-        <button class="btn bg-primary text-light font-weight-bold px-5" style="border-radius:4px;" type="submit">Add
+        <button class="btn bg-primary text-light font-weight-bold px-5" name="addcategory" style="border-radius:4px;" type="submit">Add
             Category</button>
     </div>
 </form>

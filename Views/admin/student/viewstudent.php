@@ -50,9 +50,9 @@ $details = $sd->getStudentDetails();
                 <th class="px-3"><?php echo $det->getUsername() ?></th>
                 <th class="px-3"><?php echo $det->getMobile(); ?></th>
                 <th class="px-3"><?php echo $det->getAddress(); ?></th>
-                <th class="px-3"><?php echo $det->getRegDate(); ?></th>
-                <th class="px-3"><?php echo $det->getRegDate(); ?></th>
-                <th class="px-3"><?php echo $det->getActiveStatus(); ?></th>
+                <th class="px-3"><?php echo $det->getRegDateLabel(); ?></th>
+                <th class="px-3"><?php echo $det->getRegDateLabel(); ?></th>
+                <th class="px-3"><?php echo $det->getActiveStatusLabel(); ?></th>
                 <th class="px-3"><?php echo $det->getLastLogin(); ?></th>
             <tr>
 
@@ -219,10 +219,10 @@ $details = $sd->getStudentDetails();
                             <option value="na">
                                 Select Active Status
                             </option>
-                            <option value="active">
+                            <option value="1">
                                 Active
                             </option>
-                            <option value="not active">
+                            <option value="0">
                                 Not Active
                             </option>
                         </select>
