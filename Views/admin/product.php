@@ -26,7 +26,6 @@ if (isset($_POST['addproduct'])) {
 
 <!-- Product page-->
 <div class="text-justify p-0 m-0 ml-4">
-
     <div class="col-11 col-md-11 text-justify p-0 m-0">
         <p class="h5 text-dark font-weight-bold">Products</p>
         <div class="row d-flex">
