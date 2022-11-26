@@ -31,7 +31,7 @@ $details = $td->getTeacherDetails();
                 <th>Qualification</th>
                 <th>Subject Expertise</th>
                 <th>no. of Experience (in years)</th>
-                <th>CV location</th>
+                <th>CV</th>
                 <th>Active Status</th>
                 <th>Type</th>
                 <th>Username</th>
@@ -44,24 +44,24 @@ $details = $td->getTeacherDetails();
             <?php foreach ($details as $det) { ?>
             <tr>
                 <th class="px-3"><button type="button" class="btn btn-primary" data-toggle="modal"
-                        data-target="#exampleModalLong<?php echo $det->getTeacherId(); ?>">Edit</button></th>
-                <th class="px-3"><?php echo $det->getTeacherId(); ?></th>
+                        data-target="#exampleModalLong<?php echo $det->getStaffId(); ?>">Edit</button></th>
+                <th class="px-3"><?php echo $det->getStaffId(); ?></th>
                 <th class="px-3"><?php echo $det->getFullName(); ?></th>
-                <th class="px-3"><?php echo $det->getDOB(); ?></th>
+                <th class="px-3"><?php echo $det->getDob(); ?></th>
                 <th class="px-3"><?php echo $det->getEmail(); ?></th>
-                <th class="px-3"><?php echo $det->getMobile(); ?></th>
-                <th class="px-3"><?php echo $det->getMobile(); ?></th>
-                <th class="px-3"><?php echo $det->getAddresses(); ?></th>
+                <th class="px-3"><?php echo $det->getMobileNo(); ?></th>
+                <th class="px-3"><?php echo $det->getPhoneNo(); ?></th>
+                <th class="px-3"><?php echo $det->getAddress(); ?></th>
                 <th class="px-3"><?php echo $det->getJoinDate(); ?></th>
                 <th class="px-3"><?php echo $det->getQualification(); ?></th>
-                <th class="px-3"><?php echo $det->getExpertise(); ?></th>
-                <th class="px-3"><?php echo $det->getExperience(); ?></th>
-                <th class="px-3"><?php echo $det->getCvLocation(); ?></th>
+                <th class="px-3"><?php echo $det->getSubjectExpertise(); ?></th>
+                <th class="px-3"><?php echo $det->getNoOfExperienceLabel(); ?></th>
+                <th class="px-3"><a target="__blank" href="<?php echo $det->getCvLocation(); ?>"><?php echo  !empty($det->getCvLocation())?"download":""; ?></a></th>
                 <th class="px-3"><?php echo $det->getActiveStatus(); ?></th>
                 <th class="px-3"><?php echo $det->getType(); ?></th>
-                <th class="px-3"><?php echo $det->getUsername(); ?></th>
-                <th class="px-3"><?php echo $det->getTeacherId(); ?></th>
-                <th class="px-3"><?php echo $det->getTeacherId(); ?></th>
+                <th class="px-3"><?php echo $det->getUserName(); ?></th>
+                <th class="px-3"><?php echo $det->getPassword(); ?></th>
+                <th class="px-3"><?php echo $det->getRetireDate(); ?></th>
             </tr>
             <?php
             }
@@ -94,7 +94,7 @@ $details = $td->getTeacherDetails();
 
 
 <?php foreach ($details as $det) { ?>
-<div class="modal fade" id="exampleModalLong<?php echo $det->getTeacherId(); ?>" tabindex="-1" role="dialog"
+<div class="modal fade" id="exampleModalLong<?php echo $det->getStaffId(); ?>" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalLongTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -123,7 +123,7 @@ $details = $td->getTeacherDetails();
                     <div class="col-md-7">
                         <div id="time-span" class="form-control inputcolor fs-6 align-items-center d-flex">
                             <input type="date" id="dob" class="form-control inputcolor fs-6 border-0" aria-label="dob"
-                                value="<?php echo $det->getDOB(); ?>">
+                                value="<?php echo $det->getDob(); ?>">
                         </div>
                     </div>
                 </div>
@@ -141,7 +141,7 @@ $details = $td->getTeacherDetails();
                         <label for="phoneNo" class="form-label">Phone Number</label>
                     </div>
                     <div class="col-md-7">
-                        <input type="tel" value="<?php echo $det->getMobile(); ?>" id="phoneNo"
+                        <input type="tel" value="<?php echo $det->getMobileNo(); ?>" id="phoneNo"
                             class="form-control inputcolor fs-6" placeholder="Phone Number" aria-label="Phone Number">
                     </div>
                 </div>
@@ -152,7 +152,7 @@ $details = $td->getTeacherDetails();
                     </div>
                     <div class="col-md-7">
                         <input type="tel" id="mobileNo" class="form-control inputcolor fs-6" placeholder="Address"
-                            aria-label="Mobile Number" value="<?php echo $det->getAddresses(); ?>">
+                            aria-label="Mobile Number" value="<?php echo $det->getAddress(); ?>">
                     </div>
                 </div>
 
@@ -238,7 +238,7 @@ $details = $td->getTeacherDetails();
                     </div>
                     <div class="col-md-7 my-3">
                         <input type="number" class="form-control inputcolor fs-6" placeholder="Experience (In years)"
-                            aria-label="noOfExperience" value="<?php echo $det->getExperience(); ?>">
+                            aria-label="noOfExperience" value="<?php echo $det->getNoOfExperience(); ?>">
                     </div>
                 </div>
                 <div class="row my-2 align-items-center">
@@ -293,7 +293,7 @@ $details = $td->getTeacherDetails();
                     </div>
                     <div class="col-md-7 my-3">
                         <input type="text" id="userName" class="form-control inputcolor fs-6" placeholder="Username"
-                            value="<?php echo $det->getUsername(); ?>" aria-label="userName">
+                            value="<?php echo $det->getUserName(); ?>" aria-label="userName">
                     </div>
                 </div>
                 <div class="row my-2 align-items-center">

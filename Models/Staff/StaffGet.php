@@ -1,11 +1,12 @@
 <?php
 class StaffGet{
-    private $fullName,$dob,$email,$gender,$phoneNo,$mobileNo,$address,$joinDate,$qualification,$subjectExpertise,$noOfExperience, $cvLocation,$activeStatus, $type, $userName, $password, $retireDate;
+    private $staffId,$fullName,$dob,$email,$gender,$phoneNo,$mobileNo,$address,$joinDate,$qualification,$subjectExpertise,$noOfExperience, $cvLocation,$activeStatus, $type, $userName, $password, $retireDate;
 
    
 
-    function __construct($fullName=null,$dob=null,$email=null,$gender=null,$phoneNo=null,$mobileNo=null,$address=null,$joinDate=null,$qualification=null,$subjectExpertise=null,$noOfExperience=null, $cvLocation=null,$activeStatus=null, $type=null, $userName=null, $password=null, $retireDate=null)
+    function __construct($staffId=null,$fullName=null,$dob=null,$email=null,$gender=null,$phoneNo=null,$mobileNo=null,$address=null,$joinDate=null,$qualification=null,$subjectExpertise=null,$noOfExperience=null, $cvLocation=null,$activeStatus=null, $type=null, $userName=null, $password=null, $retireDate=null)
     {
+        $this->staffId=$staffId;
         $this->fullName=$fullName;
         $this->dob=$dob;
         $this->email=$email;
@@ -23,6 +24,13 @@ class StaffGet{
         $this->userName=$userName;
         $this->password=$password;
         $this->retireDate=$retireDate;
+    }
+    function getStaffId()
+    {
+        return $this->staffId;
+    }
+    function setStaffId($staffId){
+        $this->staffId=$staffId;
     }
     function getFullName(){
         return $this->fullName;
@@ -86,6 +94,9 @@ class StaffGet{
     }
     function getNoOfExperience(){
         return $this->noOfExperience;
+    }
+    function getNoOfExperienceLabel(){
+        return $this->noOfExperience. " Years";
     }
     function setNoOfExperience($noOfExperience){
         $this->noOfExperience=$noOfExperience;
