@@ -9,6 +9,9 @@ mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 if (isset($_POST['addcategory'])) {
     $sc->saveCategory(new CategoryGet(null,$_POST['categoryName'], $_POST['activeStatus'], date("Y-m-d h:i:s"),1,date("Y-m-d h:i:s"),1));
 }
+if (isset($_POST['updateCategory'])) {
+    $sc->updateCategory(new CategoryGet($_POST['id'],$_POST['categoryName'], $_POST['activeStatus'], date("Y-m-d h:i:s"),1,date("Y-m-d h:i:s"),1));
+}
 ?>
 
 <!-- Category page-->

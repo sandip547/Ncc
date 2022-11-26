@@ -17,14 +17,13 @@ class CategoryGet{
      * @param $updated_date
      * @param $updated_by
      */
-    public function __construct($category_id=null, $category_name, $active_status, $entered_date, $entered_by, $updated_date, $updated_by)
-    {
+    public function __construct($category_id=null, $category_name, $active_status, $entered_date, $entered_by, $updated_date=null, $updated_by=1){
         $this->category_id = $category_id;
         $this->category_name = $category_name;
         $this->active_status = $active_status;
         $this->entered_date = $entered_date;
         $this->entered_by = $entered_by;
-        $this->updated_date = $updated_date;
+        $this->updated_date = $updated_date??date("Y-m-d h:i:s");
         $this->updated_by = $updated_by;
     }
 
@@ -67,6 +66,10 @@ class CategoryGet{
     {
         return $this->active_status;
     }
+    public function getActiveStatusLabel()
+    {
+        return $this->active_status==1?"Active":"Inactive";
+    }
 
     /**
      * @param mixed $active_status
@@ -81,7 +84,8 @@ class CategoryGet{
      */
     public function getEnteredDate()
     {
-        return $this->entered_date;
+        $date = date_create($this->entered_date);
+        return date_format($date,"F d, Y");
     }
 
     /**
@@ -99,6 +103,18 @@ class CategoryGet{
     {
         return $this->entered_by;
     }
+    public function getEnteredByLabel($staff=null)
+    {
+        $staffId =$staff??$this->entered_by;
+        if($staffId){
+            $dbc = new DatabaseConnection();
+            $result = $dbc->executePrepareReturn("SELECT fullName FROM staff WHERE staffId = ?","i",array($staffId));
+            $row = $result->fetch_assoc();
+            return $row['fullName'];
+        }
+        return null;
+
+    }
 
     /**
      * @param mixed $entered_by
@@ -113,7 +129,8 @@ class CategoryGet{
      */
     public function getUpdatedDate()
     {
-        return $this->updated_date;
+        $date = date_create($this->updated_date);
+        return date_format($date,"F d, Y");
     }
 
     /**

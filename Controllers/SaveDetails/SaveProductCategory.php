@@ -19,8 +19,8 @@ class SaveProductCategory{
 
      function updateCategory($cu){
             $query = "update category set categoryname=?,activestatus=?,updatedate=?,updatedby=? where categoryid=?";
-            $this->connection->executePrepare($query,"sisii",array($cu->getProductCi()->getCategoryName(),$cu->getProductCi()->getActiveStatus(),
-                                                                   $cu->getUpdateDate(),$cu->getUpdatedBy(),$cu->getProductCategoryId()));
+            $this->connection->executePrepare($query,"sisii",array($cu->getCategoryName(),$cu->getActiveStatus(),
+                                                                   $cu->getUpdatedDate(),$cu->getUpdatedBy(),$cu->getCategoryId()));
             mysqli_close($this->connection->getConnection());
         }
 
