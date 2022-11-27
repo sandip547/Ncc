@@ -8,23 +8,27 @@ require_once("../../Models/RegistrationModels/StudentUser.php");
 require_once("../../Views/Notification/Notification.php");
 
 $rc = new RegController();
+$notify = new Notification();
 if(isset($_POST["register"])){
 
     if($rc->checkUserName($_POST["username"])){
         // $rc->getChecker()->setCheck("True");
-        $notify = new Notification();
+        
         $notify->alertRegistrationSuccess( "Username already exists.", "Registration Failed",);
     }else{
         if($rc->checkPassword($_POST["password"],$_POST['cpassword'])){
             $rc->insertUserDetails(new StudentUser($_POST["fullName"], $_POST["dob"], $_POST["email"], $_POST["gender"],
                 $_POST["username"], $_POST["password"], $_POST["mobileNumber"], $_POST["address"],
                 date("Y-m-d h:i:s")));
-                $notify = new Notification();
                 $notify->alertRegistrationSuccess("Student have been registered successfully.");
             }
     }
-   
-
+}
+if(isset($_POST["updateStudent"])){
+    $rc->updateUserDetails(new StudentUser($_POST["fullName"], $_POST["dob"], $_POST["email"], $_POST["gender"],
+    $_POST["username"], $_POST["password"], $_POST["mobileNumber"], $_POST["address"],
+    null, $_POST["id"]));
+    $notify->alertRegistrationSuccess( "Student details updated successfully", "Success",);
 }
 ?>
 

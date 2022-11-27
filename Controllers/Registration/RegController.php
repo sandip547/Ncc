@@ -67,14 +67,14 @@ class RegController
     }
     function updateUserDetails($studentuser)
     {
-        $fullname = $studentuser->getTsUser()->getFirstName() . " " . $studentuser->getTsUser()->getLastName();
+        $fullname = $studentuser->getTsUser()->getFullName() ;
         $query = "update student set fullname=?,dob=?,email=?,gender=?,username=?,mobileNo=?,
         address=?,activeStatus=? where studentId=?";
         $result = $this->connection->executePrepare($query, "sssisssbi", array(
             $fullname, $studentuser->getTsUser()->getDob(), $studentuser->getTsUser()->getEmail(),
             $studentuser->getTsUser()->getGender(), $studentuser->getTsUser()->getUsername(),
             $studentuser->getTsUser()->getMob(), $studentuser->getTsUser()->getAddresses(),
-            $studentuser->getTsUser()->getActiveStatus(), $studentuser->getStudentId()
+            $studentuser->getTsUser()->getActiveStatus(), $studentuser->getTsUser()->getStudentId()
         ));
         mysqli_close($this->connection->getConnection());
     }

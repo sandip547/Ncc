@@ -100,6 +100,27 @@ class GetStudentUser {
     {
         return $this->gender;
     }
+    function getGenderLabel()
+   {
+      $g = $this->gender;
+      //switch case
+      switch ($g) {
+         case '1':
+            $g = 'Male';
+            break;
+         case '2':
+            $g = 'Female';
+            break;
+         case '2':
+            $g = 'Other';
+            break;
+
+         default:
+            $g = 'Female';
+            break; 
+      }
+      return $g;
+   }
 
     /**
      * @param mixed $gender
@@ -162,7 +183,8 @@ class GetStudentUser {
      */
     public function getRegDate()
     {
-        return $this->reg_date;
+        $date = date_create($this->reg_date);
+        return date_format($date, 'Y-m-d');
     }
     public function getRegDateLabel()
     {

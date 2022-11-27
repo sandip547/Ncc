@@ -112,7 +112,7 @@ $details = $td->getTeacherDetails();
 
                     </div>
                     <div class="col-md-7">
-                        <input type="text" id="fullName" class="form-control inputcolor fs-6" placeholder="Full Name"
+                        <input type="text" name="fullName" id="fullName" class="form-control inputcolor fs-6" placeholder="Full Name"
                             aria-label="fullName" value="<?php echo $det->getFullName(); ?>">
                     </div>
                 </div>
@@ -122,7 +122,7 @@ $details = $td->getTeacherDetails();
                     </div>
                     <div class="col-md-7">
                         <div id="time-span" class="form-control inputcolor fs-6 align-items-center d-flex">
-                            <input type="date" id="dob" class="form-control inputcolor fs-6 border-0" aria-label="dob"
+                            <input type="date" name="dob" id="dob" class="form-control inputcolor fs-6 border-0" aria-label="dob"
                                 value="<?php echo $det->getDob(); ?>">
                         </div>
                     </div>
@@ -133,7 +133,7 @@ $details = $td->getTeacherDetails();
                     </div>
                     <div class="col-md-7">
                         <input type="email" value="<?php echo $det->getEmail(); ?>" class="form-control inputcolor fs-6"
-                            placeholder="E-mail" aria-label="email" value="xsa@cdsd.cdc">
+                            placeholder="E-mail" name="email" aria-label="email" value="xsa@cdsd.cdc">
                     </div>
                 </div>
                 <div class="row align-items-center my-2">
@@ -152,7 +152,7 @@ $details = $td->getTeacherDetails();
                     </div>
                     <div class="col-md-7">
                         <input type="tel" id="mobileNo" class="form-control inputcolor fs-6" placeholder="Address"
-                            aria-label="Mobile Number" value="<?php echo $det->getAddress(); ?>">
+                            aria-label="Mobile Number" name="address" value="<?php echo $det->getAddress(); ?>">
                     </div>
                 </div>
 
