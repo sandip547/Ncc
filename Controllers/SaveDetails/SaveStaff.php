@@ -21,45 +21,78 @@ class SaveStaff
         return mysqli_fetch_row($result)[0];
     }
 
+    function uploadFile($file, $target_file)
+    {
+        
+        $uploadOk = 1;
+        $pdfFile = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        //upload
+        if (file_exists($target_file)) {
+            echo "Sorry, file already exists.";
+            $uploadOk = 0;
+        }
+        // Check file size
+        if ($file["size"] > 500000) {
+            echo "Sorry, your file is too large.";
+            $uploadOk = 0;
+        }
+        // Allow certain file formats
+        if ($pdfFile != "pdf") {
+            echo "Sorry, only PDF files are allowed.";
+            $uploadOk = 0;
+        }
+        // upload
+        if ($uploadOk) {
+            if (move_uploaded_file($file["tmp_name"], $target_file)) {
+                $uploadOk = 1;
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+            }
+        }
+        return $uploadOk;
+    }
+
     public function  saveStaffDetails($sd, $file)
     {
 
         try {
             mysqli_begin_transaction($this->connection->getConnection());
-            //upload file
             $target_dir = "../../Uploads/CV/";
-            $target_file = $target_dir .date("Y-m-d-h-i-s-"). basename($file["name"]);
-            $uploadOk = 1;
-            $pdfFile = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-            //upload
-            if (file_exists($target_file)) {
-                echo "Sorry, file already exists.";
-                $uploadOk = 0;
-            }
-            // Check file size
-            if ($file["size"] > 500000) {
-                echo "Sorry, your file is too large.";
-                $uploadOk = 0;
-            }
-            // Allow certain file formats
-            if ($pdfFile != "pdf") {
-                echo "Sorry, only PDF files are allowed.";
-                $uploadOk = 0;
-            }
-            // upload
-            if ($uploadOk) {
-                if (move_uploaded_file($file["tmp_name"], $target_file)) {
-                } else {
-                    echo "Sorry, there was an error uploading your file.";
-                }
-            }
-
-            if ($uploadOk) {
-
+            $target_file = $target_dir . date("Y-m-d-h-i-s-") . basename($file["name"]);
+            $uploadOk = $this->uploadFile($file, $target_file);
+            if($uploadOk){
                 $query = "insert into staff(fullName,dob,email,gender,phoneNo,mobileNo,address,joinDate,qualification,subjectExpertise,noOfExperience, cvLocation,activeStatus, type, userName, password, retireDate) 
                 values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
                 $this->connection->executePrepare($query, "sssssssssssssssss", array($sd->getFullName(), $sd->getDob(), $sd->getEmail(), $sd->getGender(), $sd->getPhoneNo(), $sd->getMobileNo(), $sd->getAddress(), $sd->getJoinDate(), $sd->getQualification(), $sd->getSubjectExpertise(), $sd->getNoOfExperience(), $target_file, $sd->getActiveStatus(), $sd->getType(), $sd->getUserName(), $sd->getPassword(), $sd->getRetireDate()));
-          
+
+            }
+       
+            mysqli_commit($this->connection->getConnection());
+        } catch (mysqli_sql_exception $e) {
+            mysqli_rollback($this->connection->getConnection());
+            throw $e;
+        }
+        return true;
+    }
+
+    public function updateStaffDetails($sd, $file)
+    {
+        try {
+            mysqli_begin_transaction($this->connection->getConnection());
+            $target_dir = "../../Uploads/CV/";
+           
+            if ($file["name"] != "") {
+                $target_file = $target_dir . date("Y-m-d-h-i-s-") . basename($file["name"]);
+                $uploadOk = $this->uploadFile($file, $target_file);
+                if ($uploadOk) {
+                    $query = "UPDATE staff SET fullName=?,dob=?,email=?,gender=?,phoneNo=?,mobileNo=?,address=?,joinDate=?,qualification=?,subjectExpertise=?,noOfExperience=?, cvLocation=?,activeStatus=?, type=?, userName=?, password=?, retireDate=? where staffId=?";
+                    $this->connection->executePrepare($query, "sssssssssssssssssi", array($sd->getFullName(), $sd->getDob(), $sd->getEmail(), $sd->getGender(), $sd->getPhoneNo(), $sd->getMobileNo(), $sd->getAddress(), $sd->getJoinDate(), $sd->getQualification(), $sd->getSubjectExpertise(), $sd->getNoOfExperience(), $target_file, $sd->getActiveStatus(), $sd->getType(), $sd->getUserName(), $sd->getPassword(), $sd->getRetireDate(), $sd->getStaffId()));
+                } else {
+                    echo "Sorry, there was an error uploading your file.";
+                }
+            } else {
+                $query = "UPDATE staff SET fullName=?,dob=?,email=?,gender=?,phoneNo=?,mobileNo=?,address=?,joinDate=?,qualification=?,subjectExpertise=?,noOfExperience=?,activeStatus=?, type=?, userName=?, password=?, retireDate=? where staffId=?";
+                $this->connection->executePrepare($query, "sssssssssssssssss", array($sd->getFullName(), $sd->getDob(), $sd->getEmail(), $sd->getGender(), $sd->getPhoneNo(), $sd->getMobileNo(), $sd->getAddress(), $sd->getJoinDate(), $sd->getQualification(), $sd->getSubjectExpertise(), $sd->getNoOfExperience(), $sd->getActiveStatus(), $sd->getType(), $sd->getUserName(), $sd->getPassword(), $sd->getRetireDate(), $sd->getStaffId()));
             }
             mysqli_commit($this->connection->getConnection());
         } catch (mysqli_sql_exception $e) {

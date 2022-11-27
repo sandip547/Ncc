@@ -31,6 +31,33 @@ if (isset($_POST['addStaff'])) {
         $ss->saveStaffDetails($staff, $_FILES['cv']);
     }
 }
+if (isset($_POST['updateStaff'])) {
+    $ss = new SaveStaff();
+    if($_POST['password'] != $_POST['confirmPassword']){
+        echo "<script>alert('Password and Confirm Password does not match')</script>";
+    }else{
+        $staff = new StaffGet();
+        $staff->setStaffId($_POST["id"]);
+        $staff->setFullName($_POST['fullName']);
+        $staff->setDob($_POST['dob']);
+        $staff->setEmail($_POST['email']);
+        $staff->setPhoneNo($_POST['phoneNo']);
+        $staff->setMobileNo($_POST['mobileNo']);
+        $staff->setGender("f");
+        $staff->setJoinDate($_POST['joinDate']);
+        $staff->setAddress($_POST['address']);
+        $staff->setQualification($_POST['qualification']);
+        $staff->setSubjectExpertise($_POST['expertise']);
+        $staff->setNoOfExperience($_POST['noOfExperience']);
+        $staff->setActiveStatus($_POST['activeStatus']);
+        $staff->setType($_POST['type']);
+        $staff->setUserName($_POST['userName']);
+        $staff->setRetireDate($_POST['retireDate']);
+        $staff->setPassword($_POST['password']);
+
+        $ss->updateStaffDetails($staff,$_FILES['cv']);
+    }
+}
 ?>
 
 <!-- Staff page-->
