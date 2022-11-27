@@ -41,14 +41,15 @@ class RegController
         $check = False;
         $query = "select userName from student where userName=? ";
         $result = $this->connection->executePrepareReturn($query, "s", array($username));
-        if (mysqli_fetch_row($result)[0]) {
-            return $check = True;
+        if (mysqli_num_rows($result) > 0) {
+            $check = True;
         }
+        return $check;
     }
 
     function insertUserDetails($studentuser)
     {
-        $fullname = $studentuser->getTsUser()->getFirstName() . " " . $studentuser->getTsUser()->getLastName();
+        $fullname = $studentuser->getTsUser()->getFullName();
 
         $query = "insert into student(fullname,dob,email,gender,username,password,mobileNo,address,registrationdate,activestatus) values(?,?,?,?,?,?,?,?,?,?)";
         $result = $this->connection->executePrepare($query, "sssisssssi", array(

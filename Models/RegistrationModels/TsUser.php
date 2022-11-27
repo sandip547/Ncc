@@ -1,7 +1,6 @@
 <?php
 class TsUser{
-    private $firstname;
-    private $lastname;
+    private $fullName;
     private $dob;
     private $email;
     private $mobile;
@@ -15,22 +14,13 @@ class TsUser{
     $this->active_status = 1;
     }
 
-    function setFirstName($firstname){
-    $this->firstname = $firstname;
+    function setFullName($fullName){
+    $this->fullName = $fullName;
      }
 
-     function getFirstName(){
-     return $this->firstname;
+     function getFullName(){
+     return $this->fullName;
      }
-
-     function setLastName($lastname){
-     $this->lastname = $lastname;
-     }
-
-     function getLastName(){
-     return $this->lastname;
-     }
-
      function setDob($dob){
      $this->dob = $dob;
      }
@@ -106,4 +96,3 @@ class TsUser{
 
 
 }
-?>
