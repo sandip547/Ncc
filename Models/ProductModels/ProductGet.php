@@ -73,6 +73,22 @@ class ProductGet{
 
     function setLevel($level){$this->level=$level;}
     function getLevel(){return $this->level;}
+    function getLevelLabel(){
+        switch($this->level)
+        {
+            case 1:
+                return "Beginner";
+                break;
+            case 2:
+                return "Intermediate";
+                break;
+            case 3:
+                return "Advanced";
+                break;
+            default:
+                return "Beginner";
+        }
+    }
 
     function setDuration($duration){$this->duration=$duration;}
     function getDuration(){return $this->duration;}
@@ -82,27 +98,70 @@ class ProductGet{
 
     function setReleaseDate($release_date){$this->release_date=$release_date;}
     function getReleaseDate(){return $this->release_date;}
+    function getReleaseDateLabel(){
+        $date = date_create($this->update_date);
+        return date_format($date,"F d, Y");
+    }
 
     function setEnteredDate($entered_date){$this->entered_date=$entered_date;}
-    function getEnteredDate(){return $this->entered_date;}
+    function getEnteredDate(){
+        $date = date_create($this->update_date);
+        return date_format($date,"F d, Y");
+    }
 
     function setEnteredBy($entered_by){$this->entered_by=$entered_by;}
     function getEnteredBy(){return $this->entered_by;}
+    function getEnteredByLabel(){
+      return $this->getStaffById($this->entered_by);
+    }
 
     function setUpdateDate($update_date){$this->update_date=$update_date;}
-    function getUpdateDate(){return $this->update_date;}
+    function getUpdateDate(){
+        $date = date_create($this->update_date);
+        return date_format($date,"F d, Y");
+    }
 
     function setUpdatedBy($updated_by){$this->updated_by=$updated_by;}
     function getUpdatedBy(){return $this->updated_by;}
+    function getUpdatedByLabel(){ return $this->getStaffById($this->updated_by);}
 
     function setEnrollmentValidity($enrollment_validity){$this->enrollment_validity=$enrollment_validity;}
     function getEnrollmentValidity(){return $this->enrollment_validity;}
+    function getEnrollmentValidityLabel(){
+        return $this->enrollment_validity . ($this->enrollment_validity >= 1 ? " Years" : " Year");
+    }
 
     function setActiveStatus($active_status){$this->active_status=$active_status;}
     function getActiveStatus(){return $this->active_status;}
+    function getActiveStatusLabel(){
+        return $this->active_status==1 ? "Active" : "Inactive";
+    }
 
     function setImage($image){$this->image=$image;}
     function getImage(){return $this->image;}
+    
+
+     function getStaffById($staffId){
+        if($staffId){
+            $dbc = new DatabaseConnection();
+            $result = $dbc->executePrepareReturn("SELECT fullName FROM staff WHERE staffId = ?","i",array($staffId));
+            $row = $result->fetch_assoc();
+            return $row['fullName'];
+        }
+        return null;
+       
+     }
+     
+     function getFirstLettersFromName(){
+        $name = $this->getEnteredByLabel();
+        $words = explode(" ", $name);
+        $acronym = "";
+        foreach ($words as $w) {
+            $acronym .= strtoupper($w[0]);
+        }
+        return $acronym;
+     }
+
 
 }
 

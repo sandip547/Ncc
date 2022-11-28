@@ -1,7 +1,7 @@
 <?php
-//require_once("../../DatabaseConnection/DatabaseConnection.php");
-//require_once("../../Controllers/Authentication/Encryption.php");
-//require_once("../../Models/RegistrationModels/CheckUsername.php");
+require_once("../../DatabaseConnection/DatabaseConnection.php");
+require_once("../../Controllers/Authentication/Encryption.php");
+require_once("../../Models/RegistrationModels/CheckUsername.php");
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 class RegController
@@ -41,14 +41,15 @@ class RegController
         $check = False;
         $query = "select userName from student where userName=? ";
         $result = $this->connection->executePrepareReturn($query, "s", array($username));
-        if (mysqli_fetch_row($result)[0]) {
-            return $check = True;
+        if (mysqli_num_rows($result) > 0) {
+            $check = True;
         }
+        return $check;
     }
 
     function insertUserDetails($studentuser)
     {
-        $fullname = $studentuser->getTsUser()->getFirstName() . " " . $studentuser->getTsUser()->getLastName();
+        $fullname = $studentuser->getTsUser()->getFullName();
 
         $query = "insert into student(fullname,dob,email,gender,username,password,mobileNo,address,registrationdate,activestatus) values(?,?,?,?,?,?,?,?,?,?)";
         $result = $this->connection->executePrepare($query, "sssisssssi", array(
@@ -66,14 +67,14 @@ class RegController
     }
     function updateUserDetails($studentuser)
     {
-        $fullname = $studentuser->getTsUser()->getFirstName() . " " . $studentuser->getTsUser()->getLastName();
+        $fullname = $studentuser->getTsUser()->getFullName() ;
         $query = "update student set fullname=?,dob=?,email=?,gender=?,username=?,mobileNo=?,
         address=?,activeStatus=? where studentId=?";
         $result = $this->connection->executePrepare($query, "sssisssbi", array(
             $fullname, $studentuser->getTsUser()->getDob(), $studentuser->getTsUser()->getEmail(),
             $studentuser->getTsUser()->getGender(), $studentuser->getTsUser()->getUsername(),
             $studentuser->getTsUser()->getMob(), $studentuser->getTsUser()->getAddresses(),
-            $studentuser->getTsUser()->getActiveStatus(), $studentuser->getStudentId()
+            $studentuser->getTsUser()->getActiveStatus(), $studentuser->getTsUser()->getStudentId()
         ));
         mysqli_close($this->connection->getConnection());
     }

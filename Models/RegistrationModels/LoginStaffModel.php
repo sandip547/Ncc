@@ -1,4 +1,5 @@
 <?php
+
 class LoginStaffModel{
     private $username;
     private $password;
@@ -63,7 +64,5 @@ class LoginStaffModel{
     {
         $this->type = $type;
     }
-
-
 }
 ?>

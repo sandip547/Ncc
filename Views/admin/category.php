@@ -3,10 +3,14 @@ session_start();
 $page = 'category';
 include 'admin header.php';
 require_once("../../Controllers/SaveDetails/SaveProductCategory.php");
+require_once("../../Models/ProductModels/CategoryGet.php");
 $sc = new SaveProductCategory();
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 if (isset($_POST['addcategory'])) {
-    $sc->saveCategory(new Product($_POST['cname'], $_POST['description'], $_POST['learning'], $_POST['requirements'], $_POST['targetAudience'], 1, 2, $_POST[''], $_POST['tage'], $_POST['level'], $_POST['duration'], $_POST['price'], "re", date("Y-m-d h:i:s"), $_SESSION["admin"], $_POST['cenroll'], $_POST['activeStatus'], $_POST["imageupload"]));
+    $sc->saveCategory(new CategoryGet(null,$_POST['categoryName'], $_POST['activeStatus'], date("Y-m-d h:i:s"),1,date("Y-m-d h:i:s"),1));
+}
+if (isset($_POST['updateCategory'])) {
+    $sc->updateCategory(new CategoryGet($_POST['id'],$_POST['categoryName'], $_POST['activeStatus'], date("Y-m-d h:i:s"),1,date("Y-m-d h:i:s"),1));
 }
 ?>
 
@@ -25,11 +29,6 @@ if (isset($_POST['addcategory'])) {
                 <li class="nav-item">
                     <a class="nav-link custom-h-tab text-dark" id="all-courses-tab" data-toggle="tab"
                         href="#addCategory" role="tab" aria-controls="addCategory" aria-selected="true">Add Category</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link custom-h-tab text-dark" id="active-courses-tab" data-toggle="tab"
-                        href="#editCategory" role="tab" aria-controls="editCategory" aria-selected="false">Edit
-                        Category</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link custom-h-tab text-dark" id="completed-courses-tab" data-toggle="tab"
@@ -53,14 +52,6 @@ if (isset($_POST['addcategory'])) {
                         ?>
                     </div>
                     <br class="bg-primary">
-                </div>
-                <div class="tab-pane" id="editCategory" role="tabpanel" aria-labelledby="active-courses-tab">
-                    <div class="my-4">
-                        <?php
-                        include 'category/editcategory.php'
-                        ?>
-                    </div>
-                    <br class="bg-primary my-5">
                 </div>
                 <div class="tab-pane" id="deleteCategory" role="tabpanel" aria-labelledby="completed-courses-tab">
                     <div class="my-4">

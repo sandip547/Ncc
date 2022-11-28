@@ -1,5 +1,6 @@
 <?php
 
+require_once("../../Models/RegistrationModels/GetStudentUser.php");
 class GetStudentDetails
 {
     private $connection;
@@ -21,6 +22,7 @@ class GetStudentDetails
         }
         return $gender_name;
     }
+   
 
     function getActiveStatus($status)
     {
@@ -47,7 +49,7 @@ class GetStudentDetails
         $result = $this->connection->executeQuery($query);
         $student_details = array();
         while ($row = mysqli_fetch_array($result)) {
-            array_push($student_details, new GetStudentUser($row[0], $row[1], $row[2], $row[3], $this->getGenderName($row[4]), $row[5], $row[6], $row[7], $row[8], $row[9], $row[10]));
+            array_push($student_details, new GetStudentUser($row[0], $row[1], $row[2], $row[3],$row[4], $row[5], $row[6], $row[7], $row[8], $row[9], $row[10]));
         }
         return $student_details;
     }

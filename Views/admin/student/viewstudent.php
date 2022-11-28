@@ -36,25 +36,24 @@ $details = $sd->getStudentDetails();
         </thead>
         <tbody>
             <?php foreach ($details as $det) { ?>
-            <tr>
-                <th>
-                    <button type="button" class="btn btn-primary" data-toggle="modal"
-                        data-target="#exampleModalLong<?php echo $det->getStudentId(); ?>">Edit</button>
-                </th>
-                <th class="px-3"><?php echo $det->getStudentId(); ?></th>
-                <th class="px-3"><?php echo $det->getFullName(); ?></th>
-                <th class="px-3"><?php echo $det->getDOB(); ?></th>
-                <th class="px-3"><?php echo $det->getEmail(); ?></th>
-                <th class="px-3"><?php echo $det->getGender(); ?></th>
-                <th class="px-3"><?php echo $det->getUsername(); ?></th>
-                <th class="px-3"><?php echo $det->getUsername() ?></th>
-                <th class="px-3"><?php echo $det->getMobile(); ?></th>
-                <th class="px-3"><?php echo $det->getAddress(); ?></th>
-                <th class="px-3"><?php echo $det->getRegDate(); ?></th>
-                <th class="px-3"><?php echo $det->getRegDate(); ?></th>
-                <th class="px-3"><?php echo $det->getActiveStatus(); ?></th>
-                <th class="px-3"><?php echo $det->getLastLogin(); ?></th>
-            <tr>
+                <tr>
+                    <th>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong<?php echo $det->getStudentId(); ?>">Edit</button>
+                    </th>
+                    <th class="px-3"><?php echo $det->getStudentId(); ?></th>
+                    <th class="px-3"><?php echo $det->getFullName(); ?></th>
+                    <th class="px-3"><?php echo $det->getDOB(); ?></th>
+                    <th class="px-3"><?php echo $det->getEmail(); ?></th>
+                    <th class="px-3"><?php echo $det->getGenderLabel(); ?></th>
+                    <th class="px-3"><?php echo $det->getUsername(); ?></th>
+                    <th class="px-3"><?php echo $det->getUsername() ?></th>
+                    <th class="px-3"><?php echo $det->getMobile(); ?></th>
+                    <th class="px-3"><?php echo $det->getAddress(); ?></th>
+                    <th class="px-3"><?php echo $det->getRegDateLabel(); ?></th>
+                    <th class="px-3"><?php echo $det->getRegDateLabel(); ?></th>
+                    <th class="px-3"><?php echo $det->getActiveStatusLabel(); ?></th>
+                    <th class="px-3"><?php echo $det->getLastLogin(); ?></th>
+                <tr>
 
                 <?php
             }
@@ -88,164 +87,136 @@ $details = $sd->getStudentDetails();
 
 <?php foreach ($details as $det) { ?>
 
-<div class="modal fade" id="exampleModalLong<?php echo $det->getStudentId(); ?>" tabindex="-1" role="dialog"
-    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Student details</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-
-                <div class="row align-items-center my-2">
-                    <div class="col-md-5 text-orangered font-weight-bold fs-6">
-                        <label for="fullName" class="form-label">Full Name</label>
-
-                    </div>
-                    <div class="col-md-7">
-                        <input type="text" id="fullName" class="form-control inputcolor fs-6" placeholder="Full Name"
-                            aria-label="fullName" value="<?php echo $det->getFullName(); ?>">
-                    </div>
+    <div class="modal fade" id="exampleModalLong<?php echo $det->getStudentId(); ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Student details</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-                <div class="row align-items-center my-2">
-                    <div class="col-md-5 text-orangered font-weight-bold fs-6">
-                        <label for="dob" class="form-label">Date of Birth</label>
-                    </div>
-                    <div class="col-md-7">
-                        <div id="time-span" class="form-control inputcolor fs-6 align-items-center d-flex">
-                            <input type="date" id="dob" class="form-control inputcolor fs-6 border-0" aria-label="dob"
-                                value="<?php echo $det->getDob(); ?>">
+                <form action="student.php" method="post">
+                    <div class="modal-body">
+
+                        <input type="text" name="id" required id="id" value="<?php echo $det->getStudentId(); ?> " hidden>
+                        <div class="row align-items-center my-2">
+                            <div class="col-md-5 text-orangered font-weight-bold fs-6">
+                                <label for="fullName" class="form-label">Full Name</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="text" name="fullName" required id="fullName" class="form-control inputcolor fs-6" placeholder="Full Name" aria-label="fullName" value="<?php echo $det->getFullName(); ?>">
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row align-items-center my-2">
-                    <div class="col-md-5 text-orangered font-weight-bold fs-6">
-                        <label for="email" class="form-label">E-mail</label>
-                    </div>
-                    <div class="col-md-7">
-                        <input type="email" class="form-control inputcolor fs-6" placeholder="E-mail" aria-label="email"
-                            value="<?php echo $det->getEmail(); ?>">
-                    </div>
-                </div>
-                <div class="row my-2 align-items-center">
-                    <div class="col-md-5 text-orangered font-weight-bold fs-6">
-                        <label for="gender" class="form-label">Gender</label>
-                    </div>
-                    <div class="col-md-7">
-                        <select name="gender" id="gender" va class="form-select form-select-lg inputcolor ">
-                            <sel></sel>
-                            <option selected value="<?php echo $det->getGender(); ?>">
-                                <?php echo $det->getGender(); ?>
-                            </option>
-                            <option value="1">
-                                Male
-                            </option>
-                            <option value="2">
-                                Female
-                            </option>
-                            <option value="3">
-                                Other
-                            </option>
-                        </select>
-                    </div>
-                </div>
-                <div class="row my-2 align-items-center">
-                    <div class="col-md-5 text-orangered font-weight-bold fs-6">
-                        <label for="userName" class="form-label">Username</label>
-                    </div>
-                    <div class="col-md-7">
-                        <input type="text" id="userName" class="form-control inputcolor fs-6" placeholder="Username"
-                            aria-label="userName" value="<?php echo $det->getUsername(); ?>">
-                    </div>
-                </div>
-                <div class="row my-2 align-items-center">
-                    <div class="col-md-5 text-orangered font-weight-bold fs-6">
-                        <label for="password" class="form-label">Password</label>
-                    </div>
-                    <div class="col-md-7">
-                        <input type="password" id="password" class="form-control inputcolor fs-6" aria-label="password">
-                    </div>
-                </div>
-                <div class="row align-items-center my-2">
-                    <div class="col-md-5 text-orangered font-weight-bold fs-6">
-                        <label for="mobileNo" class="form-label">Mobile Number</label>
-                    </div>
-                    <div class="col-md-7">
-                        <input type="tel" id="mobileNo" class="form-control inputcolor fs-6" placeholder="Phone Number"
-                            aria-label="Phone Number" value="<?php echo $det->getMobile(); ?>">
-                    </div>
-                </div>
+                        <div class="row align-items-center my-2">
+                            <div class="col-md-5 text-orangered font-weight-bold fs-6">
+                                <label for="dob" class="form-label">Date of Birth</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div id="time-span" class="form-control inputcolor fs-6 align-items-center d-flex">
+                                    <input type="date" name="dob" required id="dob" class="form-control inputcolor fs-6 border-0" aria-label="dob" value="<?php echo $det->getDob(); ?>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row align-items-center my-2">
+                            <div class="col-md-5 text-orangered font-weight-bold fs-6">
+                                <label for="email" class="form-label">E-mail</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="email" name="email" required class="form-control inputcolor fs-6" placeholder="E-mail" aria-label="email" value="<?php echo $det->getEmail(); ?>">
+                            </div>
+                        </div>
+                        <div class="row my-2 align-items-center">
+                            <div class="col-md-5 text-orangered font-weight-bold fs-6">
+                                <label for="gender" class="form-label">Gender</label>
+                            </div>
+                            <div class="col-md-7">
+                                <select name="gender" required id="gender" class="form-select form-select-lg inputcolor ">
+                                    <option selected value="<?php echo $det->getGender(); ?>">
+                                        <?php echo $det->getGenderLabel(); ?>
+                                    </option>
+                                    <option value="1">
+                                        Male
+                                    </option>
+                                    <option value="2">
+                                        Female
+                                    </option>
+                                    <option value="3">
+                                        Other
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row my-2 align-items-center">
+                            <div class="col-md-5 text-orangered font-weight-bold fs-6">
+                                <label for="userName" class="form-label">Username</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="text" name="username"  id="userName" class="form-control inputcolor fs-6" placeholder="Username" aria-label="userName" value="<?php echo $det->getUsername(); ?>">
+                            </div>
+                        </div>
+                        <div class="row my-2 align-items-center">
+                            <div class="col-md-5 text-orangered font-weight-bold fs-6">
+                                <label for="password" class="form-label">Password</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="password" name="password" required id="password" class="form-control inputcolor fs-6" aria-label="password">
+                            </div>
+                        </div>
+                        <div class="row align-items-center my-2">
+                            <div class="col-md-5 text-orangered font-weight-bold fs-6">
+                                <label for="mobileNo" class="form-label">Mobile Number</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="tel" name="mobileNumber" id="mobileNo" class="form-control inputcolor fs-6" placeholder="Phone Number" aria-label="Phone Number" value="<?php echo $det->getMobile(); ?>">
+                            </div>
+                        </div>
 
-                <div class="row align-items-center my-2">
-                    <div class="col-md-5 text-orangered font-weight-bold fs-6">
-                        <label for="mobileNo" class="form-label">Address</label>
-                    </div>
-                    <div class="col-md-7">
-                        <input type="tel" id="mobileNo" class="form-control inputcolor fs-6" placeholder="Address"
-                            aria-label="Mobile Number" value="<?php echo $det->getAddress(); ?>">
-                    </div>
-                </div>
+                        <div class="row align-items-center my-2">
+                            <div class="col-md-5 text-orangered font-weight-bold fs-6">
+                                <label for="mobileNo" class="form-label">Address</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="tel" name="address" id="mobileNo" class="form-control inputcolor fs-6" placeholder="Address" aria-label="Mobile Number" value="<?php echo $det->getAddress(); ?>">
+                            </div>
+                        </div>
+                        <div class="row my-2 align-items-center">
+                            <div class="col-md-5 text-orangered font-weight-bold fs-6">
+                                <label for="expiryDate" class="form-label">Expiry Date</label>
+                            </div>
+                            <div class="col-md-7">
+                                <input type="date" id="expiryDate" class="form-control inputcolor fs-6" aria-label="retireDate" value="<?php echo $det->getRegDate(); ?>">
+                            </div>
+                        </div>
 
-                <div class="row align-items-center my-2">
-                    <div class="col-md-5 text-orangered font-weight-bold fs-6">
-                        <label for="registrationDate" class="form-label">Registration Date</label>
-                    </div>
-                    <div class="col-md-7">
-                        <input type="date" id="registrationDate" class="form-control inputcolor fs-6"
-                            aria-label="joinDate" value="<?php echo $det->getRegDate(); ?>">
+                        <div class="row my-2 align-items-center">
+                            <div class="col-md-5 text-orangered font-weight-bold fs-6">
+                                <label for="activeStatus" class="form-label">Active Status</label>
+                            </div>
+                            <div class="col-md-7">
+                                <select name="activeStatus" id="activeStatus" class="form-select form-select-lg inputcolor fs-6">
+                                    <option selected value="<?php echo $det->getActiveStatus(); ?>">
+                                        <?php echo $det->getActiveStatusLabel(); ?>
+                                    </option>
+                                    <option value="1">
+                                        Active
+                                    </option>
+                                    <option value="0">
+                                        Not Active
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
 
                     </div>
-                </div>
-                <div class="row my-2 align-items-center">
-                    <div class="col-md-5 text-orangered font-weight-bold fs-6">
-                        <label for="expiryDate" class="form-label">Expiry Date</label>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" name="updateStudent" class="btn btn-primary">Save changes</button>
                     </div>
-                    <div class="col-md-7">
-                        <input type="date" id="expiryDate" class="form-control inputcolor fs-6" aria-label="retireDate"
-                            value="<?php echo $det->getRegDate(); ?>">
-                    </div>
-                </div>
-
-                <div class="row my-2 align-items-center">
-                    <div class="col-md-5 text-orangered font-weight-bold fs-6">
-                        <label for="activeStatus" class="form-label">Active Status</label>
-                    </div>
-                    <div class="col-md-7">
-                        <select name="activeStatus" id="activeStatus"
-                            class="form-select form-select-lg inputcolor fs-6">
-                            <option value="na">
-                                Select Active Status
-                            </option>
-                            <option value="active">
-                                Active
-                            </option>
-                            <option value="not active">
-                                Not Active
-                            </option>
-                        </select>
-                    </div>
-                </div>
-
-                <div class="row align-items-center my-2">
-                    <div class="col-md-5 text-orangered font-weight-bold fs-6">
-                        <label for="lastLogin" class="form-label">Last Login</label>
-                    </div>
-                    <div class="col-md-7">
-                        <input type="date" id="lastLogin" class="form-control inputcolor fs-6" aria-label="joinDate"
-                            <?php echo $det->getLastLogin(); ?>>
-                    </div>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
+                </form>
             </div>
         </div>
     </div>
-</div>
 
 <?php
 }

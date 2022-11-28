@@ -1,4 +1,5 @@
 <?php
+session_start();
 $page = 'video';
 include 'admin header.php'
 ?>

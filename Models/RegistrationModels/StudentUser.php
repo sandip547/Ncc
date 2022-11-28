@@ -6,11 +6,10 @@ class StudentUser
   private $tsuser;
   private $regdate;
 
-  function __construct($firstname,$lastname,$dob,$email,$gender,$username,$password,$mobile,$address,$regdate)
+  function __construct($fullName,$dob,$email,$gender,$username,$password,$mobile,$address,$regdate, $id=null)
   {
   $this->tsuser = new TsUser();
-  $this->tsuser->setFirstName($firstname);
-  $this->tsuser->setLastName($lastname);
+  $this->tsuser->setFullName($fullName);
   $this->tsuser->setDob($dob);
   $this->tsuser->setGender($gender);
   $this->tsuser->setUsername($username);
@@ -20,8 +19,10 @@ class StudentUser
   $this->tsuser->setEmail($email);
   $this->regdate = $regdate;
   $this->tsuser->setActiveStatus(1);
+  $this->tsuser->setStudentId($id);
 
   }
+
 
   function setTsUser($tsuser){
   $this->tsuser = $tsuser;

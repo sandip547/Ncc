@@ -1,7 +1,63 @@
 <?php
 session_start();
+
 $page = 'staff';
-include 'admin header.php'
+include 'admin header.php';
+require_once("../../Controllers/SaveDetails/SaveStaff.php");
+
+if (isset($_POST['addStaff'])) {
+    $ss = new SaveStaff();
+    if($_POST['password'] != $_POST['confirmPassword']){
+        echo "<script>alert('Password and Confirm Password does not match')</script>";
+    }else{
+        $staff = new StaffGet();
+        $staff->setFullName($_POST['fullName']);
+        $staff->setDob($_POST['dob']);
+        $staff->setEmail($_POST['email']);
+        $staff->setPhoneNo($_POST['phoneNo']);
+        $staff->setMobileNo($_POST['mobileNo']);
+        $staff->setGender("f");
+        $staff->setJoinDate($_POST['joinDate']);
+        $staff->setAddress($_POST['address']);
+        $staff->setQualification($_POST['qualification']);
+        $staff->setSubjectExpertise($_POST['expertise']);
+        $staff->setNoOfExperience($_POST['noOfExperience']);
+        $staff->setActiveStatus($_POST['activeStatus']);
+        $staff->setType($_POST['type']);
+        $staff->setUserName($_POST['userName']);
+        $staff->setRetireDate($_POST['retireDate']);
+        $staff->setPassword($_POST['password']);
+
+        $ss->saveStaffDetails($staff, $_FILES['cv']);
+    }
+}
+if (isset($_POST['updateStaff'])) {
+    $ss = new SaveStaff();
+    if($_POST['password'] != $_POST['confirmPassword']){
+        echo "<script>alert('Password and Confirm Password does not match')</script>";
+    }else{
+        $staff = new StaffGet();
+        $staff->setStaffId($_POST["id"]);
+        $staff->setFullName($_POST['fullName']);
+        $staff->setDob($_POST['dob']);
+        $staff->setEmail($_POST['email']);
+        $staff->setPhoneNo($_POST['phoneNo']);
+        $staff->setMobileNo($_POST['mobileNo']);
+        $staff->setGender("f");
+        $staff->setJoinDate($_POST['joinDate']);
+        $staff->setAddress($_POST['address']);
+        $staff->setQualification($_POST['qualification']);
+        $staff->setSubjectExpertise($_POST['expertise']);
+        $staff->setNoOfExperience($_POST['noOfExperience']);
+        $staff->setActiveStatus($_POST['activeStatus']);
+        $staff->setType($_POST['type']);
+        $staff->setUserName($_POST['userName']);
+        $staff->setRetireDate($_POST['retireDate']);
+        $staff->setPassword($_POST['password']);
+
+        $ss->updateStaffDetails($staff,$_FILES['cv']);
+    }
+}
 ?>
 
 <!-- Staff page-->
@@ -18,10 +74,6 @@ include 'admin header.php'
                 <li class="nav-item">
                     <a class="nav-link custom-h-tab text-dark" id="all-courses-tab" data-toggle="tab" href="#addStaff"
                         role="tab" aria-controls="addStaff" aria-selected="true">Add Staff</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link custom-h-tab text-dark" id="active-courses-tab" data-toggle="tab"
-                        href="#editStaff" role="tab" aria-controls="editStaff" aria-selected="false">Edit Staff</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link custom-h-tab text-dark" id="completed-courses-tab" data-toggle="tab"
@@ -42,14 +94,6 @@ include 'admin header.php'
                     <div class="my-4">
                         <?php
                         include 'staff/addstaff.php'
-                        ?>
-                    </div>
-                    <br class="my-5">
-                </div>
-                <div class="tab-pane" id="editStaff" role="tabpanel" aria-labelledby="active-courses-tab">
-                    <div class="my-4">
-                        <?php
-                        include 'staff/editstaff.php'
                         ?>
                     </div>
                     <br class="my-5">

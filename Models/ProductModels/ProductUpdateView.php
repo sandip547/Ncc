@@ -14,6 +14,7 @@ class ProductUpdateView{
     private $updated_by;
     private $active_status;
     private $product_id;
+    private $image;
 
     /**
      * @param $product_name
@@ -30,7 +31,7 @@ class ProductUpdateView{
      * @param $active_status
      * @param $product_id
      */
-    public function __construct($product_name, $description, $learning, $requirements, $target_audience, $instructor_id, $level, $duration, $price, $update_date, $updated_by, $active_status, $product_id)
+    public function __construct($product_name, $description, $learning, $requirements, $target_audience, $instructor_id, $level, $duration, $price, $update_date, $updated_by, $active_status, $product_id,$image=null)
     {
         $this->product_name = $product_name;
         $this->description = $description;
@@ -45,6 +46,7 @@ class ProductUpdateView{
         $this->updated_by = $updated_by;
         $this->active_status = $active_status;
         $this->product_id = $product_id;
+        $this->image = $image;
     }
 
 
@@ -255,5 +257,23 @@ class ProductUpdateView{
     {
         $this->active_status = $active_status;
     }
+
+    //image
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+    }
+
 }
 ?>

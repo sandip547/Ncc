@@ -39,9 +39,9 @@ include "header.php";
             <i class="bi bi-star text-warning"></i>
             <i class="bi bi-star text-warning"></i>
 
-            <p class="fs-5"><a href="#"><?php echo $det->getProductName(); ?></a></p>
+            <p class="fs-5"><a href='/ncc/Views/course_review_page.php?course_id= <?php echo $det->getProductId(); ?>'><?php echo $det->getProductName(); ?></a></p>
             <p> <i class="bi bi-person"></i> 6 <i class="bi bi-clock"></i> <?php echo $det->getDuration(); ?></p>
-            <p> <span class="rounded-circle p-1 bg-primary text-light"> DS</span> by Dynamic Solution</p>
+            <p> <span class="rounded-circle p-1 bg-primary text-light"> <?php echo $det->getFirstLettersFromName(); ?></span> by <?php echo $det->getEnteredByLabel(); ?></p>
             <div class="fw-bold d-flex justify-content-between">
                 <div>NPR <?php echo $det->getPrice(); ?></div>
                 <div> <a href=""><i class="bi bi-cart3"></i> Enroll</a></div>

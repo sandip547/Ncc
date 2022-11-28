@@ -12,7 +12,11 @@ if (isset($_POST['updateProduct'])) {
 
 
     $nc = new Notification();
-    $sp->updateProductMin(new ProductUpdateView($_POST["course_name"], $_POST['description'], $_POST["learning"], $_POST["requirements"], $_POST["targetaudience"], 1, $_POST["course_level"], $_POST["course_duration"], $_POST["course_price"], date("Y-m-d h:i:s"), 1, $_POST["active_status"], $_POST["cid"]));
+    if ($_FILES['productImage']['name'] != "") {
+        $sp->updateProductMinWithImage(new ProductUpdateView($_POST["course_name"], $_POST['description'], $_POST["learning"], $_POST["requirements"], $_POST["targetaudience"], 1, $_POST["course_level"], $_POST["course_duration"], $_POST["course_price"], date("Y-m-d h:i:s"), 1, $_POST["active_status"], $_POST["cid"], $_FILES['productImage']));
+    }else{
+        $sp->updateProductMin(new ProductUpdateView($_POST["course_name"], $_POST['description'], $_POST["learning"], $_POST["requirements"], $_POST["targetaudience"], 1, $_POST["course_level"], $_POST["course_duration"], $_POST["course_price"], date("Y-m-d h:i:s"), 1, $_POST["active_status"], $_POST["cid"]));
+    }
     $nc->alertUpdateSuccess();
 }
 if (isset($_POST['addproduct'])) {
@@ -22,7 +26,6 @@ if (isset($_POST['addproduct'])) {
 
 <!-- Product page-->
 <div class="text-justify p-0 m-0 ml-4">
-
     <div class="col-11 col-md-11 text-justify p-0 m-0">
         <p class="h5 text-dark font-weight-bold">Products</p>
         <div class="row d-flex">
@@ -34,10 +37,6 @@ if (isset($_POST['addproduct'])) {
                 <li class="nav-item">
                     <a class="nav-link custom-h-tab text-dark" id="add-tab" data-toggle="tab" href="#addproduct"
                         role="tab" aria-controls="addproduct" aria-selected="true">Add Product</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link custom-h-tab text-dark" id="edit-tab" data-toggle="tab" href="#editproduct"
-                        role="tab" aria-controls="editproduct" aria-selected="false">Edit Product</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link custom-h-tab text-dark" id="delete-tab" data-toggle="tab" href="#deleteproduct"
@@ -57,14 +56,6 @@ if (isset($_POST['addproduct'])) {
                     <div class="my-4">
                         <?php
                         include 'product/addproduct.php'
-                        ?>
-                    </div>
-                    <br class="bg-primary mb-5">
-                </div>
-                <div class="tab-pane" id="editproduct" role="tabpanel" aria-labelledby="edit-tab">
-                    <div class="my-4">
-                        <?php
-                        include 'product/editproduct.php'
                         ?>
                     </div>
                     <br class="bg-primary mb-5">
