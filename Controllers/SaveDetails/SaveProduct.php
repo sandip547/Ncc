@@ -34,13 +34,13 @@ class SaveProduct
             $file_name = $_FILES['productImage']['name'];
             $ext = explode('.', $file_name);
             $extension = end($ext);
-            move_uploaded_file($_FILES['productImage']['tmp_name'], "../../" . $path . '.' . $extension);
+            move_uploaded_file($_FILES['productImage']['tmp_name'],"../../".$path.'.'.$extension);
 
             $query = "insert into course(courseName,description,learning,requirements,targetAudience,instructorId,categoryId,tag,level,duration,price,releaseDate,enteredDate,enteredBy,enrollmentValidity,activeStatus,image)
         values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
             $this->connection->executePrepare($query, "sssssiiiisisssiis", array(
-                $pd->getProductName(), $pd->getDescription(), $pd->getLearning(), $pd->getRequirements(),
+                $pd->getProductName(), $pd->getDescription(), $pd->getLearning(), nl2br($pd->getRequirements()),
                 $pd->getTargetAudience(), $pd->getInstructorId(), $pd->getCategoryId(), $pd->getTag(),
                 $pd->getLevel(), $pd->getDuration(), $pd->getPrice(), $pd->getReleaseDate(), $pd->getEnteredDate(),
                 $pd->getEnteredBy(), $pd->getEnrollmentValidity(), $pd->getActiveStatus(), $path . '.' . $extension

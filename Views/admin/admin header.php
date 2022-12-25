@@ -1,6 +1,7 @@
 <!-- Header to be used when user is logged in -->
 <?php
 require_once("../../Controllers/Registration/SessionManagement.php");
+require_once("../../DatabaseConnection/DatabaseConnection.php");
 $sm = new SessionManagement();
 $sm->logOutSession(isset($_GET["logout"]));
 $sm->checkLoginSession(isset($_SESSION["username"]), isset($_SESSION["admin"]));

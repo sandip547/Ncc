@@ -13,6 +13,8 @@ $getDetails = $sd->getStudentId(new GetStudentUsername($_SESSION["username"]));
 <div class="text-justify p-0 m-0 ml-4 course-info">
 <p class="h5 text-dark font-weight-bold">My Profile</p>
 <hr class="bg-primary"/>
+    <div class="card mb-2">
+
     <div class="col-9 col-sm-7 col-md-9">
         <div class="row d-flex">
             <div class="col-md-4 my-2 text-orangered font-weight-bold">
@@ -78,6 +80,7 @@ $getDetails = $sd->getStudentId(new GetStudentUsername($_SESSION["username"]));
         </div>
     </div>
 
+    </div>
 </div>
 </div>
 

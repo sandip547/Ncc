@@ -121,7 +121,7 @@ if(isset($_GET["addtocart"])){
                         <i class="bi bi-star text-warning"></i>
                         <i class="bi bi-star text-warning"></i>
                         <i class="bi bi-star text-warning"></i>
-                        <p class="fs-5"><a href="course_review_page.php"><?php echo $product->getProductName();?></a></p>
+                        <p class="fs-5"><a href="course_review_page.php?course_id=<?php echo $product->getProductId(); ?>"><?php echo $product->getProductName();?></a></p>
                         <p> <i class="bi bi-person"></i> <?php echo $product->getDuration();?> <i class="bi bi-clock"></i> 18h</p>
 
 

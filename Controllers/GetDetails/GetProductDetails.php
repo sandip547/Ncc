@@ -40,6 +40,7 @@ class GetProductDetails
         return mysqli_fetch_row($result)[0];
     }
 
+
     function getStaffName($id)
     {
         $query = "select fullName from staff where staffId=?";
@@ -101,11 +102,11 @@ class GetProductDetails
         $gs = new GetStudentDetails();
         $id = $gs->getStudentIdOn(new GetStudentUsername($username));
         $date = date("Y-m-d");
-        $sql = "SELECT courseName,level,image,duration,price from course WHERE course.courseId in(SELECT courseId from enrollment where studentId = ? and status = 1 )";
+        $sql = "SELECT courseid,courseName,level,image,duration,price from course WHERE course.courseId in(SELECT courseId from enrollment where studentId = ? and status = 1 )";
         $result = $this->connection->executePrepareReturn($sql,"i",array($id));
         $product_display = array();
         while ($row = mysqli_fetch_array($result)) {
-            array_push($product_display, new ProductDisplay($row[0], $this->getLevel($row[1]), $row[2], $row[3], $row[4]));
+            array_push($product_display, new ProductDisplay($row[0],$row[1], $this->getLevel($row[2]), $row[3], $row[4], $row[5]));
         }
         return $product_display;
     }
@@ -131,11 +132,11 @@ class GetProductDetails
 
     function getProductDisplayDetails()
     {
-        $sql = "SELECT courseName,level,image,duration,price FROM course";
+        $sql = "SELECT courseid,courseName,level,image,duration,price FROM course";
         $result = $this->connection->executeQuery($sql);
         $product_display = array();
         while ($row = mysqli_fetch_array($result)) {
-            array_push($product_display, new ProductDisplay($row[0], $this->getLevel($row[1]), $row[2], $row[3], $row[4]));
+            array_push($product_display, new ProductDisplay($row[0],$row[1], $this->getLevel($row[2]), $row[3], $row[4], $row[5]));
         }
         return $product_display;
     }

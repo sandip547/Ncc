@@ -2,15 +2,22 @@
 session_start();
 $page = 'product';
 include 'admin header.php';
+require_once("../../Models/ProductModels/ProductDisplay.php");
+require_once("../../Models/ProductModels/ProductGet.php");
+require_once("../../Controllers/GetDetails/GetProductDetails.php");
+require_once("../../DatabaseConnection/DatabaseConnection.php");
+require_once("../../Models/ProductModels/ProductDisplay.php");
+require_once("../../Models/RegistrationModels/GetStudentUsername.php");
+require_once("../../Models/ProductModels/GetActiveProductDetails.php");
+require_once("../../Models/ProductModels/ProductGet.php");
 require_once("../../Models/ProductModels/ProductUpdateView.php");
 require_once("../../Models/ProductModels/Product.php");
+
 require_once("../../Controllers/SaveDetails/SaveProduct.php");
 require_once("../Notification/Notification.php");
 $sp = new SaveProduct();
 mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
 if (isset($_POST['updateProduct'])) {
-
-
     $nc = new Notification();
     if ($_FILES['productImage']['name'] != "") {
         $sp->updateProductMinWithImage(new ProductUpdateView($_POST["course_name"], $_POST['description'], $_POST["learning"], $_POST["requirements"], $_POST["targetaudience"], 1, $_POST["course_level"], $_POST["course_duration"], $_POST["course_price"], date("Y-m-d h:i:s"), 1, $_POST["active_status"], $_POST["cid"], $_FILES['productImage']));
@@ -20,7 +27,7 @@ if (isset($_POST['updateProduct'])) {
     $nc->alertUpdateSuccess();
 }
 if (isset($_POST['addproduct'])) {
-    $sp->saveProductDetails(new Product($_POST['cname'], $_POST['description'], $_POST['learning'], $_POST['requirements'], $_POST['targetAudience'], 1, 64,  1, $_POST['level'], $_POST['chour'], $_POST['cprice'], "re", date("Y-m-d h:i:s"), 1, 'test', 1, $_POST['cenroll'], $_POST['activeStatus'], $_FILES['productImage']));
+    $sp->saveProductDetails(new Product($_POST['cname'], $_POST['description'], $_POST['learning'], $_POST['requirements'], $_POST['targetAudience'], 1, 64,  1, $_POST['level'], $_POST['chour'], $_POST['cprice'], date("Y-m-d h:i:s"), date("Y-m-d h:i:s"), 1, 'test', 1, $_POST['cenroll'], $_POST['activeStatus'], $_FILES['productImage']));
 }
 ?>
 

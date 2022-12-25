@@ -1,6 +1,5 @@
 <?php
 
-require_once("../../Controllers/GetDetails/GetProductCategory.php");
 $cd = new GetProductCategory();
 $details = $cd->getCategoryDetails();
 
@@ -21,6 +20,7 @@ $details = $cd->getCategoryDetails();
         <thead class="thead-light">
             <tr>
                 <th></th>
+                <th></th>
                 <th>ID</th>
                 <th>Category name</th>
                 <th>Active Status</th>
@@ -34,6 +34,10 @@ $details = $cd->getCategoryDetails();
             <?php foreach ($details as $det) { ?>
                 <tr>
                     <th class="px-3"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong<?php echo $det->getCategoryId(); ?>">View</button></th>
+                    <th class="px-3">
+                        <a type="button" class="btn btn-primary"
+                           href="category.php?categoryid=<?php echo $det->getCategoryId();?>&delete=10">Delete</a>
+                    </th>
                     <th><?php echo $det->getCategoryId(); ?></th>
                     <th><?php echo $det->getCategoryName(); ?></th>
                     <th><?php echo $det->getActiveStatusLabel(); ?></th>

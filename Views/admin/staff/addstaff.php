@@ -24,6 +24,20 @@
                 aria-label="Mobile Number">
         </div>
         <div class="col-md-6 my-3">
+            <label for="gender" class="form-label text-blue-shade">Gender</label>
+            <select name="gender" id="gender" class="form-select form-select-lg inputcolor fs-6" required>
+                <option value="1">
+                    Male
+                </option>
+                <option value="2">
+                    Female
+                </option>
+                <option value="3">
+                    Other
+                </option>
+            </select>
+        </div>
+        <div class="col-md-6 my-3">
             <label for="address" class="form-label text-blue-shade">Address</label>
             <input type="tel" id="address" required name="address" class="form-control inputcolor fs-6" placeholder="Address"
                 aria-label="Mobile Number">
@@ -128,7 +142,7 @@
         <div class="col-md-6 my-3">
             <label for="userName" class="form-label text-blue-shade">Username</label>
             <input type="text" required id="userName" name="userName" class="form-control inputcolor fs-6" placeholder="Username"
-                aria-label="userName">
+                aria-label="userName" >
         </div>
         <div class="col-md-6 my-3">
             <label for="retireDate" class="form-label text-blue-shade">Retire Date</label>

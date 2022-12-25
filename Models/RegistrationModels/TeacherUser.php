@@ -1,85 +1,298 @@
 <?php
-require_once("TsUser.php");
-class TeacherUser{
-    private $tsuser;
+
+class TeacherUser
+{
+
+    private $fullName;
+    private $dob;
+    private $email;
+    private $gender;
+    private $mobile;
+    private $address;
     private $qualification;
     private $expertise;
     private $experience;
     private $cv_location;
     private $join_date;
+    private $username;
+    private $password;
     private $type;
 
+    /**
+     * @param $fullName
+     * @param $dob
+     * @param $email
+     * @param $gender
+     * @param $mobile
+     * @param $address
+     * @param $qualification
+     * @param $expertise
+     * @param $experience
+     * @param $cv_location
+     * @param $join_date
+     * @param $username
+     * @param $password
+     * @param $type
+     */
+    public function __construct($fullName, $dob, $email, $gender, $mobile, $address, $qualification, $expertise, $experience, $cv_location, $join_date, $username, $password)
+    {
+        $this->fullName = $fullName;
+        $this->dob = $dob;
+        $this->email = $email;
+        $this->gender = $gender;
+        $this->mobile = $mobile;
+        $this->address = $address;
+        $this->qualification = $qualification;
+        $this->expertise = $expertise;
+        $this->experience = $experience;
+        $this->cv_location = $cv_location;
+        $this->join_date = $join_date;
+        $this->username = $username;
+        $this->password = $password;
+        $this->type = 1;
+        $this->activeStatus = 0;
+    }
 
-    function __construct($firstname,$lastname,$dob,$email,$gender,$mobile,$address,$qualification,$expertise,$experience,$cv_location,$join_date,$username,$password){
-      $this->tsuser = new TsUser();
-      $this->tsuser->setFirstName($firstname);
-      $this->tsuser->setLastName($lastname);
-      $this->tsuser->setEmail($email);
-      $this->tsuser->setDob($dob);
-      $this->tsuser->setGender($gender);
-      $this->tsuser->setMob($mobile);
-      $this->qualification = $qualification;
-      $this->expertise = $expertise;
-      $this->experience = $experience;
-      $this->cv_location = $cv_location;
-      $this->tsuser->setAddresses($address);
-      $this->join_date = $join_date;
-      $this->tsuser->setUsername($username);
-      $this->tsuser->setPassword($password);
-      $this->type= 2;
-    }
-    function setTsUser($tsuser){
-    $this->tsuser = $tsuser;
-
-    }
-    function getTsUser(){
-    return $this->tsuser;
+    /**
+     * @return int
+     */
+    public function getActiveStatus(): int
+    {
+        return $this->activeStatus;
     }
 
-    function setUsername($username) {
-    $this->username = $username;
+    /**
+     * @param int $activeStatus
+     */
+    public function setActiveStatus(int $activeStatus)
+    {
+        $this->activeStatus = $activeStatus;
     }
-    function getUsername() {
-    return $this->username;
+
+    /**
+     * @return mixed
+     */
+    public function getFullName()
+    {
+        return $this->fullName;
     }
-    function setQualification($qualification) {
-    $this->qualification = $qualification;
+
+    /**
+     * @param mixed $fullName
+     */
+    public function setFullName($fullName)
+    {
+        $this->fullName = $fullName;
     }
-    function getQualification() {
-    return $this->qualification;
+
+    /**
+     * @return mixed
+     */
+    public function getDob()
+    {
+        return $this->dob;
     }
-    function setExpertise($expertise) {
-    $this->expertise = $expertise;
+
+    /**
+     * @param mixed $dob
+     */
+    public function setDob($dob)
+    {
+        $this->dob = $dob;
     }
-    function getExpertise() {
-    return $this->expertise;
+
+    /**
+     * @return mixed
+     */
+    public function getEmail()
+    {
+        return $this->email;
     }
-    function setExperience($experience) {
-    $this->experience = $experience;
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
     }
-    function getExperience() {
-    return $this->experience;
+
+    /**
+     * @return mixed
+     */
+    public function getGender()
+    {
+        return $this->gender;
     }
-    function setCvLocation($cv_location){
-    $this->cv_location = $cv_location;
+
+    /**
+     * @param mixed $gender
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
     }
-    function getCvLocation() {
-    return $this->cv_location;
+
+    /**
+     * @return mixed
+     */
+    public function getMobile()
+    {
+        return $this->mobile;
     }
-    function setJoinDate($join_date){
-    $this->join_date = $join_date;
+
+    /**
+     * @param mixed $mobile
+     */
+    public function setMobile($mobile)
+    {
+        $this->mobile = $mobile;
     }
-    function getJoinDate() {
-    return $this->join_date;
+
+    /**
+     * @return mixed
+     */
+    public function getAddress()
+    {
+        return $this->address;
     }
-    function setType($type){
-    $this->type = $type;
+
+    /**
+     * @param mixed $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
     }
-    function getType() {
-    return $this->type;
+
+    /**
+     * @return mixed
+     */
+    public function getQualification()
+    {
+        return $this->qualification;
     }
+
+    /**
+     * @param mixed $qualification
+     */
+    public function setQualification($qualification)
+    {
+        $this->qualification = $qualification;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getExpertise()
+    {
+        return $this->expertise;
+    }
+
+    /**
+     * @param mixed $expertise
+     */
+    public function setExpertise($expertise)
+    {
+        $this->expertise = $expertise;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getExperience()
+    {
+        return $this->experience;
+    }
+
+    /**
+     * @param mixed $experience
+     */
+    public function setExperience($experience)
+    {
+        $this->experience = $experience;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getCvLocation()
+    {
+        return $this->cv_location;
+    }
+
+    /**
+     * @param mixed $cv_location
+     */
+    public function setCvLocation($cv_location)
+    {
+        $this->cv_location = $cv_location;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getJoinDate()
+    {
+        return $this->join_date;
+    }
+
+    /**
+     * @param mixed $join_date
+     */
+    public function setJoinDate($join_date)
+    {
+        $this->join_date = $join_date;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * @param mixed $username
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /**
+     * @param mixed $password
+     */
+    public function setPassword($password)
+    {
+        $this->password = $password;
+    }
+
+    /**
+     * @return int
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param int $type
+     */
+    public function setType(int $type)
+    {
+        $this->type = $type;
+    }
+
 
 }
-
-
 ?>

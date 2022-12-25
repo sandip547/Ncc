@@ -1,6 +1,6 @@
 <?php
 
-require_once("../../Controllers/GetDetails/GetStudentDetails.php");
+
 $sd = new GetStudentDetails();
 $details = $sd->getStudentDetails();
 
@@ -160,7 +160,7 @@ $details = $sd->getStudentDetails();
                                 <label for="password" class="form-label">Password</label>
                             </div>
                             <div class="col-md-7">
-                                <input type="password" name="password" required id="password" class="form-control inputcolor fs-6" aria-label="password">
+                                <input type="password" name="password" id="password" class="form-control inputcolor fs-6" aria-label="password">
                             </div>
                         </div>
                         <div class="row align-items-center my-2">

@@ -1,7 +1,7 @@
 <?php
-require_once("../../DatabaseConnection/DatabaseConnection.php");
-require_once("../../Models/ProductModels/CategoryGet.php");
-require_once("../../Models/ProductModels/CategoryNameSearch.php");
+//require_once("../../DatabaseConnection/DatabaseConnection.php");
+//require_once("../../Models/ProductModels/CategoryGet.php");
+//require_once("../../Models/ProductModels/CategoryNameSearch.php");
 
 class GetProductCategory{
     private $connection;
@@ -10,6 +10,10 @@ class GetProductCategory{
         $this->connection = new DatabaseConnection();
     }
 
+    function  getcategoryNameId(){
+        $query = "select categoryId,categoryName from category";
+
+    }
     function getCategoryDetails(){
         $query = "select * from category";
         $result = $this->connection->executeQuery($query);
@@ -32,9 +36,4 @@ class GetProductCategory{
     }
 }
 
-$cd = new GetProductCategory();
-$result= $cd->getCategoryName(new CategoryNameSearch("hello"));
-foreach($result as $value){
-    print_r($value->getEnteredDate());
-}
 ?>

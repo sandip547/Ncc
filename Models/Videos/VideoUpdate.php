@@ -3,69 +3,70 @@
 class VideoUpdate
 {
     private $videoId;
-    private $topicId;
-    private $srNo;
     private $link;
     private $detail;
 
-    public function __construct($videoId, $topicId, $srNo, $link, $detail)
+    /**
+     * @param $videoId
+     * @param $link
+     * @param $detail
+     */
+    public function __construct($videoId, $link, $detail)
     {
         $this->videoId = $videoId;
-        $this->topicId = $topicId;
-        $this->srNo = $srNo;
         $this->link = $link;
         $this->detail = $detail;
     }
 
+    /**
+     * @return mixed
+     */
     public function getVideoId()
     {
         return $this->videoId;
     }
 
+    /**
+     * @param mixed $videoId
+     */
     public function setVideoId($videoId)
     {
         $this->videoId = $videoId;
     }
 
-    public function getTopicId()
-    {
-        return $this->topicId;
-    }
-
-    public function setTopicId($topicId)
-    {
-        $this->topicId = $topicId;
-    }
-
-    public function getSrNo()
-    {
-        return $this->srNo;
-    }
-
-    public function setSrNo($srNo)
-    {
-        $this->srNo = $srNo;
-    }
-
+    /**
+     * @return mixed
+     */
     public function getLink()
     {
         return $this->link;
     }
 
+    /**
+     * @param mixed $link
+     */
     public function setLink($link)
     {
         $this->link = $link;
     }
 
+    /**
+     * @return mixed
+     */
     public function getDetail()
     {
         return $this->detail;
     }
 
+    /**
+     * @param mixed $detail
+     */
     public function setDetail($detail)
     {
         $this->detail = $detail;
     }
+
+
 }
 
 ?>

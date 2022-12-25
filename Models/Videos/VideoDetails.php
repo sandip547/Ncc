@@ -6,10 +6,10 @@ class VideoDetails{
     private $detail;
 
     public function __construct($topic_id,$sr_no,$link,$detail){
-        $this->$topic_id = $topic_id;
-        $this->$sr_no = $sr_no;
-        $this->$link = $link;
-        $this->$detail = $detail;
+        $this->topic_id = $topic_id;
+        $this->sr_no = $sr_no;
+        $this->link = $link;
+        $this->detail = $detail;
     }
 
     function setTopicId($topic_id){
@@ -20,28 +20,45 @@ class VideoDetails{
         return $this->topic_id;
     }
 
-    function serSrNo($sr_no){
+    function setSrNo($sr_no){
         $this->sr_no = $sr_no;
     }
 
-    function getSrNO(){
+    function getSrNo(){
         return $this->sr_no;
     }
 
-    function setLink($link){
-        $this->link = $link;
-    }
-
-    function getLink(){
+    /**
+     * @return mixed
+     */
+    public function getLinks()
+    {
         return $this->link;
     }
 
-    function setDetail($detail){
+    /**
+     * @param mixed $link
+     */
+    public function setLink($link)
+    {
+        $this->link = $link;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDetail()
+    {
+        return $this->detail;
+    }
+
+    /**
+     * @param mixed $detail
+     */
+    public function setDetail($detail)
+    {
         $this->detail = $detail;
     }
 
-    function getDetail(){
-        return $this->detail;
-    }
 }
 ?>

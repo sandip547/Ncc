@@ -1,7 +1,38 @@
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+
 <?php
 session_start();
 $page = 'video';
-include 'admin header.php'
+include 'admin header.php';
+require_once("../../Models/ProductModels/GetProductIdName.php");
+require_once("../../Models/ProductModels/ProductTopicGet.php");
+require_once("../../Models/Videos/GetVideoDetails.php");
+require_once("../../Models/Videos/DeleteVideoDetails.php");
+require_once("../../Models/Videos/VideoDetails.php");
+require_once("../../Models/Videos/VideoUpdate.php");
+require_once("../../Controllers/GetDetails/GetProductDetails.php");
+require_once("../../Controllers/GetDetails/GetVideoDetails.php");
+require_once("../../Controllers/GetDetails/GetCourseTopic.php");
+require_once("../../Controllers/SaveDetails/SaveVideoDetails.php");
+require_once("../../DatabaseConnection/DatabaseConnection.php");
+require_once("../Notification/Notification.php");
+$notify = new Notification();
+$sv = new SaveVideoDetails();
+if(isset($_POST['addVideo'])){
+
+    $gd =new GetVideoDetailsCourse();
+    $sv->saveVideoDetail(new VideoDetails($_POST['course_topic'],$gd->getVideoSerialNo($_POST['course_topic']),$_POST['vlink'],$_POST['vdetails']));
+    $notify->AddSuccess();
+
+}
+if(isset($_POST['updateVideo'])){
+    $sv->updateVideoDetails(new VideoUpdate($_POST['videoLink'],$_POST['videoDetails'],$_POST['videoId']));
+    $notify->alertUpdateSuccess();
+}
+if(isset($_GET['delete'])){
+    $sv->deleteVideoDetails(new DeleteVideoDetails($_GET['videoid'], $_GET['topicid']));
+    $notify->alertDeleteSuccess();
+}
 ?>
 
 <!-- video page-->
@@ -17,18 +48,13 @@ include 'admin header.php'
                 <li class="nav-item">
                     <a class="nav-link custom-h-tab text-dark" id="add-tab" data-toggle="tab" href="#addvideo" role="tab" aria-controls="addvideo" aria-selected="true">Add video</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link custom-h-tab text-dark" id="edit-tab" data-toggle="tab" href="#editvideo" role="tab" aria-controls="editvideo" aria-selected="false">Edit video</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link custom-h-tab text-dark" id="delete-tab" data-toggle="tab" href="#deletevideo" role="tab" aria-controls="deletevideo" aria-selected="false">Delete video</a>
-                </li>
+
             </ul>
             <div class="clearfix tab-content">
             <div class="tab-pane active" id="viewvideo" role="tabpanel" aria-labelledby="view-tab">
                     <div class="my-4">
                         <?php
-                        include 'video/viewvideo.php'
+                        include 'video/viewvideo.php';
                         ?>
                     </div>
                     <br class="bg-primary mb-5">
@@ -36,25 +62,12 @@ include 'admin header.php'
                 <div class="tab-pane" id="addvideo" role="tabpanel" aria-labelledby="add-tab">
                     <div class="my-4">
                         <?php
-                        include 'video/addvideo.php'
+                        include 'video/addvideo.php';
                         ?>
                     </div>
                     <br class="bg-primary mb-5">
                 </div>
-                <div class="tab-pane" id="editvideo" role="tabpanel" aria-labelledby="edit-tab">
-                    <div class="my-4">
-                    <?php
-                        include 'video/editvideo.php'
-                        ?>
-                    </div>
-                    <br class="bg-primary mb-5">
-                </div>
-                <div class="tab-pane" id="deletevideo" role="tabpanel" aria-labelledby="delete-tab">
-                    <div class="my-4">
-                    <?php
-                        include 'video/deletevideo.php'
-                        ?>
-                    </div>
+
                     <hr class="bg-primary">
                 </div>
             </div>
@@ -68,5 +81,5 @@ include 'admin header.php'
 </div>
 
 <?php
-include 'footer.php'
+include 'footer.php';
 ?>

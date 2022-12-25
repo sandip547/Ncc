@@ -22,7 +22,7 @@ class GetStudentDetails
         }
         return $gender_name;
     }
-   
+
 
     function getActiveStatus($status)
     {

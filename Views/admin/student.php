@@ -5,8 +5,12 @@ include 'admin header.php';
 
 require_once("../../Controllers/Registration/RegController.php");
 require_once("../../Models/RegistrationModels/StudentUser.php");
+require_once("../../Models/RegistrationModels/GetStudentUser.php");
 require_once("../../Views/Notification/Notification.php");
-
+require_once("../../DatabaseConnection/DatabaseConnection.php");
+require_once("../../Controllers/Authentication/Encryption.php");
+require_once("../../Models/RegistrationModels/CheckUsername.php");
+require_once("../../Controllers/GetDetails/GetStudentDetails.php");
 $rc = new RegController();
 $notify = new Notification();
 if(isset($_POST["register"])){
@@ -14,7 +18,7 @@ if(isset($_POST["register"])){
     if($rc->checkUserName($_POST["username"])){
         // $rc->getChecker()->setCheck("True");
         
-        $notify->alertRegistrationSuccess( "Username already exists.", "Registration Failed",);
+        $notify->alertRegistrationSuccess( "Username already exists.", "Registration Failed");
     }else{
         if($rc->checkPassword($_POST["password"],$_POST['cpassword'])){
             $rc->insertUserDetails(new StudentUser($_POST["fullName"], $_POST["dob"], $_POST["email"], $_POST["gender"],
@@ -28,7 +32,7 @@ if(isset($_POST["updateStudent"])){
     $rc->updateUserDetails(new StudentUser($_POST["fullName"], $_POST["dob"], $_POST["email"], $_POST["gender"],
     $_POST["username"], $_POST["password"], $_POST["mobileNumber"], $_POST["address"],
     null, $_POST["id"]));
-    $notify->alertRegistrationSuccess( "Student details updated successfully", "Success",);
+    $notify->alertRegistrationSuccess( "Student details updated successfully", "Success");
 }
 ?>
 

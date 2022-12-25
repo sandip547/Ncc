@@ -1,7 +1,7 @@
 <?php
-require_once("../../DatabaseConnection/DatabaseConnection.php");
-require_once("../../Models/ProductModels/ProductTopicGet.php");
-require_once("../../Models/ProductModels/CategoryNameSearch.php");
+
+//require_once("../../Models/ProductModels/GetProductIdName.php");
+//require_once("../../Models/ProductModels/CategoryNameSearch.php");*/
 
 class GetCourseTopic
 {
@@ -12,16 +12,46 @@ class GetCourseTopic
         $this->connection = new DatabaseConnection();
     }
 
-    function getCourseTopic()
+    function getCourseTopics($id)
     {
-        $query = "select * from coursetopic";
+        $query = "select * from coursetopic where courseid = '$id' ";
         $result = $this->connection->executeQuery($query);
         $courseTopic_details = array();
         while ($row = mysqli_fetch_array($result)) {
             array_push($courseTopic_details, new ProductTopicGet($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6], $row[7], $row[8]));
         }
-        mysqli_close($this->connection->getConnection());
+
         return $courseTopic_details;
+    }
+    function getCourseTopicName($courseid){
+        $query = "select topicid,topicName from coursetopic where courseid = '$courseid'";
+        $result = $this->connection->executeQuery($query);
+        $topicName = array();
+        while ($row = mysqli_fetch_array($result)){
+            array_push($topicName,new GetTopicIdName($row[0],$row[1]));
+        }
+        return $topicName;
+    }
+    function getCourseNames(){
+        $query = "select courseid,courseName from course";
+        $result = $this->connection->executeQuery($query);
+        $courseName = array();
+        while ($row = mysqli_fetch_array($result)) {
+            array_push($courseName, new GetProductIdName($row[0],$row[1]));
+        }
+
+        return $courseName;
+    }
+
+    function getCourseNamesTopicId(){
+        $query = "select distinct courseid from course";
+        $result = $this->connection->executeQuery($query);
+        $courseName = array();
+        while ($row = mysqli_fetch_array($result)) {
+            array_push($courseName, $row[0]);
+        }
+
+        return $courseName;
     }
     function getCourseName($category_name)
     {
@@ -31,7 +61,7 @@ class GetCourseTopic
         while ($row = mysqli_fetch_array($result)) {
             array_push($category_name, new CategoryGet($row[0], $row[1], $row[2], $row[3], $row[4], $row[5], $row[6]));
         }
-        mysqli_close($this->connection->getConnection());
+
         return $category_name;
     }
 }
@@ -41,3 +71,4 @@ class GetCourseTopic
 // foreach ($result as $value) {
 //     print_r($value->getEnteredDate());
 // }
+

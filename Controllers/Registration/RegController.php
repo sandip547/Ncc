@@ -1,7 +1,7 @@
 <?php
-require_once("../../DatabaseConnection/DatabaseConnection.php");
-require_once("../../Controllers/Authentication/Encryption.php");
-require_once("../../Models/RegistrationModels/CheckUsername.php");
+//require_once("../../DatabaseConnection/DatabaseConnection.php");
+//require_once("../../Controllers/Authentication/Encryption.php");
+//require_once("../../Models/RegistrationModels/CheckUsername.php");
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 class RegController
@@ -22,6 +22,7 @@ class RegController
     {
         return $this->checker;
     }
+
     function getPasswordChecker()
     {
         return $this->check_password;
@@ -40,6 +41,16 @@ class RegController
     {
         $check = False;
         $query = "select userName from student where userName=? ";
+        $result = $this->connection->executePrepareReturn($query, "s", array($username));
+        if (mysqli_num_rows($result) > 0) {
+            $check = True;
+        }
+        return $check;
+    }
+    function checkStaffName($username)
+    {
+        $check = False;
+        $query = "select userName from staff where userName=? ";
         $result = $this->connection->executePrepareReturn($query, "s", array($username));
         if (mysqli_num_rows($result) > 0) {
             $check = True;
@@ -65,6 +76,7 @@ class RegController
         } else {
         }
     }
+
     function updateUserDetails($studentuser)
     {
         $fullname = $studentuser->getTsUser()->getFullName() ;
@@ -84,19 +96,73 @@ class RegController
         $query = "delete from student where studentId=?";
         $result = $this->connection->executePrepare($query, "i", array($du->getStudentId()));
     }
+    function getStaffId($username)
+    {
+        $query = "select staffid from staff where username=?";
+        $result = $this->connection->executePrepareReturn($query, "s", array($username));
+        return mysqli_fetch_row($result)[0];
+    }
+
+    function uploadFile($file, $target_file)
+    {
+
+        $uploadOk = 1;
+        $pdfFile = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        //upload
+        if (file_exists($target_file)) {
+            echo "Sorry, file already exists.";
+            $uploadOk = 0;
+        }
+        // Check file size
+        if ($file["size"] > 500000) {
+            echo "Sorry, your file is too large.";
+            $uploadOk = 0;
+        }
+        // Allow certain file formats
+        if ($pdfFile != "pdf") {
+            echo "Sorry, only PDF files are allowed.";
+            $uploadOk = 0;
+        }
+        // upload
+        if ($uploadOk) {
+            if (move_uploaded_file($file["tmp_name"], $target_file)) {
+                $uploadOk = 1;
+            } else {
+                echo "Sorry, there was an error uploading your file.";
+            }
+        }
+        return $uploadOk;
+    }
 
     function insertTeacherDetails($staff)
     {
-        $fullname = $staff->getTsUser()->getFirstName() . " " . $staff->getTsUser()->getLastName();
-        $query = "insert into staff(fullname,dob,email,gender,mobileNo,address,joindate,qualification,subjectExpertise,noOfExperience,cvLocation,activestatus,username,password) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
-        $result = $this->connection->executePrepare($query, "sssisssssssiss", array(
-            $fullname, $staff->getTsUser()->getDob(), $staff->getTsUser()->getEmail(),
-            $staff->getTsUser()->getGender(), $staff->getTsUser()->getMob(),
-            $staff->getTsUser()->getAddresses(), $staff->getJoinDate(),
-            $staff->getQualification(), $staff->getExpertise(), $staff->getExperience(),
-            $staff->getCvLocation(), $staff->getTsUser()->getActiveStatus(), $staff->getTsUser()->getUsername(), $this->encrypt->encrypt($staff->getTsUser()->getPassword())
-        ));
+        try {
+            mysqli_begin_transaction($this->connection->getConnection());
+            $target_dir = "Uploads/CV/";
+            $target_file = $target_dir . date("Y-m-d-h-i-s-").basename($_FILES["cvLocation"]["name"]);
+            $uploadOk = $this->uploadFile($staff->getCvLocation(), $target_file);
+            if($uploadOk){
+
+                $query = "insert into staff(fullname,dob,email,gender,mobileNo,address,joindate,qualification,subjectExpertise,noOfExperience,cvLocation,activestatus,username,password) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+
+                $result = $this->connection->executePrepare($query, "sssisssssssiss", array(
+                    $staff->getFullName(), $staff->getDob(), $staff->getEmail(),
+                    $staff->getGender(), $staff->getMobile(),
+                    $staff->getAddress(),$staff->getJoinDate(),
+                    $staff->getQualification(), $staff->getExpertise(), $staff->getExperience(),
+                    $target_file,$staff->getActiveStatus(), $staff->getUsername(), $this->encrypt->encrypt($staff->getPassword())
+                ));
+
+            }
+
+            mysqli_commit($this->connection->getConnection());
+        } catch (mysqli_sql_exception $e) {
+            mysqli_rollback($this->connection->getConnection());
+            throw $e;
+        }
+
+
         mysqli_close($this->connection->getConnection());
     }
 

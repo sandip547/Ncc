@@ -16,7 +16,7 @@ require_once("../Models/ProductModels/ProductDisplay.php");
 require_once("../Models/RegistrationModels/GetStudentUsername.php");
 require_once("../Models/ProductModels/GetActiveProductDetails.php");
 require_once("../Models/ProductModels/ProductGet.php");
-
+echo $_GET['course_id'];
 $course_id = isset($_GET['course_id']) ? $_GET['course_id'] : die('Could not find course ID.');
 $pd = new GetProductDetails();
 $det=$pd->getProductById($course_id)!=null?$pd->getProductById($course_id):die('Could not find course details.');
@@ -262,7 +262,7 @@ $det=$pd->getProductById($course_id)!=null?$pd->getProductById($course_id):die('
                 <div class="mt-5">
                     <h5 class="">Requirements</h5>
                     <div class="pb-3" style="font-size: 14px;">
-                        <div><i class="bi bi-check fs-5 px-1 text-primary"></i>Laptop with good internet</div>
+                        <div><i class="bi bi-check fs-5 px-1 text-primary"></i><?php echo $det->getRequirements(); ?></div>
                         <div><i class="bi bi-check fs-5 px-1 text-primary"></i>Microsoft Office</div>
                     </div>
                 </div>

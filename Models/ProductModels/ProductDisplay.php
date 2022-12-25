@@ -1,18 +1,22 @@
 <?php
 class ProductDisplay{
+    private $product_id;
     private $product_name;
     private $level;
     private $image;
     private $duration;
     private $price;
 
-    function __construct($product_name,$level,$image,$duration,$price){
+    function __construct($product_id,$product_name,$level,$image,$duration,$price){
+        $this->product_id=$product_id;
         $this->product_name = $product_name;
         $this->level = $level;
         $this->image = $image;
         $this->duration = $duration;
         $this->price = $price;
     }
+    function setProductId($product_id){$this->product_id=$product_id;}
+    function getProductId(){return $this->product_id;}
 
     function setProductName($product_name){$this->product_name=$product_name;}
     function getProductName(){return $this->product_name;}

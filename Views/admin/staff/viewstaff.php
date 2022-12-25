@@ -104,7 +104,7 @@ $details = $td->getTeacherDetails();
                 </div>
                 <form action="staff.php" method="POST" enctype="multipart/form-data">
                     <div class="modal-body">
-                        <input type="text" name="id" value="" id="id" value="<?php echo $det->getStaffId(); ?>" hidden>
+                        <input type="text" name="id"  id="id" value="<?php echo $det->getStaffId(); ?>" hidden>
                         <div class="row align-items-center my-2">
                             <div class="col-md-5 text-orangered font-weight-bold fs-6">
                                 <label for="fullName" class="form-label">Full Name</label>
@@ -132,6 +132,28 @@ $details = $td->getTeacherDetails();
                                 <input type="email" value="<?php echo $det->getEmail(); ?>" class="form-control inputcolor fs-6" placeholder="E-mail" name="email" aria-label="email" value="xsa@cdsd.cdc">
                             </div>
                         </div>
+                        <div class="row my-2 align-items-center">
+                            <div class="col-md-5 text-orangered font-weight-bold fs-6">
+                                <label for="Gender" class="form-label">Gender</label>
+                            </div>
+                            <div class="col-md-7 my-3">
+                                <select name="gender" id="gender" class="form-select form-select-lg inputcolor fs-6">
+                                    <option value="<?php echo $det->getGender(); ?>">
+                                        <?php echo $td->getGenderName($det->getGender()); ?>
+                                    </option>
+                                    <option value="1">
+                                        Male
+                                    </option>
+                                    <option value="2">
+                                        Female
+                                    </option>
+                                    <option value="3">
+                                        Other
+                                    </option>
+                                </select>
+                            </div>
+                        </div>
+
                         <div class="row align-items-center my-2">
                             <div class="col-md-5 text-orangered font-weight-bold fs-6">
                                 <label for="phoneNo" class="form-label">Mobile Number</label>
@@ -177,10 +199,10 @@ $details = $td->getTeacherDetails();
                                     <option value="<?php echo $det->getQualification(); ?>">
                                         <?php echo $det->getQualification(); ?>
                                     </option>
-                                    <option value="bsc">
+                                    <option value="Bachelor in Civil Engineering">
                                         1) Bachelor in Civil Engineering
                                     </option>
-                                    <option value="msc">
+                                    <option value="Master in Civil Engineering">
                                         2) Master in Civil Engineering
                                     </option>
                                 </select>
@@ -257,7 +279,7 @@ $details = $td->getTeacherDetails();
                             <div class="col-md-7 my-3">
                                 <select name="activeStatus" id="activeStatus" class="form-select form-select-lg inputcolor fs-6">
                                     <option value="<?php echo $det->getActiveStatus(); ?>">
-                                        <?php echo $det->getActiveStatus(); ?>
+                                        <?php echo $td->getStatusName($det->getActiveStatus()); ?>
                                     </option>
                                     <option value="active">
                                         Active
@@ -275,7 +297,7 @@ $details = $td->getTeacherDetails();
                             <div class="col-md-7 my-3">
                                 <select name="type" id="type" class="form-select form-select-lg inputcolor fs-6">
                                     <option value="<?php echo $det->getType(); ?>">
-                                        <?php echo $det->getType(); ?>
+                                        <?php echo $td->getTypeUser($det->getType()); ?>
                                     </option>
                                     <option value="1">
                                         1 - Staff
@@ -305,22 +327,7 @@ $details = $td->getTeacherDetails();
                                 <input type="date" id="retireDate" value="<?php echo $det->getRetireDate(); ?>" name="retireDate" class="form-control inputcolor fs-6" aria-label="retireDate">
                             </div>
                         </div>
-                        <div class="row my-2 align-items-center">
-                            <div class="col-md-5 text-orangered font-weight-bold fs-6">
-                                <label for="password" class="form-label">Password</label>
-                            </div>
-                            <div class="col-md-7 my-3">
-                                <input type="password" name="password" id="password" class="form-control inputcolor fs-6" aria-label="password">
-                            </div>
-                        </div>
-                        <div class="row my-2 align-items-center">
-                            <div class="col-md-5 text-orangered font-weight-bold fs-6">
-                                <label for="confirmPassword" class="form-label">confirm Password</label>
-                            </div>
-                            <div class="col-md-7 my-3">
-                                <input type="confirmPassword" name="confirmPassword" id="confirmPassword" class="form-control inputcolor fs-6" aria-label="password">
-                            </div>
-                        </div>
+
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

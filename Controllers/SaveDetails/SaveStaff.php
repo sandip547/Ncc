@@ -1,6 +1,6 @@
 <?php
-require_once("../../DatabaseConnection/DatabaseConnection.php");
-require_once("../../Models/Staff/StaffGet.php");
+//require_once("../../DatabaseConnection/DatabaseConnection.php");
+//require_once("../../Models/Staff/StaffGet.php");
 // require_once("../../Models/ProductModels/Product.php");
 // require_once("../../Models/ProductModels/ProductGet.php");
 // require_once("../../Models/ProductModels/ProductTopic.php");
@@ -9,11 +9,14 @@ require_once("../../Models/Staff/StaffGet.php");
 class SaveStaff
 {
     private $connection;
+    private $encrypt;
 
     function __construct()
     {
         $this->connection = new DatabaseConnection();
+        $this->encrypt = new EncDec();
     }
+
     function getStaffId($username)
     {
         $query = "select staffid from staff where username=?";
@@ -57,13 +60,16 @@ class SaveStaff
 
         try {
             mysqli_begin_transaction($this->connection->getConnection());
-            $target_dir = "../../Uploads/CV/";
+            $target_dir = "../Uploads/CV/";
             $target_file = $target_dir . date("Y-m-d-h-i-s-") . basename($file["name"]);
             $uploadOk = $this->uploadFile($file, $target_file);
             if($uploadOk){
                 $query = "insert into staff(fullName,dob,email,gender,phoneNo,mobileNo,address,joinDate,qualification,subjectExpertise,noOfExperience, cvLocation,activeStatus, type, userName, password, retireDate) 
                 values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-                $this->connection->executePrepare($query, "sssssssssssssssss", array($sd->getFullName(), $sd->getDob(), $sd->getEmail(), $sd->getGender(), $sd->getPhoneNo(), $sd->getMobileNo(), $sd->getAddress(), $sd->getJoinDate(), $sd->getQualification(), $sd->getSubjectExpertise(), $sd->getNoOfExperience(), $target_file, $sd->getActiveStatus(), $sd->getType(), $sd->getUserName(), $sd->getPassword(), $sd->getRetireDate()));
+                $this->connection->executePrepare($query, "sssssssssssssssss", array($sd->getFullName(), $sd->getDob(), $sd->getEmail(), $sd->getGender(), $sd->getPhoneNo(),
+                    $sd->getMobileNo(), $sd->getAddress(), $sd->getJoinDate(), $sd->getQualification(), $sd->getSubjectExpertise(),
+                    $sd->getNoOfExperience(), $target_file, $sd->getActiveStatus(), $sd->getType(), $sd->getUserName(), $this->encrypt->encrypt($sd->getPassword()),
+                    $sd->getRetireDate()));
 
             }
        
@@ -77,22 +83,25 @@ class SaveStaff
 
     public function updateStaffDetails($sd, $file)
     {
+
         try {
             mysqli_begin_transaction($this->connection->getConnection());
-            $target_dir = "../../Uploads/CV/";
+            $target_dir = "../Uploads/CV/";
            
             if ($file["name"] != "") {
+
                 $target_file = $target_dir . date("Y-m-d-h-i-s-") . basename($file["name"]);
                 $uploadOk = $this->uploadFile($file, $target_file);
                 if ($uploadOk) {
-                    $query = "UPDATE staff SET fullName=?,dob=?,email=?,gender=?,phoneNo=?,mobileNo=?,address=?,joinDate=?,qualification=?,subjectExpertise=?,noOfExperience=?, cvLocation=?,activeStatus=?, type=?, userName=?, password=?, retireDate=? where staffId=?";
-                    $this->connection->executePrepare($query, "sssssssssssssssssi", array($sd->getFullName(), $sd->getDob(), $sd->getEmail(), $sd->getGender(), $sd->getPhoneNo(), $sd->getMobileNo(), $sd->getAddress(), $sd->getJoinDate(), $sd->getQualification(), $sd->getSubjectExpertise(), $sd->getNoOfExperience(), $target_file, $sd->getActiveStatus(), $sd->getType(), $sd->getUserName(), $sd->getPassword(), $sd->getRetireDate(), $sd->getStaffId()));
+                    $query = "UPDATE staff SET fullName=?,dob=?,email=?,gender=?,phoneNo=?,mobileNo=?,address=?,joinDate=?,qualification=?,subjectExpertise=?,noOfExperience=?, cvLocation=?,activeStatus=?, type=?, userName=?, retireDate=? where staffId=?";
+                    $this->connection->executePrepare($query, "sssiiissssisiissi", array($sd->getFullName(), $sd->getDob(), $sd->getEmail(), $sd->getGender(), $sd->getPhoneNo(), $sd->getMobileNo(), $sd->getAddress(), $sd->getJoinDate(), $sd->getQualification(), $sd->getSubjectExpertise(), $sd->getNoOfExperience(), $target_file, $sd->getActiveStatus(), $sd->getType(), $sd->getUserName(), $sd->getRetireDate(), $sd->getStaffId()));
                 } else {
                     echo "Sorry, there was an error uploading your file.";
                 }
             } else {
-                $query = "UPDATE staff SET fullName=?,dob=?,email=?,gender=?,phoneNo=?,mobileNo=?,address=?,joinDate=?,qualification=?,subjectExpertise=?,noOfExperience=?,activeStatus=?, type=?, userName=?, password=?, retireDate=? where staffId=?";
-                $this->connection->executePrepare($query, "sssssssssssssssss", array($sd->getFullName(), $sd->getDob(), $sd->getEmail(), $sd->getGender(), $sd->getPhoneNo(), $sd->getMobileNo(), $sd->getAddress(), $sd->getJoinDate(), $sd->getQualification(), $sd->getSubjectExpertise(), $sd->getNoOfExperience(), $sd->getActiveStatus(), $sd->getType(), $sd->getUserName(), $sd->getPassword(), $sd->getRetireDate(), $sd->getStaffId()));
+
+                $query = "UPDATE staff SET fullName=?,dob=?,email=?,gender=?,phoneNo=?,mobileNo=?,address=?,joinDate=?,qualification=?,subjectExpertise=?,noOfExperience=?,activeStatus=?, type=?, userName=?, retireDate=? where staffId=?";
+                $this->connection->executePrepare($query, "sssiiissssiiissi", array($sd->getFullName(), $sd->getDob(), $sd->getEmail(), $sd->getGender(), $sd->getPhoneNo(), $sd->getMobileNo(), $sd->getAddress(), $sd->getJoinDate(), $sd->getQualification(), $sd->getSubjectExpertise(), $sd->getNoOfExperience(), $sd->getActiveStatus(), $sd->getType(), $sd->getUserName(), $sd->getRetireDate(), $sd->getStaffId()));
             }
             mysqli_commit($this->connection->getConnection());
         } catch (mysqli_sql_exception $e) {

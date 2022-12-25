@@ -9,7 +9,7 @@
 
         <div class="col-md-6 my-3">
             <label for="activeStatus" class="form-label text-blue-shade">Active Status</label>
-            <select name="activeStatus" id="activeStatus" required class="form-select form-select-lg inputcolor fs-6" >
+            <select name="activeStatus" id="activeStatus" required class="form-select form-select-lg inputcolor fs-6" required>
                 <option value="">
                     Select Active Status
                 </option>

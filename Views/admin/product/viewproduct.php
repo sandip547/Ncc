@@ -1,13 +1,6 @@
 <?php
 
-require_once("../../Models/ProductModels/ProductDisplay.php");
-require_once("../../Controllers/GetDetails/GetProductDetails.php");
-require_once("../../DatabaseConnection/DatabaseConnection.php");
-require_once("../../Controllers/GetDetails/GetStudentDetails.php");
-require_once("../../Models/ProductModels/ProductDisplay.php");
-require_once("../../Models/RegistrationModels/GetStudentUsername.php");
-require_once("../../Models/ProductModels/GetActiveProductDetails.php");
-require_once("../../Models/ProductModels/ProductGet.php");
+
 $pd = new GetProductDetails();
 $details = $pd->getProductDetails();
 

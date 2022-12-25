@@ -11,8 +11,8 @@ if(isset($_POST["register"])){
 
     if($rc->checkUserName($_POST["username"])){
         $rc->getChecker()->setCheck("True");
-
     }
+
     if($rc->checkPassword($_POST["password"],$_POST['cpassword'])){
     $rc->insertUserDetails(new StudentUser($_POST["firstname"], $_POST["lastname"], $_POST["dob"], $_POST["email"], $_POST["gender"],
         $_POST["username"], $_POST["password"], $_POST["mobilenumber"], $_POST["address"],

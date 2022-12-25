@@ -3,8 +3,11 @@ session_start();
 
 $page = 'staff';
 include 'admin header.php';
+require_once("../../Models/Staff/StaffGet.php");
+require_once ("../../Controllers/Authentication/Encryption.php");
 require_once("../../Controllers/SaveDetails/SaveStaff.php");
-
+require_once("../Notification/Notification.php");
+$notify = new Notification();
 if (isset($_POST['addStaff'])) {
     $ss = new SaveStaff();
     if($_POST['password'] != $_POST['confirmPassword']){
@@ -16,7 +19,7 @@ if (isset($_POST['addStaff'])) {
         $staff->setEmail($_POST['email']);
         $staff->setPhoneNo($_POST['phoneNo']);
         $staff->setMobileNo($_POST['mobileNo']);
-        $staff->setGender("f");
+        $staff->setGender($_POST['gender']);
         $staff->setJoinDate($_POST['joinDate']);
         $staff->setAddress($_POST['address']);
         $staff->setQualification($_POST['qualification']);
@@ -29,13 +32,12 @@ if (isset($_POST['addStaff'])) {
         $staff->setPassword($_POST['password']);
 
         $ss->saveStaffDetails($staff, $_FILES['cv']);
+        $notify->AddSuccess();
     }
 }
 if (isset($_POST['updateStaff'])) {
     $ss = new SaveStaff();
-    if($_POST['password'] != $_POST['confirmPassword']){
-        echo "<script>alert('Password and Confirm Password does not match')</script>";
-    }else{
+
         $staff = new StaffGet();
         $staff->setStaffId($_POST["id"]);
         $staff->setFullName($_POST['fullName']);
@@ -43,7 +45,7 @@ if (isset($_POST['updateStaff'])) {
         $staff->setEmail($_POST['email']);
         $staff->setPhoneNo($_POST['phoneNo']);
         $staff->setMobileNo($_POST['mobileNo']);
-        $staff->setGender("f");
+        $staff->setGender($_POST['gender']);
         $staff->setJoinDate($_POST['joinDate']);
         $staff->setAddress($_POST['address']);
         $staff->setQualification($_POST['qualification']);
@@ -53,10 +55,9 @@ if (isset($_POST['updateStaff'])) {
         $staff->setType($_POST['type']);
         $staff->setUserName($_POST['userName']);
         $staff->setRetireDate($_POST['retireDate']);
-        $staff->setPassword($_POST['password']);
-
         $ss->updateStaffDetails($staff,$_FILES['cv']);
-    }
+        $notify->alertUpdateSuccess();
+
 }
 ?>
 
@@ -85,7 +86,7 @@ if (isset($_POST['updateStaff'])) {
                 <div class="tab-pane active" id="viewstaff" role="tabpanel" aria-labelledby="view-tab">
                     <div class="my-4">
                         <?php
-                        include 'staff/viewstaff.php'
+                        include 'staff/viewstaff.php';
                         ?>
                     </div>
                     <br class="my-5">
@@ -93,7 +94,7 @@ if (isset($_POST['updateStaff'])) {
                 <div class="tab-pane" id="addStaff" role="tabpanel" aria-labelledby="all-courses-tab">
                     <div class="my-4">
                         <?php
-                        include 'staff/addstaff.php'
+                        include 'staff/addstaff.php';
                         ?>
                     </div>
                     <br class="my-5">
@@ -101,7 +102,7 @@ if (isset($_POST['updateStaff'])) {
                 <div class="tab-pane" id="deleteStaff" role="tabpanel" aria-labelledby="completed-courses-tab">
                     <div class="my-4">
                         <?php
-                        include 'staff/deletestaff.php'
+                        include 'staff/deletestaff.php';
                         ?>
                     </div>
                     <br class="my-5">

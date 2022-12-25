@@ -6,6 +6,18 @@
                 aria-label="courseName" id="courseName">
         </div>
         <div class="col-md-6 my-3">
+            <label for="level" class="form-label text-blue-shade">Level</label>
+            <select name="category" id="category" class="form-select form-select-lg inputcolor fs-6">
+                <option value="na">
+                    Select Category
+                </option>
+                <option value="Begineer">
+                    Begineer
+                </option>
+
+            </select>
+        </div>
+        <div class="col-md-6 my-3">
             <label for="duration" class="form-label text-blue-shade">Duration (in hour)</label>
             <div id="time-span" class="form-control inputcolor fs-6 align-items-center d-flex">
                 <input type="text" class="form-control inputcolor fs-6" name="chour" placeholder="hour:min:sec" />
