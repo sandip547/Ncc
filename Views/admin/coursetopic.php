@@ -18,16 +18,18 @@ require_once("../Notification/Notification.php");
 $spt =  new SaveCourseTopic();
 $notify = new Notification();
 if(isset($_POST['addTopic'])){
-
     $tu = new GetTeacherUser();
     $spt->saveCourseTopic(new SaveProductTopic($_POST['coursename'], $_POST['snumber'], $_POST['tname'],$_POST['cduration'],
         $tu->getStaffId($_SESSION['admin']),date("Y-m-d h:i:s"),NULL,NULL));
     $notify->AddSuccess();
 }
+
 if(isset($_POST['updateProduct'])){
-    $spt->updateCourseTopic(new ProductTopicUpdate($_POST['courseId'],$_POST['topicId'], $_POST['course_duration'], $_POST['serialNo'], $_POST['topicName']));
+    $tu = new GetTeacherUser();
+    $spt->updateCourseTopic(new ProductTopicUpdate($_POST['courseId'],$_POST['topicId'], $_POST['course_duration'], $_POST['serialNo'], $_POST['topicName'],$tu->getStaffId($_SESSION['admin']),date("Y-m-d h:i:s")));
     $notify->alertUpdateSuccess();
 }
+
 if(isset($_GET['delete'])){
     $spt->deleteCourseTopic(new DeleteCourseTopic($_GET['courseid'], $_GET['topicid']));
     $notify->alertDeleteSuccess();

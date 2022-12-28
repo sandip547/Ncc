@@ -4,7 +4,7 @@
 // require_once("../../Models/ProductModels/Product.php");
 // require_once("../../Models/ProductModels/ProductGet.php");
 // require_once("../../Models/ProductModels/ProductTopic.php");
-// require_once("../../Models/ProductModels/PorductTopicUpdate.php");
+// require_once("../../Models/ProductModels/ProductTopicUpdate.php");
 // require_once("../../Models/ProductModels/GetProductName.php");
 class SaveStaff
 {
@@ -53,6 +53,11 @@ class SaveStaff
             }
         }
         return $uploadOk;
+    }
+    function deleteStaffDetails($du)
+    {
+        $query = "delete from staff where staffId=?";
+        $this->connection->executePrepare($query, "i", array($du->getTeacherUser()));
     }
 
     public function  saveStaffDetails($sd, $file)

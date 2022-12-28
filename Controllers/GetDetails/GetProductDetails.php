@@ -75,11 +75,24 @@ class GetProductDetails
     {
         $level_name = "";
         if ($level == 0) {
-            $level_name = "Basic";
+            $level_name = "Beginner";
         } else if ($level == 1) {
             $level_name = "Intermediate";
         } else if ($level == 2) {
             $level_name = "Advance";
+        }
+        return $level_name;
+    }
+    function getEnrollmentValidityName($level){
+        $level_name = "";
+        if ($level == 0) {
+            $level_name = "Life Time";
+        } else if ($level == 1) {
+            $level_name = "3 Months";
+        } else if ($level == 2) {
+            $level_name = "6 Months";
+        } else if ($level == 3){
+            $level_name = "12 Months";
         }
         return $level_name;
     }

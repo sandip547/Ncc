@@ -12,7 +12,12 @@ class GetProductCategory{
 
     function  getcategoryNameId(){
         $query = "select categoryId,categoryName from category";
-
+        $result = $this->connection->executeQuery($query);
+        $catlist = array();
+        while($row = mysqli_fetch_array($result)){
+            array_push($catlist, new DisplayCategoryList($row['0'],$row['1']));
+        }
+        return $catlist;
     }
     function getCategoryDetails(){
         $query = "select * from category";

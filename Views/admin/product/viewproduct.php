@@ -12,11 +12,18 @@ $details = $pd->getProductDetails();
     </button>
 </div>
 
-<p class="h5 text-dark font-weight-bold">Product details</p>
+
+<div class="card">
+    <div class="card-header">
+        <p class="h5 text-dark font-weight-bold">Product details</p>
+    </div>
+</div>
+
 <div class="table-responsive my-5">
     <table class="table table-bordered table-hover table-sm text-normal">
         <thead class="thead-light">
             <tr class="text-center">
+                <th></th>
                 <th></th>
                 <th>ID</th>
                 <th>Image</th>
@@ -45,13 +52,18 @@ $details = $pd->getProductDetails();
 
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong<?php echo $det->getProductId(); ?>">Edit</button>
                     </th>
+                    <th class="px-3">
+                        <a type="button" class="btn btn-primary"
+                           href="product.php?productid=<?php echo $det->getProductId();?>&delete=10">Delete</a>
+                    </th>
+                    </th>
                     <th class="px-3"><?php echo $det->getProductId(); ?></th>
-                    <th class="px-3"><img src="/ncc/<?php echo $det->getImage() ?>" height="100px" width="100px" alt="" class="img-fluid"></th>
+                    <th class="px-3"><img src="<?php echo $det->getImage() ?>" height="100px" width="100px" alt="" class="img-fluid"></th>
                     <th class="px-3"><?php echo $det->getProductName(); ?></th>
                     <th class="px-3"><?php echo $det->getDuration(); ?></th>
                     <th class="px-3">NPR <?php echo $det->getPrice(); ?></th>
-                    <th class="px-3"><?php echo $det->getEnrollmentValidityLabel(); ?></th>
-                    <th class="px-3"><?php echo $det->getLevelLabel(); ?></th>
+                    <th class="px-3"><?php echo $pd->getEnrollmentValidityName($det->getEnrollmentValidity()); ?></th>
+                    <th class="px-3"><?php echo $pd->getLevel($det->getLevel()); ?></th>
                     <th class="px-3"><?php echo $det->getDescription(); ?></th>
                     <th class="px-3"><?php echo $det->getTargetAudience(); ?></th>
                     <th class="px-3"><?php echo $det->getLearning(); ?></th>
@@ -153,7 +165,24 @@ $details = $pd->getProductDetails();
                                 </label>
                             </div>
                             <div class="col-md-7">
-                                <input type="number" name="course_validity" id="enrollmentValidity" value="<?php echo $det->getEnrollmentValidity(); ?>" class="form-control inputcolor fs-6" placeholder="Enrollment Validity (in years)" aria-label="Enrollment Validity">
+                                <select name="course_validity" id="course_validity" class="form-select form-select-lg inputcolor fs-6">
+                                    <option value="na">
+                                        Select Enrollment Validity
+                                    </option>
+                                    <option value="0">
+                                        Lifetime
+                                    </option>
+                                    <option value="1">
+                                        3 Months
+                                    </option>
+                                    <option value="2">
+                                        6 Months
+                                    </option>
+                                    <option value="3">
+                                        12 Months
+                                    </option>
+
+                                </select>
                             </div>
                         </div>
                         <div class="row align-items-center my-2">
@@ -161,12 +190,12 @@ $details = $pd->getProductDetails();
                                 <label for="level" class="form-label ">Level : </label>
                             </div>
                             <div class="col-md-7">
-                                <select name="course_level" id="level" class="form-select form-select-lg inputcolor fs-6">
+                                <select name="course_level" id="course_level" class="form-select form-select-lg inputcolor fs-6">
                                     <option value="<?php echo $det->getLevel(); ?>">
                                         <?php echo $pd->getLevel($det->getLevel()); ?>
                                     </option>
                                     <option value="0">
-                                        Basic
+                                        Beginner
                                     </option>
                                     <option value="1">
                                         Intermediate
@@ -230,7 +259,7 @@ $details = $pd->getProductDetails();
                         <div class="row my-2">
                             <div class="my-3">
                                 <label for="requirements" class="form-label text-blue-shade">Upload Image</label><br>
-                                <input type="file" name="productImage" class="form-control" id="customFile"  multiple />
+                                <input type="file" name="productImage" class="form-control" id="customFile"  />
                             </div>
                         </div>
                 </div>

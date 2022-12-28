@@ -1,3 +1,7 @@
+<?php
+$pc = new GetProductCategory();
+$catlist = $pc->getcategoryNameId();
+?>
 <form action="product.php" method="post" enctype="multipart/form-data">
     <div class="row">
         <div class="col-md-6 my-3">
@@ -11,10 +15,16 @@
                 <option value="na">
                     Select Category
                 </option>
-                <option value="Begineer">
-                    Begineer
-                </option>
+                <?php
+                foreach ($catlist as $cia){
+                ?>
 
+                <option value="<?php echo $cia->getCategoryId();?>">
+                    <?php echo $cia->getCategoryName();?>
+                </option>
+                <?php
+                }
+                ?>
             </select>
         </div>
         <div class="col-md-6 my-3">
@@ -33,8 +43,24 @@
         <div class="col-md-6 my-3">
             <label for="enrollmentValidity" class="form-label text-blue-shade">Enrollment Validity (0 for
                 lifetime)</label>
-            <input type="number" id="enrollmentValidity" name="cenroll" class="form-control inputcolor fs-6"
-                placeholder="Enrollment Validity (in years)" aria-label="Enrollment Validity">
+            <select name="enrollvalidity" id="enrollvalidity" class="form-select form-select-lg inputcolor fs-6">
+                <option value="na">
+                    Select Enrollment Validity
+                </option>
+                    <option value="0">
+                     Lifetime
+                    </option>
+                <option value="1">
+                    3 Months
+                </option>
+                <option value="2">
+                    6 Months
+                </option>
+                <option value="3">
+                    12 Months
+                </option>
+
+            </select>
 
         </div>
 
@@ -44,13 +70,13 @@
                 <option value="na">
                     Select course level
                 </option>
-                <option value="Begineer">
+                <option value="1">
                     Begineer
                 </option>
-                <option value="Intermediate">
+                <option value="2">
                     Intermediate
                 </option>
-                <option value="Advanced">
+                <option value="3">
                     Advanced
                 </option>
             </select>
@@ -58,10 +84,10 @@
         <div class="col-md-6 my-3">
             <label for="activeStatus" class="form-label text-blue-shade">Active Status</label>
             <select name="activeStatus" id="activeStatus" class="form-select form-select-lg inputcolor fs-6">
-                <option value="Active">
+                <option value="1">
                     Active
                 </option>
-                <option value="Not Active">
+                <option value="0">
                     Not Active
                 </option>
             </select>
@@ -89,7 +115,8 @@
 
         <div class="my-3">
             <label for="requirements" class="form-label text-blue-shade">Upload Image</label><br>
-            <input type="file" name="productImage" class="form-control" id="customFile" multiple />
+            <input type="file" id="productImage" name="productImage" class="form-control form-control-custom fs-6 inputcolor"
+                   placeholder="Product Image" aria-label="productImage" required>
         </div>
     </div>
     <div class="text-left my-3">

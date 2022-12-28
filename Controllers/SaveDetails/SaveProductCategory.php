@@ -1,5 +1,5 @@
 <?php
-require_once("../../DatabaseConnection/DatabaseConnection.php");
+//equire_once("../../DatabaseConnection/DatabaseConnection.php");
 require_once("../../Models/ProductModels/ProductCategoryDelete.php");
 class SaveProductCategory{
 
@@ -30,6 +30,5 @@ class SaveProductCategory{
             mysqli_close($this->connection->getConnection());
         }
 }
-$save =new SaveProductCategory();
-$save->deleteCategory(new ProductCategoryDelete(50));
+
 ?>

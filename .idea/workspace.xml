@@ -2,67 +2,46 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="735bead6-e69d-4352-9583-d16a0a5dfd20" name="Changes" comment="Latest Update">
-      <change afterPath="$PROJECT_DIR$/Controllers/GetDetails/GetVideoDetails.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Controllers/SaveDetails/SaveCourseTopic.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Controllers/SaveDetails/SaveVideoDetails.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Models/ProductModels/DeleteCourseTopic.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Models/ProductModels/DisplayCategoryList.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Models/ProductModels/GetProductIdName.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Models/ProductModels/GetTopicIdName.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Models/ProductModels/ProductCategoryI.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Models/ProductModels/ProductCategoryU.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Models/ProductModels/ProductTopicUpdate.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Models/ProductModels/SaveProductTopic.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Models/Videos/DeleteVideoDetails.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Models/Videos/GetVideoDetails.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Views/admin/CourseTopicName.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Models/RegistrationModels/DeleteTeacherUser.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Views/admin/enrollment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Views/admin/enrollment/Enrollment.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Controllers/GetDetails/GetCourseTopic.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/GetDetails/GetCourseTopic.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/GetDetails/GetProductCategory.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/GetDetails/GetProductCategory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/GetDetails/GetProductDetails.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/GetDetails/GetProductDetails.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/GetDetails/GetStudentDetails.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/GetDetails/GetStudentDetails.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/GetDetails/GetTeacherUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/GetDetails/GetTeacherUser.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/Registration/RegController.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/Registration/RegController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Controllers/SaveDetails/SaveCourseTopic.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/SaveDetails/SaveCourseTopic.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/SaveDetails/SaveProduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/SaveDetails/SaveProduct.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/SaveDetails/SaveProductCategory.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/SaveDetails/SaveProductCategory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Controllers/SaveDetails/SaveStaff.php" beforeDir="false" afterPath="$PROJECT_DIR$/Controllers/SaveDetails/SaveStaff.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DatabaseConnection/DatabaseCredentials.php" beforeDir="false" afterPath="$PROJECT_DIR$/DatabaseConnection/DatabaseCredentials.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/ProductModels/ProductCategory.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/ProductModels/ProductCategoryIu.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/ProductModels/ProductCategoryUpdate.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/ProductModels/ProductDisplay.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/ProductModels/ProductDisplay.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/RegistrationModels/TeacherUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/RegistrationModels/TeacherUser.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Videos/VideoDetails.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Videos/VideoDetails.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Models/Videos/VideoUpdate.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/Videos/VideoUpdate.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/ProductModels/PorductTopicUpdate.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/ProductModels/ProductTopicUpdate.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/ProductModels/ProductTopicUpdate.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/ProductModels/ProductUpdateView.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/ProductModels/ProductUpdateView.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Models/RegistrationModels/UpdateStudentUser.php" beforeDir="false" afterPath="$PROJECT_DIR$/Models/RegistrationModels/UpdateStudentUser.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/Notification/Notification.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/Notification/Notification.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/admin/admin header.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/admin/admin header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/admin/category.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/admin/category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/admin/category/addcategory.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/admin/category/addcategory.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/admin/category/deletecategory.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/admin/category/editcategory.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/admin/category/viewcategory.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/admin/category/viewcategory.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/admin/coursetopic.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/admin/coursetopic.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/admin/coursetopic/addcoursetopic.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/admin/coursetopic/addcoursetopic.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/admin/coursetopic/editcoursetopic.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/admin/coursetopic/deletecoursetopic.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/admin/coursetopic/viewcoursetopic.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/admin/coursetopic/viewcoursetopic.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/admin/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/admin/footer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/admin/product.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/admin/product.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/admin/product/addproduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/admin/product/addproduct.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/admin/product/deleteproduct.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/admin/product/editproduct.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/admin/product/viewproduct.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/admin/product/viewproduct.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/admin/staff.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/admin/staff.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/admin/staff/addstaff.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/admin/staff/addstaff.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/admin/staff/deletestaff.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/admin/staff/editstaff.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/admin/staff/viewstaff.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/admin/staff/viewstaff.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/admin/student.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/admin/student.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/admin/student/deletestudent.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Views/admin/student/editstudent.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Views/admin/student/viewstudent.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/admin/student/viewstudent.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/admin/video.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/admin/video.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/admin/video/addvideo.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/admin/video/addvideo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/admin/video/deletevideo.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/admin/video/editvideo.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/admin/video/viewvideo.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/admin/video/viewvideo.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/all_course.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/all_course.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/course_review_page.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/course_review_page.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/profile.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/profile.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/student_registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/student_registration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Views/teacher_registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/Views/teacher_registration.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/images/.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/images/1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/images/1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/product/images/Array.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,13 +72,15 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "ToolWindowDatabase.ShowToolbar": "false",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/xampp/htdocs/Ncc/Nccengineering/Views",
+    "last_opened_file_path": "C:/xampp/htdocs/Ncc/Nccengineering/Views/product/images",
     "settings.editor.selected.configurable": "editor.preferences.fonts.default"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\xampp\htdocs\Ncc\Nccengineering\Views\product\images" />
       <recent name="C:\xampp\htdocs\Ncc\Nccengineering\Views" />
       <recent name="C:\xampp\htdocs\Ncc\Nccengineering\product\images" />
       <recent name="C:\xampp\htdocs\Ncc\Nccengineering\Controllers\SaveDetails" />
@@ -131,7 +112,7 @@
       <workItem from="1670376668500" duration="4765000" />
       <workItem from="1670544017512" duration="6207000" />
       <workItem from="1670749619770" duration="18077000" />
-      <workItem from="1671067150629" duration="98072000" />
+      <workItem from="1671067150629" duration="142257000" />
     </task>
     <task id="LOCAL-00001" summary="Latest Update">
       <created>1668941336083</created>
@@ -175,7 +156,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669044014280</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Latest Update">
+      <created>1672012553767</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1672012553768</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

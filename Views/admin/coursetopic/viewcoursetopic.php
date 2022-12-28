@@ -1,6 +1,7 @@
 <?php
 $ct = new GetCourseTopic();
 $pd = new GetProductDetails();
+$tu = new GetTeacherUser();
 $details = $ct->getCourseNamesTopicId();
 ?>
 
@@ -29,16 +30,15 @@ $details = $ct->getCourseNamesTopicId();
                                         <tr class="text-center">
                                             <th></th>
                                             <th></th>
-                                            <th>Video Id</th>
+                                            <th>Course Topic Id</th>
                                             <th>Course Name</th>
-                                            <th>Topic Id</th>
                                             <th>SR No</th>
-                                            <th>Link</th>
-                                            <th>Details</th>
+                                            <th>Topic Name</th>
+                                            <th>Duration</th>
                                             <th>Entered By</th>
                                             <th>Entered Date</th>
-                                            <th>Updated By</th>
-                                            <th>Update Date</th>
+                                            <th>Updated Date</th>
+                                            <th>Update By</th>
 
                                         </tr>
                                         </thead>
@@ -59,7 +59,7 @@ $details = $ct->getCourseNamesTopicId();
                                             <th class="px-3"><?php echo $topic->getSrNo(); ?></th>
                                             <th class="px-3"><?php echo $topic->getTopicName(); ?></th>
                                             <th class="px-3"><?php echo $topic->getDuration();?></th>
-                                            <th class="px-3"><?php echo $topic->getEnteredBy(); ?></th>
+                                            <th class="px-3"><?php echo $tu->getStaffName($topic->getEnteredBy()); ?></th>
                                             <th class="px-3"><?php echo $topic->getEnteredDate(); ?></th>
                                             <th class="px-3"><?php echo $topic->getUpdatedDate();?></th>
                                             <th class="px-3"><?php echo $topic->getUpdatedBy(); ?></th>
@@ -68,19 +68,11 @@ $details = $ct->getCourseNamesTopicId();
 
                                         <?php
 
-
                                             }?>
-
-
-
                                 </div>
-
                         </div>
                     </div>
                 </div>
-
-
-
         </tbody>
     </table>
         <?php
@@ -129,7 +121,7 @@ $details = $ct->getCourseNamesTopicId();
                             <label for="courseName" class="form-label">Course name : </label>
                         </div>
                         <div class="col-md-7">
-                            <input type="text" class="form-control inputcolor fs-6" name="courseName" placeholder="Course name" aria-label="courseName" id="courseName" value="<?php echo $pd->getProductName($topic->getCourseName()); ?>">
+                            <input type="text" class="form-control inputcolor fs-6" name="courseName" placeholder="Course name" aria-label="courseName" id="courseName" value="<?php echo $pd->getProductName($topic->getCourseName()); ?>" readonly>
                         </div>
                     </div>
 

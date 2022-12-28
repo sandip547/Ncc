@@ -18,9 +18,9 @@ class SaveCourseTopic{
     }
 
     function updateCourseTopic($ctu){
-        $query = "update coursetopic set duration=?,srNo=?,topicName=? where courseid=? and topicId=? ";
-        $this->connection->executePrepare($query,"sisii",array($ctu->getDuration(), $ctu->getSerialNo(),
-            $ctu->getTopicName(),$ctu->getCourseId(),$ctu->getTopicId()));
+        $query = "update coursetopic set duration=?,srNo=?,topicName=?,updatedBy=?,updateDate=? where courseid=? and topicId=? ";
+        $this->connection->executePrepare($query,"sisisii",array($ctu->getDuration(), $ctu->getSrNo(),
+            $ctu->getTopicName(),$ctu->getUpdatedBy(),$ctu->getUpdatedDate(),$ctu->getCourseId(),$ctu->getTopicId()));
         mysqli_close($this->connection->getConnection());
     }
 

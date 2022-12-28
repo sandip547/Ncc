@@ -15,6 +15,7 @@ class ProductUpdateView{
     private $active_status;
     private $product_id;
     private $image;
+    private $enrollment_validity;
 
     /**
      * @param $product_name
@@ -31,7 +32,7 @@ class ProductUpdateView{
      * @param $active_status
      * @param $product_id
      */
-    public function __construct($product_name, $description, $learning, $requirements, $target_audience, $instructor_id, $level, $duration, $price, $update_date, $updated_by, $active_status, $product_id,$image=null)
+    public function __construct($product_name, $description, $learning, $requirements, $target_audience, $instructor_id, $level, $duration, $price, $update_date, $updated_by,$enrollment_validity, $active_status, $product_id,$image=null)
     {
         $this->product_name = $product_name;
         $this->description = $description;
@@ -44,9 +45,26 @@ class ProductUpdateView{
         $this->price = $price;
         $this->update_date = $update_date;
         $this->updated_by = $updated_by;
+        $this->enrollment_validity = $enrollment_validity;
         $this->active_status = $active_status;
         $this->product_id = $product_id;
         $this->image = $image;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEnrollmentValidity()
+    {
+        return $this->enrollment_validity;
+    }
+
+    /**
+     * @param mixed $enrollment_validity
+     */
+    public function setEnrollmentValidity($enrollment_validity)
+    {
+        $this->enrollment_validity = $enrollment_validity;
     }
 
 

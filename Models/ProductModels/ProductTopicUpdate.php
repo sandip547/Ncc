@@ -1,29 +1,13 @@
 <?php
 class ProductTopicUpdate{
 
-    private $course_id;
     private $topic_id;
-    private $duration;
-    private $serial_no;
+    private $course_id;
+    private $sr_no;
     private $topic_name;
-
-    /**
-     * @param $course_id
-     * @param $topic_id
-     * @param $course_name
-     * @param $duration
-     * @param $serial_no
-     * @param $topic_name
-     */
-    public function __construct($course_id,$topic_id,$duration,$serial_no,$topic_name)
-    {
-        $this->course_id = $course_id;
-        $this->topic_id = $topic_id;
-
-        $this->duration = $duration;
-        $this->serial_no = $serial_no;
-        $this->topic_name = $topic_name;
-    }
+    private $duration;
+    private $updated_date;
+    private $updated_by;
 
     /**
      * @return mixed
@@ -42,6 +26,26 @@ class ProductTopicUpdate{
     }
 
     /**
+     * @param $topic_id
+     * @param $course_id
+     * @param $sr_no
+     * @param $topic_name
+     * @param $duration
+     * @param $updated_date
+     * @param $updated_by
+     */
+    public function __construct($course_id,$topic_id, $duration,  $sr_no, $topic_name, $updated_by, $updated_date)
+    {
+        $this->course_id = $course_id;
+        $this->topic_id = $topic_id;
+        $this->sr_no = $sr_no;
+        $this->topic_name = $topic_name;
+        $this->duration = $duration;
+        $this->updated_date = $updated_date;
+        $this->updated_by = $updated_by;
+    }
+
+    /**
      * @return mixed
      */
     public function getTopicId()
@@ -57,6 +61,55 @@ class ProductTopicUpdate{
         $this->topic_id = $topic_id;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getCourseName()
+    {
+        return $this->course_name;
+    }
+
+    /**
+     * @param mixed $course_name
+     */
+    public function setCourseName($course_name)
+    {
+        $this->course_name = $course_name;
+    }
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getSrNo()
+    {
+        return $this->sr_no;
+    }
+
+    /**
+     * @param mixed $sr_no
+     */
+    public function setSrNo($sr_no)
+    {
+        $this->sr_no = $sr_no;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTopicName()
+    {
+        return $this->topic_name;
+    }
+
+    /**
+     * @param mixed $topic_name
+     */
+    public function setTopicName($topic_name)
+    {
+        $this->topic_name = $topic_name;
+    }
 
     /**
      * @return mixed
@@ -77,33 +130,33 @@ class ProductTopicUpdate{
     /**
      * @return mixed
      */
-    public function getSerialNo()
+    public function getUpdatedDate()
     {
-        return $this->serial_no;
+        return $this->updated_date;
     }
 
     /**
-     * @param mixed $serial_no
+     * @param mixed $updated_date
      */
-    public function setSerialNo($serial_no)
+    public function setUpdatedDate($updated_date)
     {
-        $this->serial_no = $serial_no;
+        $this->updated_date = $updated_date;
     }
 
     /**
      * @return mixed
      */
-    public function getTopicName()
+    public function getUpdatedBy()
     {
-        return $this->topic_name;
+        return $this->updated_by;
     }
 
     /**
-     * @param mixed $topic_name
+     * @param mixed $updated_by
      */
-    public function setTopicName($topic_name)
+    public function setUpdatedBy($updated_by)
     {
-        $this->topic_name = $topic_name;
+        $this->updated_by = $updated_by;
     }
 
 

@@ -4,7 +4,7 @@
         <div class="row">
         <div class="col-md">
             <div class="mb-4">
-            	<h5 class="text-primary fw-bold">Contact Us</h5>
+            	<h5 class="text-primary fw-bold">Contact Details</h5>
             	<div class="block-23 mb-3">
 	              <ul>
 	                <li class="pt-3"><i class="icon icon-map-marker text-primary"></i><span>Sinamangal-9, GairigaunTinkuney, Kathmandu, Nepal</span></li>
@@ -60,7 +60,6 @@
         </div>
         <div class="row">
           <div class="col-md-12 text-center">
-            <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Dynamic Solution Pvt Ltd.</p>
           </div>
         </div>
       </div>

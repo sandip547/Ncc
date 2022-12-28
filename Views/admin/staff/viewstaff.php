@@ -20,6 +20,7 @@ $details = $td->getTeacherDetails();
         <thead class="thead-light">
             <tr class="text-center">
                 <th></th>
+                <th></th>
                 <th>ID</th>
                 <th>Full name</th>
                 <th>Date of Birth</th>
@@ -44,6 +45,10 @@ $details = $td->getTeacherDetails();
             <?php foreach ($details as $det) { ?>
                 <tr>
                     <th class="px-3"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong<?php echo $det->getStaffId(); ?>">Edit</button></th>
+                    <th class="px-3">
+                        <a type="button" class="btn btn-primary"
+                           href="staff.php?staffid=<?php echo $det->getStaffId();?>&deletestaff=10">Delete</a>
+                    </th>
                     <th class="px-3"><?php echo $det->getStaffId(); ?></th>
                     <th class="px-3"><?php echo $det->getFullName(); ?></th>
                     <th class="px-3"><?php echo $det->getDob(); ?></th>

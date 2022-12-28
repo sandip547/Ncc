@@ -50,6 +50,12 @@ class GetTeacherUser{
         return $active_status;
     }
 
+    function getStaffName($id){
+        $query = "select username from staff where staffid =?";
+        $result = $this->connection->executePrepareReturn($query,'i',array($id));
+        return mysqli_fetch_row($result)[0];
+    }
+
     function getTeacherDetails(){
             $query = "select staffId,fullName,dob,email,gender,phoneNo,mobileNo,address,joinDate,qualification,subjectExpertise,noOfExperience, cvLocation,activeStatus, type, userName, password, retireDate from staff";
             $result = $this->connection->executeQuery($query);
@@ -68,11 +74,14 @@ class GetTeacherUser{
             array_push($teacher_details,new GetTeacherNameDetails($row[0],$row[1],$row[2],$row[3],$row[4],$row[5],$row[6],$row[7],$row[8],$row[9],$row[10],$row[11],$row[12],$row[13],$row[14]));
             return $teacher_details;
     }
+
     function getStaffId($username){
+
         $query = "select staffId from staff where username=?";
         $result = $this->connection->executePrepareReturn($query,"s",array($username));
         return mysqli_fetch_row($result)[0];
     }
+
     function getTeacherIdDetails($teacher_id){
         $query = "select staffId,fullName,dob,email,gender,mobileNo,address,joinDate,qualification,subjectExpertise,noOfExperience,cvLocation,activeStatus,type,username from staff where staffId =?";
         $result = $this->connection->executePrepareReturn($query,"s",array($teacher_id->getUserId()));

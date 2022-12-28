@@ -3,7 +3,7 @@ require_once("../../DatabaseConnection/DatabaseConnection.php");
 // require_once("../../Models/ProductModels/Product.php");
 // require_once("../../Models/ProductModels/ProductGet.php");
 // require_once("../../Models/ProductModels/ProductTopic.php");
-// require_once("../../Models/ProductModels/PorductTopicUpdate.php");
+// require_once("../../Models/ProductModels/ProductTopicUpdate.php");
 // require_once("../../Models/ProductModels/GetProductName.php");
 class SaveProduct
 {
@@ -28,92 +28,107 @@ class SaveProduct
 
     function saveProductDetails($pd)
     {
-        $path = "product/images/" . $pd->getImage();
+
         try {
+            $check = false;
             mysqli_begin_transaction($this->connection->getConnection());
-            $file_name = $_FILES['productImage']['name'];
-            $ext = explode('.', $file_name);
-            $extension = end($ext);
-            move_uploaded_file($_FILES['productImage']['tmp_name'],"../../".$path.'.'.$extension);
+            $target_dir = "../product/images/";
+            $target_file = $target_dir.basename($pd->getImage()["name"]);
+            $uploadOk = move_uploaded_file($pd->getImage()["tmp_name"], $target_file);
+            if($uploadOk) {
+                $query = "insert into course(courseName,description,learning,requirements,targetAudience,instructorId,categoryId,tag,level,duration,price,releaseDate,enteredDate,enteredBy,enrollmentValidity,activeStatus,image)
+                            values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
-            $query = "insert into course(courseName,description,learning,requirements,targetAudience,instructorId,categoryId,tag,level,duration,price,releaseDate,enteredDate,enteredBy,enrollmentValidity,activeStatus,image)
-        values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                $this->connection->executePrepare($query, "sssssiiiisisssiis", array(
+                    $pd->getProductName(), $pd->getDescription(), $pd->getLearning(), nl2br($pd->getRequirements()),
+                    $pd->getTargetAudience(), $pd->getInstructorId(), $pd->getCategoryId(), $pd->getTag(),
+                    $pd->getLevel(), $pd->getDuration(), $pd->getPrice(), $pd->getReleaseDate(), $pd->getEnteredDate(),
+                    $pd->getEnteredBy(), $pd->getEnrollmentValidity(), $pd->getActiveStatus(), $target_file
+                ));
+                $check = true;
+            }
+                mysqli_commit($this->connection->getConnection());
 
-            $this->connection->executePrepare($query, "sssssiiiisisssiis", array(
-                $pd->getProductName(), $pd->getDescription(), $pd->getLearning(), nl2br($pd->getRequirements()),
-                $pd->getTargetAudience(), $pd->getInstructorId(), $pd->getCategoryId(), $pd->getTag(),
-                $pd->getLevel(), $pd->getDuration(), $pd->getPrice(), $pd->getReleaseDate(), $pd->getEnteredDate(),
-                $pd->getEnteredBy(), $pd->getEnrollmentValidity(), $pd->getActiveStatus(), $path . '.' . $extension
-            ));
-            mysqli_commit($this->connection->getConnection());
         } catch (mysqli_sql_exception $e) {
             mysqli_rollback($this->connection->getConnection());
             throw $e;
         }
         mysqli_close($this->connection->getConnection());
+        return $check;
     }
 
     function updateProductDetails($pd)
     {
+        try {
+        $check = false;
+        mysqli_begin_transaction($this->connection->getConnection());
         $query = "UPDATE course SET
         courseName=?,description=?,learning=?,requirements=?,targetAudience=?,instructorId=?,
         categoryId=?,tag=?,level=?,duration=?,price=?,releaseDate=?,enteredDate=?,
         enteredBy=?,enrollmentValidity=?,activeStatus=?,image=? where courseId=?";
-        $this->connection->executePrepare($query, "sssssiiiisisssiisi", array(
+        if($this->connection->executePrepare($query, "sssssiiiisisssiisi", array(
             $pd->getProductName(), $pd->getDescription(), $pd->getLearning(), $pd->getRequirements(),
             $pd->getTargetAudience(), $pd->getInstructorId(), $pd->getCategoryId(), $pd->getTag(),
             $pd->getLevel(), $pd->getDuration(), $pd->getPrice(), $pd->getReleaseDate(), $pd->getEnteredDate(),
             $pd->getEnteredBy(), $pd->getEnrollmentValidity(), $pd->getActiveStatus(), $pd->getImage(), $this->getProductId($pd->getProductName())
-        ));
-        mysqli_close($this->connection->getConnection());
-    }
-    function updateProductMinWithImage($up)
-    {
-        $path = "product/images/" . $up->getImage();
-        try {
-            mysqli_begin_transaction($this->connection->getConnection());
-            $file_name = $_FILES['productImage']['name'];
-            $ext = explode('.', $file_name);
-            $extension = end($ext);
-            move_uploaded_file($_FILES['productImage']['tmp_name'], "../../" . $path . '.' . $extension);
-
-            $query = "UPDATE course SET
-            courseName=?,description=?,learning=?,requirements=?,targetAudience=?,instructorId=?,
-            level=?,duration=?,price=?,updateDate=?,
-            updatedBy=?,activeStatus=?,image=?,where courseId=?";
-            $this->connection->executePrepare($query, "sssssiisisiii", array(
-                $up->getProductName(), $up->getDescription(), $up->getLearning(), $up->getRequirements(),
-                $up->getTargetAudience(), $up->getInstructorId(), $up->getLevel(), $up->getDuration(),
-                $up->getPrice(), $up->getUpdateDate(), $up->getUpdatedBy(), $up->getActiveStatus(), $path . '.' . $extension, $this->getProductId($up->getProductName())
-          
-
-            ));
+        ))){
+            $check = true;
+        }
         } catch (mysqli_sql_exception $e) {
             mysqli_rollback($this->connection->getConnection());
             throw $e;
         }
         mysqli_close($this->connection->getConnection());
+        return $check;
+    }
+    function updateProductMinWithImage($up)
+    {
+
+
+            $target_dir = "../product/images/";
+            $target_file = $target_dir.date("Y-m-d-h-i-s-").basename($up->getImage()["name"]);
+            $uplaodok = move_uploaded_file($up->getImage()["tmp_name"],$target_file);
+            $query = "UPDATE course SET
+        courseName=?,description=?,learning=?,requirements=?,targetAudience=?,instructorId=?,
+        level=?,duration=?,price=?,updateDate=?,
+        updatedBy=?,enrollmentValidity=?,activeStatus=?,image=? where courseId=?";
+            if($uplaodok) {
+                $this->connection->executePrepare($query, "sssssiisisiiisi", array(
+                    $up->getProductName(), $up->getDescription(), $up->getLearning(), $up->getRequirements(),
+                    $up->getTargetAudience(), $up->getInstructorId(), $up->getLevel(), $up->getDuration(),
+                    $up->getPrice(), $up->getUpdateDate(), $up->getUpdatedBy(), $up->getEnrollmentValidity(),$up->getActiveStatus(),
+                    $target_file,$up->getProductId()
+                ));
+                $check = true;
+            }
+
+        mysqli_close($this->connection->getConnection());
+        return $check;
     }
     function updateProductMin($up)
     {
+
+
+
         $query = "UPDATE course SET
         courseName=?,description=?,learning=?,requirements=?,targetAudience=?,instructorId=?,
         level=?,duration=?,price=?,updateDate=?,
-        updatedBy=?,activeStatus=? where courseId=?";
-        $this->connection->executePrepare($query, "sssssiisisiii", array(
+        updatedBy=?,enrollmentValidity=?,activeStatus=? where courseId=?";
+            $this->connection->executePrepare($query, "sssssiisisiiii", array(
             $up->getProductName(), $up->getDescription(), $up->getLearning(), $up->getRequirements(),
             $up->getTargetAudience(), $up->getInstructorId(), $up->getLevel(), $up->getDuration(),
-            $up->getPrice(), $up->getUpdateDate(), $up->getUpdatedBy(), $up->getActiveStatus(),
+            $up->getPrice(), $up->getUpdateDate(), $up->getUpdatedBy(),$up->getEnrollmentValidity(), $up->getActiveStatus(),
             $up->getProductId()
         ));
-        mysqli_close($this->connection->getConnection());
+
+
     }
 
     function deleteProductDetails($id)
     {
         $query = "DELETE FROM course WHERE courseId = ?";
         $status = True;
-        $result = $this->connection->executePrepare($query, "s", array($id));
+        $result = $this->connection->executePrepare($query, "i", array($id));
         if ($result == True) {
             return $status;
         } else {

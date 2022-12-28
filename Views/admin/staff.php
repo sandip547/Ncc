@@ -4,10 +4,13 @@ session_start();
 $page = 'staff';
 include 'admin header.php';
 require_once("../../Models/Staff/StaffGet.php");
+require_once("../../Models/RegistrationModels/DeleteTeacherUser.php");
 require_once ("../../Controllers/Authentication/Encryption.php");
+
 require_once("../../Controllers/SaveDetails/SaveStaff.php");
 require_once("../Notification/Notification.php");
 $notify = new Notification();
+
 if (isset($_POST['addStaff'])) {
     $ss = new SaveStaff();
     if($_POST['password'] != $_POST['confirmPassword']){
@@ -35,6 +38,7 @@ if (isset($_POST['addStaff'])) {
         $notify->AddSuccess();
     }
 }
+
 if (isset($_POST['updateStaff'])) {
     $ss = new SaveStaff();
 
@@ -59,6 +63,11 @@ if (isset($_POST['updateStaff'])) {
         $notify->alertUpdateSuccess();
 
 }
+if(isset($_GET['deletestaff'])){
+    $ss = new SaveStaff();
+    $ss->deleteStaffDetails(new DeleteTeacherUser($_GET['staffid']));
+    $notify->alertDeleteSuccess();
+}
 ?>
 
 <!-- Staff page-->
@@ -76,11 +85,7 @@ if (isset($_POST['updateStaff'])) {
                     <a class="nav-link custom-h-tab text-dark" id="all-courses-tab" data-toggle="tab" href="#addStaff"
                         role="tab" aria-controls="addStaff" aria-selected="true">Add Staff</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link custom-h-tab text-dark" id="completed-courses-tab" data-toggle="tab"
-                        href="#deleteStaff" role="tab" aria-controls="deleteStaff" aria-selected="false">Delete
-                        Staff</a>
-                </li>
+
             </ul>
             <div class="clearfix tab-content">
                 <div class="tab-pane active" id="viewstaff" role="tabpanel" aria-labelledby="view-tab">
@@ -99,14 +104,7 @@ if (isset($_POST['updateStaff'])) {
                     </div>
                     <br class="my-5">
                 </div>
-                <div class="tab-pane" id="deleteStaff" role="tabpanel" aria-labelledby="completed-courses-tab">
-                    <div class="my-4">
-                        <?php
-                        include 'staff/deletestaff.php';
-                        ?>
-                    </div>
-                    <br class="my-5">
-                </div>
+
             </div>
         </div>
     </div>

@@ -79,23 +79,28 @@ class RegController
 
     function updateUserDetails($studentuser)
     {
-        $fullname = $studentuser->getTsUser()->getFullName() ;
+        $fullname = $studentuser->getFullName() ;
         $query = "update student set fullname=?,dob=?,email=?,gender=?,username=?,mobileNo=?,
-        address=?,activeStatus=? where studentId=?";
-        $result = $this->connection->executePrepare($query, "sssisssbi", array(
-            $fullname, $studentuser->getTsUser()->getDob(), $studentuser->getTsUser()->getEmail(),
-            $studentuser->getTsUser()->getGender(), $studentuser->getTsUser()->getUsername(),
-            $studentuser->getTsUser()->getMob(), $studentuser->getTsUser()->getAddresses(),
-            $studentuser->getTsUser()->getActiveStatus(), $studentuser->getTsUser()->getStudentId()
+        address=?,activeStatus=?,expirydate=? where studentId=?";
+        $result = $this->connection->executePrepare($query, "sssisisbsi", array(
+            $fullname, $studentuser->getDob(), $studentuser->getEmail(),
+            $studentuser->getGender(), $studentuser->getUsername(),
+            $studentuser->getMobile(), $studentuser->getAddress(),
+            $studentuser->getActiveStatus(),$studentuser->getExpiryDate(),$studentuser->getStudentId()
         ));
         mysqli_close($this->connection->getConnection());
     }
 
     function deleteUserDetails($du)
-    {
+    {   $check = false;
         $query = "delete from student where studentId=?";
         $result = $this->connection->executePrepare($query, "i", array($du->getStudentId()));
+        if($result) {
+            $check = true;
+        }
+        return $check;
     }
+
     function getStaffId($username)
     {
         $query = "select staffid from staff where username=?";

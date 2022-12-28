@@ -19,13 +19,13 @@ $details = $sd->getStudentDetails();
         <thead class="thead-light">
             <tr class="text-center">
                 <th></th>
+                <th></th>
                 <th>ID</th>
                 <th>Full name</th>
                 <th>Date of Birth</th>
                 <th>Email</th>
                 <th>Gender</th>
                 <th>Username</th>
-                <th>Password</th>
                 <th>Mobile number</th>
                 <th>Address</th>
                 <th>Regsitration Date</th>
@@ -40,13 +40,16 @@ $details = $sd->getStudentDetails();
                     <th>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalLong<?php echo $det->getStudentId(); ?>">Edit</button>
                     </th>
+                    <th class="px-3">
+                    <a type="button" class="btn btn-primary"
+                       href="student.php?studentid=<?php echo $det->getStudentId();?>&delete=10">Delete</a>
+                    </th>
                     <th class="px-3"><?php echo $det->getStudentId(); ?></th>
                     <th class="px-3"><?php echo $det->getFullName(); ?></th>
                     <th class="px-3"><?php echo $det->getDOB(); ?></th>
                     <th class="px-3"><?php echo $det->getEmail(); ?></th>
                     <th class="px-3"><?php echo $det->getGenderLabel(); ?></th>
                     <th class="px-3"><?php echo $det->getUsername(); ?></th>
-                    <th class="px-3"><?php echo $det->getUsername() ?></th>
                     <th class="px-3"><?php echo $det->getMobile(); ?></th>
                     <th class="px-3"><?php echo $det->getAddress(); ?></th>
                     <th class="px-3"><?php echo $det->getRegDateLabel(); ?></th>
@@ -155,14 +158,7 @@ $details = $sd->getStudentDetails();
                                 <input type="text" name="username"  id="userName" class="form-control inputcolor fs-6" placeholder="Username" aria-label="userName" value="<?php echo $det->getUsername(); ?>">
                             </div>
                         </div>
-                        <div class="row my-2 align-items-center">
-                            <div class="col-md-5 text-orangered font-weight-bold fs-6">
-                                <label for="password" class="form-label">Password</label>
-                            </div>
-                            <div class="col-md-7">
-                                <input type="password" name="password" id="password" class="form-control inputcolor fs-6" aria-label="password">
-                            </div>
-                        </div>
+
                         <div class="row align-items-center my-2">
                             <div class="col-md-5 text-orangered font-weight-bold fs-6">
                                 <label for="mobileNo" class="form-label">Mobile Number</label>

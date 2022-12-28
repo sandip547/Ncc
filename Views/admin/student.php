@@ -2,9 +2,11 @@
 session_start();
 $page = 'student';
 include 'admin header.php';
-
+require_once("../../Models/RegistrationModels/DeleteStudentUser.php");
 require_once("../../Controllers/Registration/RegController.php");
 require_once("../../Models/RegistrationModels/StudentUser.php");
+
+require_once("../../Models/RegistrationModels/UpdateStudentUser.php");
 require_once("../../Models/RegistrationModels/GetStudentUser.php");
 require_once("../../Views/Notification/Notification.php");
 require_once("../../DatabaseConnection/DatabaseConnection.php");
@@ -29,10 +31,20 @@ if(isset($_POST["register"])){
     }
 }
 if(isset($_POST["updateStudent"])){
-    $rc->updateUserDetails(new StudentUser($_POST["fullName"], $_POST["dob"], $_POST["email"], $_POST["gender"],
-    $_POST["username"], $_POST["password"], $_POST["mobileNumber"], $_POST["address"],
+    $rc->updateUserDetails(new UpdateStudentUser($_POST["fullName"], $_POST["dob"], $_POST["email"], $_POST["gender"],
+    $_POST["username"], $_POST["mobileNumber"], $_POST["address"],
     null, $_POST["id"]));
     $notify->alertRegistrationSuccess( "Student details updated successfully", "Success");
+}
+if(isset($_GET['delete'])){
+    $nc = new Notification();
+    if($rc->deleteUserDetails(new DeleteStudentUser($_GET['studentid']))){
+        $nc->alertDeleteSuccess();
+    }
+    else{
+        $nc->alertNotSuccess("This Video cannot be deleted due to dependency issues");
+    }
+
 }
 ?>
 
@@ -51,22 +63,13 @@ if(isset($_POST["updateStudent"])){
                     <a class="nav-link custom-h-tab text-dark" id="all-courses-tab" data-toggle="tab" href="#addStudent"
                         role="tab" aria-controls="addStudent" aria-selected="true">Add Student</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link custom-h-tab text-dark" id="active-courses-tab" data-toggle="tab"
-                        href="#editStudent" role="tab" aria-controls="editStudent" aria-selected="false">Edit
-                        Student</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link custom-h-tab text-dark" id="completed-courses-tab" data-toggle="tab"
-                        href="#deleteStudent" role="tab" aria-controls="deleteStudent" aria-selected="false">Delete
-                        Student</a>
-                </li>
+
             </ul>
             <div class="clearfix tab-content">
                 <div class="tab-pane active" id="viewStudent" role="tabpanel" aria-labelledby="view-tab">
                     <div class="my-4">
                         <?php
-                        include 'student/viewstudent.php'
+                        include 'student/viewstudent.php';
                         ?>
                     </div>
                     <br class="my-5">
@@ -74,27 +77,12 @@ if(isset($_POST["updateStudent"])){
                 <div class="tab-pane" id="addStudent" role="tabpanel" aria-labelledby="all-courses-tab">
                     <div class="my-4">
                         <?php
-                        include 'student/addstudent.php'
+                        include 'student/addstudent.php';
                         ?>
                     </div>
                     <br class="my-5">
                 </div>
-                <div class="tab-pane" id="editStudent" role="tabpanel" aria-labelledby="active-courses-tab">
-                    <div class="my-4">
-                        <?php
-                        include 'student/editstudent.php'
-                        ?>
-                    </div>
-                    <br class="my-5">
-                </div>
-                <div class="tab-pane" id="deleteStudent" role="tabpanel" aria-labelledby="completed-courses-tab">
-                    <div class="my-4">
-                        <?php
-                        include 'student/deletestudent.php'
-                        ?>
-                    </div>
-                    <br class="my-5">
-                </div>
+
             </div>
         </div>
     </div>

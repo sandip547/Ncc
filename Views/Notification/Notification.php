@@ -33,13 +33,13 @@ class Notification{
 <?php
 
     }
-    function alertNotSuccess(){
+    function alertNotSuccess($alert_message){
         ?>
         <div id="simpleModal" class="modal" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title">Please enter details properly</h5>
+                        <h5 class="modal-title"><?php echo $alert_message; ?></h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
