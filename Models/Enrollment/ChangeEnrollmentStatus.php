@@ -1,52 +1,57 @@
 <?php
 class ChangeEnrollmentStatus{
-    private $course_id;
-    private $student_id;
+
     private $status;
+    private $enrollment_id;
+    private $updated_by;
+    private $updated_date;
 
     /**
-     * @param $course_id
-     * @param $student_id
      * @param $status
+     * @param $enrollment_id
+     * @param $updated_by
+     * @param $updated_date
      */
-    public function __construct($course_id, $student_id, $status)
+    public function __construct($status, $enrollment_id, $updated_by, $updated_date)
     {
-        $this->course_id = $course_id;
-        $this->student_id = $student_id;
         $this->status = $status;
+        $this->enrollment_id = $enrollment_id;
+        $this->updated_by = $updated_by;
+        $this->updated_date = $updated_date;
     }
 
     /**
      * @return mixed
      */
-    public function getCourseId()
+    public function getUpdatedBy()
     {
-        return $this->course_id;
+        return $this->updated_by;
     }
 
     /**
-     * @param mixed $course_id
+     * @param mixed $updated_by
      */
-    public function setCourseId($course_id)
+    public function setUpdatedBy($updated_by)
     {
-        $this->course_id = $course_id;
+        $this->updated_by = $updated_by;
     }
 
     /**
      * @return mixed
      */
-    public function getStudentId()
+    public function getUpdatedDate()
     {
-        return $this->student_id;
+        return $this->updated_date;
     }
 
     /**
-     * @param mixed $student_id
+     * @param mixed $updated_date
      */
-    public function setStudentId($student_id)
+    public function setUpdatedDate($updated_date)
     {
-        $this->student_id = $student_id;
+        $this->updated_date = $updated_date;
     }
+
 
     /**
      * @return mixed
@@ -63,6 +68,23 @@ class ChangeEnrollmentStatus{
     {
         $this->status = $status;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getEnrollmentId()
+    {
+        return $this->enrollment_id;
+    }
+
+    /**
+     * @param mixed $enrollment_id
+     */
+    public function setEnrollmentId($enrollment_id)
+    {
+        $this->enrollment_id = $enrollment_id;
+    }
+
 
 }
 ?>

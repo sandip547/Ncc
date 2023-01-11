@@ -1,10 +1,11 @@
 <!-- Header to be used when user is logged in -->
 <?php
+session_start();
 require_once("../../Controllers/Registration/SessionManagement.php");
 require_once("../../DatabaseConnection/DatabaseConnection.php");
 $sm = new SessionManagement();
 $sm->logOutSession(isset($_GET["logout"]));
-$sm->checkLoginSession(isset($_SESSION["username"]), isset($_SESSION["admin"]));
+$sm->checkLoginSession(isset($_SESSION["admin"]), isset($_SESSION["type"]));
 ?>
 
 <!DOCTYPE html>
@@ -89,7 +90,7 @@ $sm->checkLoginSession(isset($_SESSION["username"]), isset($_SESSION["admin"]));
                             <a class="<?php if ($page == 'product') {
                           echo 'active';
                         } ?> nav-link custom-tab textsss" href="product.php" aria-controls="product"
-                                aria-selected="true"><i class="bi bi-book-half"> &nbsp; &nbsp;</i>Course Name</a>
+                                aria-selected="true"><i class="bi bi-book-half"> &nbsp; &nbsp;</i>Courses</a>
                         </li>
                         <li class="nav-item">
                             <a class="<?php if ($page == 'student') {
@@ -134,14 +135,9 @@ $sm->checkLoginSession(isset($_SESSION["username"]), isset($_SESSION["admin"]));
                                 aria-selected="true"><i class="bi bi-camera-reels-fill"> &nbsp; &nbsp;</i>Video</a>
                         </li>
                         <li class="nav-item">
+
                         <li class="nav-item">
-                            <a class="<?php if ($page == 'quiz') {
-                          echo 'active';
-                        } ?> nav-link custom-tab textsss" href="quiz.php" aria-controls="quiz" aria-selected="true"><i
-                                    class="bi bi-question-diamond-fill"> &nbsp; &nbsp;</i>Quiz</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link custom-tab textsss" href="index.php" aria-selected="true"><i
+                            <a class="nav-link custom-tab textsss" href="product.php?logout=1" aria-selected="true"><i
                                     class="bi bi-box-arrow-right"> &nbsp; &nbsp;</i>Logout</a>
                         </li>
                     </ul>

@@ -7,6 +7,12 @@ class GetProductDetails
         $this->connection = new DatabaseConnection();
     }
 
+    function getCourseCount(){
+        $sql = "SELECT COUNT(courseid) as noOfCourse FROM course";
+        $result = $this->connection->executeQuery($sql);
+        return mysqli_fetch_row($result)[0];
+    }
+
     function getSearchProduct($name)
     {
         $query = "select * from course where courseName=?";
@@ -24,11 +30,11 @@ class GetProductDetails
 
     function getSearchDisplayProduct($name)
     {
-        $sql = "SELECT courseName,level,image,duration,price FROM course where courseName=?";
-        $result = $this->connection->executePrepareReturn($sql, "s", array($name));
+        $sql = "SELECT courseid,courseName,level,image,duration,price FROM course where courseName LIKE '%$name%' LIMIT 5";
+        $result = $this->connection->executeQuery($sql);
         $product_display = array();
         while ($row = mysqli_fetch_array($result)) {
-            array_push($product_display, new ProductDisplay($row[0], $row[1], $row[2], $row[3], $row[4]));
+            array_push($product_display, new ProductDisplay($row[0], $row[1], $row[2], $row[3], $row[4],$row[5]));
         }
         return $product_display;
     }
@@ -138,7 +144,7 @@ class GetProductDetails
             $sqldays = "SELECT DATEDIFF('$datedif[1]','$datedif[0]')";
             $datediffres = $this->connection->executeQuery($sqldays);
             $days_remaining = mysqli_fetch_row($datediffres);
-            array_push($product_display, new GetActiveProductDetails($row[1],$this->getLevel($row[2]), $row[3], $row[4], $row[5], $days_remaining[0]));
+            array_push($product_display, new GetActiveProductDetails($row[0],$row[1],$this->getLevel($row[2]), $row[3], $row[4], $row[5], $days_remaining[0]));
         }
         return $product_display;
     }

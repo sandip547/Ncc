@@ -126,7 +126,7 @@ $details = $pd->getProductDetails();
                                 <label for="courseName" class="form-label">Course Id : </label>
                             </div>
                             <div class="col-md-7">
-                                <input type="text" name="cid" class="form-control inputcolor fs-6" name="courseName" placeholder="Course name" aria-label="courseName" id="courseName" value="<?php echo $det->getProductId(); ?>" readonly>
+                                <input type="text" name="cid" class="form-control inputcolor fs-6"  placeholder="Course name" aria-label="courseName" id="courseName" value="<?php echo $det->getProductId(); ?>" readonly >
                             </div>
                         </div>
 
@@ -136,7 +136,7 @@ $details = $pd->getProductDetails();
                                 <label for="courseName" class="form-label">Course name : </label>
                             </div>
                             <div class="col-md-7">
-                                <input type="text" name="course_name" class="form-control inputcolor fs-6" name="courseName" placeholder="Course name" aria-label="courseName" id="courseName" value="<?php echo $det->getProductName(); ?>">
+                                <input type="text" name="course_name" class="form-control inputcolor fs-6" name="courseName" placeholder="Course name" aria-label="courseName" id="courseName" value="<?php echo $det->getProductName(); ?>" required>
                             </div>
                         </div>
                         <div class="row align-items-center my-2">
@@ -145,7 +145,7 @@ $details = $pd->getProductDetails();
                             </div>
                             <div class="col-md-7">
                                 <div id="time-span" class="form-control inputcolor fs-6 align-items-center d-flex">
-                                    <input type="text" name="course_duration" class="col-md-6 col-sm-6 border-0 rounded-2" value="<?php echo $det->getDuration(); ?>" placeholder="hour" />
+                                    <input type="text" name="course_duration" class="col-md-6 col-sm-6 border-0 rounded-2" value="<?php echo $det->getDuration(); ?>" placeholder="hour" required/>
 
                                 </div>
                             </div>
@@ -156,7 +156,7 @@ $details = $pd->getProductDetails();
                             </div>
                             <div class="col-md-7">
 
-                                <input type="number" id="price" name="course_price" class="form-control inputcolor fs-6" value="<?php echo $det->getPrice(); ?>" placeholder="Price" aria-label="Price">
+                                <input type="number" id="price" name="course_price" class="form-control inputcolor fs-6" value="<?php echo $det->getPrice(); ?>" placeholder="Price" aria-label="Price" required>
                             </div>
                         </div>
                         <div class="row align-items-center my-2">
@@ -165,9 +165,9 @@ $details = $pd->getProductDetails();
                                 </label>
                             </div>
                             <div class="col-md-7">
-                                <select name="course_validity" id="course_validity" class="form-select form-select-lg inputcolor fs-6">
+                                <select name="course_validity" id="course_validity" class="form-select form-select-lg inputcolor fs-6" required>
                                     <option value="na">
-                                        Select Enrollment Validity
+                                        <?php echo $pd->getEnrollmentValidityName($det->getEnrollmentValidity()); ?>
                                     </option>
                                     <option value="0">
                                         Lifetime
@@ -190,7 +190,7 @@ $details = $pd->getProductDetails();
                                 <label for="level" class="form-label ">Level : </label>
                             </div>
                             <div class="col-md-7">
-                                <select name="course_level" id="course_level" class="form-select form-select-lg inputcolor fs-6">
+                                <select name="course_level" id="course_level" class="form-select form-select-lg inputcolor fs-6" required>
                                     <option value="<?php echo $det->getLevel(); ?>">
                                         <?php echo $pd->getLevel($det->getLevel()); ?>
                                     </option>
@@ -211,7 +211,7 @@ $details = $pd->getProductDetails();
                                 <label for="activeStatus" class="form-label ">Active Status : </label>
                             </div>
                             <div class="col-md-7 ">
-                                <select name="active_status" id="activeStatus" class="form-select form-select-lg inputcolor fs-6">
+                                <select name="active_status" id="activeStatus" class="form-select form-select-lg inputcolor fs-6" required>
                                     <option value="<?php echo $det->getActiveStatus(); ?>">
                                         <?php echo $pd->getStatusName($det->getActiveStatus()); ?>
                                     </option>
@@ -229,7 +229,7 @@ $details = $pd->getProductDetails();
                                 <label for="description" class="form-label ">Description : </label><br>
                             </div>
                             <div class="col-md-7">
-                                <textarea name="description" id="description" rows="4" class="col-md-12" placeholder="Write course description here..."><?php echo $det->getDescription(); ?></textarea>
+                                <textarea name="description" id="description" rows="4" class="col-md-12" placeholder="Write course description here..." required><?php echo $det->getDescription(); ?></textarea>
                             </div>
                         </div>
                         <div class="row my-2">
@@ -237,7 +237,7 @@ $details = $pd->getProductDetails();
                                 <label for="targetAudience" class="form-label ">Target Audience : </label><br>
                             </div>
                             <div class="col-md-7">
-                                <textarea name="targetaudience" id="targetAudience" value="" rows="4" class="col-md-12" placeholder="Write course target audience here..."><?php echo $det->getTargetAudience(); ?></textarea>
+                                <textarea name="targetaudience" id="targetAudience" value="" rows="4" class="col-md-12" placeholder="Write course target audience here..." required><?php echo $det->getTargetAudience(); ?></textarea>
                             </div>
                         </div>
                         <div class="row my-2">
@@ -245,7 +245,7 @@ $details = $pd->getProductDetails();
                                 <label for="learning" class="form-label ">Course Learning : </label><br>
                             </div>
                             <div class="col-md-7">
-                                <textarea name="learning" id="learning" value="" rows="4" class="col-md-12" placeholder="Write course learning here..."><?php echo $det->getLearning(); ?></textarea>
+                                <textarea name="learning" id="learning" value="" rows="4" class="col-md-12" placeholder="Write course learning here..." required><?php echo $det->getLearning(); ?></textarea>
                             </div>
                         </div>
                         <div class="row my-2">
@@ -253,7 +253,7 @@ $details = $pd->getProductDetails();
                                 <label for="requirements" class="form-label ">Course Requirements : </label><br>
                             </div>
                             <div class="col-md-7">
-                                <textarea name="requirements" id="requirements" value="" rows="4" class="col-md-12" placeholder="Write course requirements here..."><?php echo $det->getRequirements(); ?></textarea>
+                                <textarea name="requirements" id="requirements" value="" rows="4" class="col-md-12" placeholder="Write course requirements here..." required><?php echo $det->getRequirements(); ?></textarea>
                             </div>
                         </div>
                         <div class="row my-2">

@@ -1,26 +1,26 @@
 <?php
-
-// if($logged_id){
-// include 'logged_in_header.php';
-// }
-// else{
-require_once("../Models/ProductModels/ProductDisplay.php");
-require_once("../Controllers/GetDetails/GetProductDetails.php");
-// require_once("../DatabaseConnection/DatabaseConnection.php");
 include 'header.php';
-// }
-
-
-// require_once("../Controllers/GetDetails/GetStudentDetails.php");
-require_once("../Models/ProductModels/ProductDisplay.php");
 require_once("../Models/RegistrationModels/GetStudentUsername.php");
 require_once("../Models/ProductModels/GetActiveProductDetails.php");
 require_once("../Models/ProductModels/ProductGet.php");
-echo $_GET['course_id'];
+require_once("../Models/ProductModels/GetTopicReview.php");
+require_once("../Controllers/GetDetails/GetProductDetails.php");
+require_once("../Controllers/GetDetails/GetCourseTopic.php");
+require_once("../Controllers/GetDetails/GetVideoDetails.php");
+require_once("../Controllers/GetDetails/GetEnrollmentDetails.php");
+require_once ("../Controllers/Authentication/Encryption.php");
+
 $course_id = isset($_GET['course_id']) ? $_GET['course_id'] : die('Could not find course ID.');
 $pd = new GetProductDetails();
 $det=$pd->getProductById($course_id)!=null?$pd->getProductById($course_id):die('Could not find course details.');
-
+$gct = new GetCourseTopic();
+$gcv = new GetVideoDetailsCourse();
+$ged = new GetEnrollmentDetails();
+$encdec= new EncDec();
+$status=0;
+if(isset($_SESSION['username'])) {
+    $status = $ged->checkCourseEnrollStatus($_GET['course_id'], $ged->getStudentIdEnrollment($_SESSION['username']));
+}
 ?>
 <!-- Course Review Paeg -->
 <!-- Design for Page when clicked in any course -->
@@ -57,7 +57,7 @@ $det=$pd->getProductById($course_id)!=null?$pd->getProductById($course_id):die('
                 <div class="d-flex flex-wrap justify-content-between">
                     <div>
                         <div class="text-primary">
-                            Categories
+                            Category
                         </div>
                         <div>
                             Civil Engineering
@@ -102,111 +102,120 @@ $det=$pd->getProductById($course_id)!=null?$pd->getProductById($course_id):die('
                 <div class="inputcolor p-4 mt-5">
                     <h5>What will I Learn?</h5>
                     <div class="d-flex flex-wrap">
-                        <div class="p-2"><i class="bi bi-check text-primary fs-5"></i> <span class="text-blue-shade">Learn Prestress bridge design as per latest IRC codes using Excel</span></div>
-                        <div class="p-2"><i class="bi bi-check text-primary fs-5"></i><span class="text-blue-shade">Earn recognized credit and certificate</span></div>
+                        <?php
+                        $req = preg_split("/\r\n|\n|\r/", $det->getLearning());
+                        foreach ($req as $a){
+                        ?>
+                        <div class="p-2"><i class="bi bi-check text-primary fs-5"></i> <span class="text-blue-shade"><?php echo $a; ?></span></div>
+                            <?php
+                         }
+                        ?>
                     </div>
                 </div>
             </div>
             <div class="d-flex flex-wrap justify-content-between mt-5">
                 <h5>Topics for this course</h5>
+
                 <div class="d-flex flex-wrap justify-content-between">
-                    <div class="mx-3">4 Lessons</div>
-                    <div class="ml-3">12h</div>
+                    <div class="mx-3"><?php echo $gct->getCourseTopicCount($_GET['course_id']); ?> Lessons</div>
+                    <div class="ml-3"><?php echo $gct->getCourseTotalDuration($_GET['course_id']); ?></div>
                 </div>
             </div>
             <div>
                 <div class="accordion">
-                    <div class="accordion-item">
-                        <div class="accordion-item-header">
-                            1) Introduction to Prestressed Bridge Superstructure
-                        </div>
-                        <div class="accordion-item-body">
-                            <div class="accordion-item-body-content d-flex justify-content-between">
-                                <div class="mb-1 pb-1 mr-2">
-                                    <i class="bi bi-youtube"></i> Day 1: Prestress Bridge Introduction
-                                </div>
-                                <div>
-                                    1:28:08
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <div class="accordion-item-header">
-                            2) Provisions in IRC 112, IS 1343 and Freyssinet Manual
-                        </div>
-                        <div class="accordion-item-body">
-                            <div class="accordion-item-body-content d-flex justify-content-between">
-                                <div class="mb-1 pb-1 mr-2">
-                                    <i class="bi bi-youtube"></i> Day 2: IRC 112, IS 1343 and Prestress Manual
-                                </div>
-                                <div>
-                                    1:28:08
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <div class="accordion-item-header">
-                            3) Cable profiling and stress checks
-                        </div>
-                        <div class="accordion-item-body">
-                            <div class="accordion-item-body-content d-flex justify-content-between">
-                                <div class="mb-1 pb-1 mr-2">
-                                    <i class="bi bi-youtube"></i> Day 3: Cable profiling and stress checks
-                                </div>
-                                <div>
-                                    1:28:08
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <div class="accordion-item-header">
-                            4) Calculation of Loads and Prestress Losses
-                        </div>
-                        <div class="accordion-item-body">
-                            <div class="accordion-item-body-content d-flex justify-content-between">
-                                <div class="mb-1 pb-1 mr-2">
-                                    <i class="bi bi-youtube"></i> Day 4: Loads and Prestress Losses
-                                </div>
-                                <div>
-                                    1:34:01
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <div class="accordion-item-header">
-                            5) Detailed design of Cast-in-situ Posttensioned T-girders
-                        </div>
-                        <!-- <div class="accordion-item-body">
-                            <div class="accordion-item-body-content d-flex justify-content-between">
-                                <div class="mb-1 pb-1 mr-2">
-                                    <i class="bi bi-youtube"></i> Day 1: Prestress Bridge Introduction
-                                </div>
-                                <div>
-                                    1:28:08
-                                </div>
-                            </div>
-                        </div> -->
-                    </div>
-                    <div class="accordion-item">
-                        <div class="accordion-item-header">
-                            6) Drawing detailings and construction challenges
-                        </div>
-                        <!-- <div class="accordion-item-body">
-                            <div class="accordion-item-body-content d-flex justify-content-between">
-                                <div class="mb-1 pb-1 mr-2">
-                                    <i class="bi bi-youtube"></i> Day 1: Prestress Bridge Introduction
-                                </div>
-                                <div>
-                                    1:28:08
-                                </div>
-                            </div>
-                        </div> -->
-                    </div>
+                    <?php
+                        $coursetopics = $gct->getCourseTopicNameReview($_GET['course_id']);
 
+                        foreach ($coursetopics as $coursetopic) {
+                            $video = $gcv->getVideoReview($coursetopic->getTopicId());
+
+                           ?>
+                    <div class="accordion-item">
+                        <div class="accordion-item-header">
+                            <?php echo $coursetopic->getTopicName(); ?>
+                        </div>
+                        <?php
+                        if ($status == 1) {
+
+                        ?>
+                        <div class="accordion-item-body">
+                            <div class="accordion-item-body-content d-flex justify-content-between">
+                                <div id="player<?php echo $video[0];?>" class="mb-1 pb-1 mr-2">
+
+                                        <?php $convertedURL = str_replace("watch?v=","embed/", $video[1]);?>
+                                    <script>
+                                        function YouTubeGetID(url){
+                                            url = url.split(/(vi\/|v=|\/v\/|youtu\.be\/|\/embed\/)/);
+                                            return (url[2] !== undefined) ? url[2].split(/[^0-9a-z_\-]/i)[0] : url[0];
+                                        }
+                                        // 2. This code loads the IFrame Player API code asynchronously.
+                                        var tag = document.createElement('script');
+
+                                        tag.src = "https://www.youtube.com/iframe_api";
+                                        var firstScriptTag = document.getElementsByTagName('script')[0];
+                                        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+                                        // 3. This function creates an <iframe> (and YouTube player)
+                                        //    after the API code downloads.
+                                        var player;
+                                        var videoid = <?php $enc = $encdec->encrypt(json_encode($video[1]));echo $enc; ?>;
+                                        <?php $dec = $encdec->decrypt($enc);?>
+
+                                        function onYouTubeIframeAPIReady() {
+                                            player = new YT.Player('player<?php echo $video[0];?>', {
+                                                height: '390',
+                                                width: '640',
+                                                videoId: YouTubeGetID('<?= $dec ?>')),
+                                                playerVars: {
+                                                    'playsinline': 1
+                                                },
+                                                events: {
+                                                    'onReady': onPlayerReady,
+                                                    'onStateChange': onPlayerStateChange
+                                                }
+                                            });
+                                        }
+
+                                        // 4. The API will call this function when the video player is ready.
+                                        function onPlayerReady(event) {
+                                            event.target.playVideo();
+                                        }
+
+                                        // 5. The API calls this function when the player's state changes.
+                                        //    The function indicates that when playing a video (state=1),
+                                        //    the player should play for six seconds and then stop.
+                                        var done = false;
+                                        function onPlayerStateChange(event) {
+                                            if (event.data == YT.PlayerState.PLAYING && !done) {
+                                                setTimeout(stopVideo, 0);
+                                                done = true;
+                                            }
+                                        }
+                                        function stopVideo() {
+                                            player.stopVideo();
+                                        }
+                                    </script><br>
+                                    <br>
+                                    <i class="bi bi-youtube"></i>  <?php echo $video[2]; ?>
+                                </div>
+                                <div>
+                                    <?php echo $coursetopic->getTopicDuration(); ?>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>
+                        <?php
+                        }
+                        ?>
+
+                    </div>
+                    <?php
+
+                        }
+                        ?>
 
                 </div>
                 <!-- <div class="col-md-6">
@@ -242,38 +251,40 @@ $det=$pd->getProductById($course_id)!=null?$pd->getProductById($course_id):die('
             <div>
                 <div class="courses">
                     <div class="px-2 ftco-animate border">
-                        <img src="/ncc/<?php echo $det->getImage(); ?>" alt="" class="img-fluid">
+                        <img src="Views/<?php echo $det->getImage(); ?>" alt="" class="img-fluid">
                         <div class="p-4 ">
                             <p class="text-blue-shade fw-bold">NPR <?php echo $det->getPrice(); ?></p>
                             <h5 class="">Material Includes</h5>
                             <div class="pb-3" style="font-size: 14px;">
-                                <div><i class="bi bi-check fs-5 px-1 text-primary"></i>Excel sheets and presentations</div>
-                                <div><i class="bi bi-check fs-5 px-1 text-primary"></i>Quiz and homeworks</div>
+                                <div><i class="bi bi-check fs-5 px-1 text-primary"></i>Videos for Course</div>
+                                <div><i class="bi bi-check fs-5 px-1 text-primary"></i>Continious Support</div>
                                 <div><i class="bi bi-check fs-5 px-1 text-primary"></i>Sample design and drawings</div>
                                 <div><i class="bi bi-check fs-5 px-1 text-primary"></i>Language: English</div>
                             </div>
                             <div class="d-grid gap-2">
-                                <button class="btn btn-primary">View Cart</button>
+                              <a href="cart" class="btn btn-primary">View Cart</a>
                             </div>
-                            <div><i class="bi bi-calendar3 px-2"></i>Enrollment Validity: <span class="text-blue-shade">LifeTime</span></div>
+                            <div> <i class="bi bi-calendar3 px-1"></i>Enrollment Validity: <span class="text-blue-shade"><?php echo $pd->getEnrollmentValidityName($det->getEnrollmentValidity()); ?></span></div>
                         </div>
                     </div>
                 </div>
                 <div class="mt-5">
                     <h5 class="">Requirements</h5>
                     <div class="pb-3" style="font-size: 14px;">
-                        <div><i class="bi bi-check fs-5 px-1 text-primary"></i><?php echo $det->getRequirements(); ?></div>
-                        <div><i class="bi bi-check fs-5 px-1 text-primary"></i>Microsoft Office</div>
+                        <?php
+                        $req = preg_split("/\r\n|\n|\r/", $det->getRequirements());
+                        ?>
+                        <div><?php foreach ($req as $a){ echo "<i class='bi bi-check fs-5 px-1 text-primary'></i>".$a;} ?></div>
+
                     </div>
                 </div>
                 <div class="mt-5">
                     <h5 class="">Target Audience</h5>
                     <div class="pb-3" style="font-size: 14px;">
-                        <div><i class="bi bi-check fs-5 px-1 text-primary"></i>Civil and Structural Engineering Professionals</div>
-                        <div><i class="bi bi-check fs-5 px-1 text-primary"></i>Government Engineers</div>
-                        <div><i class="bi bi-check fs-5 px-1 text-primary"></i>Researchers</div>
-                        <div><i class="bi bi-check fs-5 px-1 text-primary"></i>Bridge Design Consultants</div>
-                        <div><i class="bi bi-check fs-5 px-1 text-primary"></i>Students</div>
+                        <?php
+                        $ta = preg_split("/\r\n|\n|\r/", $det->getTargetAudience());
+                        ?>
+                        <div><?php foreach ($ta as $a){ echo "<i class='bi bi-check fs-5 px-1 text-primary'></i>".$a;} ?></div>
                     </div>
                 </div>
 
@@ -281,52 +292,7 @@ $det=$pd->getProductById($course_id)!=null?$pd->getProductById($course_id):die('
         </div>
     </div>
     <hr class="bg-primary"/>
-    <div>
-        <p class="text-center mt-5 fs-1 text-blue-shade"> Membership </p>
-    </div>
-    <div>
-        <div class="row d-flex flex-wrap justify-content-center align-items-center text-center">
-            <div class="col-lg-6 col-md-6 col-sm-10 my-3 ftco-animate">
-                <div class="bg-primary text-light text-center p-1">
-                    <!-- <div class=""> -->
-                    <h3 class="text-light">6 Monthly Membership</h3>
-                    Best plan for you
-                    <!-- </div> -->
-                </div>
-                <div class="d-flex justify-content-center bg-warning">
-                    <div class="bg-white rounded-circle m-2" style="width: 50px; height: 50px;">
-                        <i class="bi bi-star" style="color: black; font-size: 28px;"></i>
-                    </div>
-                </div>
-                <div class="mt-3">
-                    <p style="font-family:'Taviraj';"><span style="font-size: 18px; color: #535967;">Npr</span> <span style="font-size: 32px; color: #535967;">35000 </span> <span style="font-size: 20px; color: black;"><sub>/ 6 Month</sub></span></p>
-                    <p> <i class="bi bi-check text-success"></i> 6 month membership</p>
-                    <p><i class="bi bi-check text-success"></i> Access to all Courses</p>
-                    <p><i class="bi bi-check text-success"></i> Live course and New Course</p>
-                    <button class="btn btn-primary mt-3 px-5 py-3">Buy Now</button>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-10 my-3 ftco-animate">
-                <div class="bg-primary text-light text-center p-1">
-                    <!-- <div class=""> -->
-                    <h3 class="text-light">1 Year Membership</h3>
-                    Best plan for you
-                    <!-- </div> -->
-                </div>
-                <div class="d-flex justify-content-center bg-warning">
-                    <div class="bg-white rounded-circle m-2" style="width: 50px; height: 50px;">
-                        <i class="bi bi-star" style="color: black; font-size: 28px;"></i>
-                    </div>
-                </div>
-                <div class="mt-3">
-                    <p style="font-family:'Taviraj';"><span style="font-size: 18px; color: #535967;">Npr</span> <span style="font-size: 32px; color: #535967;">50000 </span> <span style="font-size: 20px; color: black;"><sub>/ 1 Year</sub></span></p>
-                    <p> <i class="bi bi-check text-success"></i> One Year membership</p>
-                    <p><i class="bi bi-check text-success"></i> Access to all Courses</p>
-                    <p><i class="bi bi-check text-success"></i> Live course and New Course</p>
-                    <button class="btn btn-primary mt-3 px-5 py-3 ">Buy Now</button>
-                </div>
-            </div>
-        </div>
+
 
         <div class="text-center mt-5">
             <p style="color: #535967; font-size:24px;">Words of People who learned

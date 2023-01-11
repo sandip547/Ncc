@@ -1,5 +1,4 @@
 <?php
-session_start();
 $page = 'student';
 include 'admin header.php';
 require_once("../../Models/RegistrationModels/DeleteStudentUser.php");

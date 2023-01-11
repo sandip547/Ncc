@@ -32,14 +32,14 @@ include "header.php";
         <?php foreach ($details as $det) { ?>
         <div class="px-2 ftco-animate">
 
-            <img src="http://localhost/nccengineering/<?php echo $det->getImage(); ?>" alt="" class="img-fluid">
+            <img src="Views/<?php echo $det->getImage(); ?>" alt="" class="img-fluid">
             <i class="bi bi-star text-warning"></i>
             <i class="bi bi-star text-warning"></i>
             <i class="bi bi-star text-warning"></i>
             <i class="bi bi-star text-warning"></i>
             <i class="bi bi-star text-warning"></i>
 
-            <p class="fs-5"><a href='/ncc/Views/course_review_page.php?course_id= <?php echo $det->getProductId(); ?>'><?php echo $det->getProductName(); ?></a></p>
+            <p class="fs-5"><a href='course_review_page.php?course_id= <?php echo $det->getProductId(); ?>'><?php echo $det->getProductName(); ?></a></p>
             <p> <i class="bi bi-person"></i> 6 <i class="bi bi-clock"></i> <?php echo $det->getDuration(); ?></p>
             <p> <span class="rounded-circle p-1 bg-primary text-light"> <?php echo $det->getFirstLettersFromName(); ?></span> by <?php echo $det->getEnteredByLabel(); ?></p>
             <div class="fw-bold d-flex justify-content-between">
@@ -54,7 +54,7 @@ include "header.php";
     </div>
 
     <div class="text-center m-5">
-        <a class="rounded-pill text-white btn btn-primary py-3 px-4 mt-4">VIEW ALL COURSES</a>
+        <a class="rounded-pill text-white btn btn-primary py-3 px-4 mt-4" href="all_course">VIEW ALL COURSES</a>
     </div>
 
     <div>
@@ -108,144 +108,12 @@ include "header.php";
             </div>
         </div>
 
-        <div class="text-center mt-5">
-            <p style="color: #535967; font-size:24px;">Words of People who learned
-                expert skills and knowledge and never look back</p>
-        </div>
-        <section>
-            <div class="row text-center d-flex align-items-stretch ftco-animate">
-                <div class="col-md-4 mb-5 mb-md-0 d-flex align-items-stretch">
-                    <div class="card testimonial-card">
-                        <div class="card-up" style="background-color: #9d789b;"></div>
-                        <div class="avatar mx-auto bg-white">
-                            <img src="https://skill-veda.com/wp-content/uploads/2021/05/circle-cropped-8-1.png"
-                                class="rounded-circle img-fluid" />
-                        </div>
-                        <div class="card-body">
-                            <h4 class="fw-bold">Subhuj Khanal</h4>
-                            <h6>Master in Structural Engineering</h6>
-                            <hr class="bg-primary" />
-                            <p class="dark-grey-text mt-4">
-                                <i class="bi bi-quote pe-2"></i>The best part of the course by Dynamic Solution was the
-                                clear course structure & Brilliant instructor .
-                                They really have given best FEM course for Civil Engineers available online.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-4 mb-5 mb-md-0 d-flex align-items-stretch ftco-animate">
-                    <div class="card testimonial-card">
-                        <div class="card-up" style="background-color: #7a81a8;"></div>
-                        <div class="avatar mx-auto bg-white">
-                            <img src="https://skill-veda.com/wp-content/uploads/2021/05/circle-cropped-9.png"
-                                class="rounded-circle img-fluid" />
-                        </div>
-                        <div class="card-body">
-                            <h4 class="fw-bold">Data Gelal</h4>
-                            <h6>Master in Structural Engineering</h6>
-                            <hr class="bg-primary" />
-                            <p class="dark-grey-text mt-4">
-                                <i class="bi bi-quote pe-2"></i>Best part is I came to know the start of ANSYS. And the
-                                worst part is class is about to end.
-                                Dynamic Solution was very effective in delivering course content in given time with
-                                efficiency.
-
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-0 d-flex align-items-stretch ftco-animate">
-                    <div class="card testimonial-card">
-                        <div class="card-up" style="background-color: #6d5b98;"></div>
-                        <div class="avatar mx-auto bg-white">
-                            <img src="https://skill-veda.com/wp-content/uploads/2021/05/circle-cropped-10.png"
-                                class="rounded-circle img-fluid" />
-                        </div>
-                        <div class="card-body">
-                            <h4 class="fw-bold">Mahendra Singh Danga</h4>
-                            <h6>Civil Engineer</h6>
-                            <hr class="bg-primary" />
-                            <p class="dark-grey-text mt-4">
-                                <i class="bi bi-quote pe-2"></i>Dynamic solution was supportive and so were trainer.
-                                In my first training with Dynamic Solution,
-                                I am satisfied with the way they delivered course content.
-                                I would love to join more courses in future.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <div class="text-center p-sm-3 m-sm-3 pt-4 mt-4 mb-4">
-            <p style=" font-size:24px; color: #535967;">Registration Process for Student Sign up</p>
-        </div>
-        <div class="d-flex text-center justify-content-center">
-            <div class="embed-responsive embed-responsive-16by9" style="width: 80%;">
-                <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/vlDzYIIOYmM"
-                    allowfullscreen></iframe>
-            </div>
-        </div>
-
-        <div class="text-center py-sm-5 my-sm-4 pt-4 mt-4 ">
-            <p style=" font-size:24px; color: #535967;">Visit our blog to be updated with latest tips, news and course
-            </p>
-        </div>
-
-        <div class="row d-flex text-center">
-            <div class="col-md-4 d-flex ftco-animate">
-                <div class="blog-entry">
-                    <a href="#" class="block-20 hover-zoom" style="background-image: url('images/image_1.jpg');">
-                    </a>
-                    <div class="text mt-3 float-right d-block">
-                        <p>
-                            <span>Posted on </span><span class="text-primary">July 22, 2021</span>
-                        </p>
-                        <h3 class="heading"><a href="#">Bridge Failures in Nepal: Diagnosis and Solutions for Design</a>
-                        </h3>
-                        <p>Development of road networks and bridges in Nepal started around sixty years.....
-                            <a href="#">See more</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 d-flex ftco-animate">
-                <div class="blog-entry">
-                    <a href="#" class="block-20 hover-zoom" style="background-image: url('images/image_2.jpg');">
-                    </a>
-                    <div class="text mt-3 float-right d-block">
-                        <p>
-                            <span>Posted on </span><span class="text-primary">July 22, 2021</span>
-                        </p>
-                        <h3 class="heading"><a href="#">SOLID WASTE PROBLEM & MANAGEMENT IN KATHMANDU</a></h3>
-                        <p>Introduction Solid waste management is a common problem is most of the developing.....
-                            <a href="#">See more</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4 d-flex ftco-animate">
-                <div class="blog-entry">
-                    <a href="#" class="block-20 hover-zoom" style="background-image: url('images/image_3.jpg');">
-                    </a>
-                    <div class="text mt-3 float-right d-block">
-                        <p>
-                            <span>Posted on </span><span class="text-primary">July 22, 2021</span>
-                        </p>
-                        <h3 class="heading"><a href="#">Base Isolation</a></h3>
-                        <p>What is Base isolation? Base isolation is a state-of-the-art method
-                            in which the structure (superstructure) is.....
-                            <a href="#">See more</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
 
     </div>
 </div>
 </div>
 </div>
+<br><br>
 <?php
 include 'footer.php'
 ?>

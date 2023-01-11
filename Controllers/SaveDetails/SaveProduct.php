@@ -40,8 +40,8 @@ class SaveProduct
                             values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
                 $this->connection->executePrepare($query, "sssssiiiisisssiis", array(
-                    $pd->getProductName(), $pd->getDescription(), $pd->getLearning(), nl2br($pd->getRequirements()),
-                    $pd->getTargetAudience(), $pd->getInstructorId(), $pd->getCategoryId(), $pd->getTag(),
+                    $pd->getProductName(), $pd->getDescription(), nl2br($pd->getLearning()), nl2br($pd->getRequirements()),
+                    nl2br($pd->getTargetAudience()), $pd->getInstructorId(), $pd->getCategoryId(), $pd->getTag(),
                     $pd->getLevel(), $pd->getDuration(), $pd->getPrice(), $pd->getReleaseDate(), $pd->getEnteredDate(),
                     $pd->getEnteredBy(), $pd->getEnrollmentValidity(), $pd->getActiveStatus(), $target_file
                 ));

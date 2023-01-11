@@ -1,9 +1,30 @@
 <?php
-session_start();
+
 $page = 'payment';
 include 'admin header.php';
-$details = ['', '', '', '', '',];
+require_once ("../../Models/Enrollment/GetStudentIdName.php");
+require_once ("../../Models/Enrollment/ChangeEnrollmentStatus.php");
+require_once ("../../SendMail/SendMail.php");
+require_once ("../../Models/Enrollment/GetFullEnrollmentDetails.php");
+require_once ("../../Controllers/GetDetails/GetEnrollmentDetails.php");
+require_once ("../../Controllers/GetDetails/GetTeacherUser.php");
+require_once ("../../Controllers/SaveDetails/SaveEnrollmentDetails.php");
+require_once ("../Notification/Notification.php");
+$sed = new SaveEnrollmentDetails();
+$ged = new GetEnrollmentDetails();
+$edetails = $ged->getStudentDetailsForEnrollMent();
+if(isset($_POST["updateEnrollment"])){
+    $notification = new Notification();
+    $sm = new SendMail();
+    $gtu = new GetTeacherUser();
 
+    if($sed->changeEnrollementStatus(new ChangeEnrollmentStatus($_POST['estatus'],$_POST["enrollmentid"],$gtu->getStaffId($_SESSION["admin"]),date("Y-m-d h:m:s")))){
+        $notification->alertRegistrationSuccess("Status Changed Successfully");
+        $sm->sendEnrolledSuccessEmail("You have been Enrolled successfully",$_POST["course_name"],
+            $sed->getEmailOfEnrolledUser($sed->getStudentIdEnrollment($_POST["enrollmentid"])));
+
+    }
+}
 ?>
 
     <div class="text-justify p-0 m-0 ml-4 course-info">
@@ -18,200 +39,160 @@ $details = ['', '', '', '', '',];
             </div>
 
             <p class="h5 text-dark font-weight-bold">Payment data list</p>
+            <?php
+            foreach($edetails as $detail){
+
+            $eds = $ged->getFullEnrollmentDetails($detail->getStudentId());
+            ?>
             <div class="table-responsive">
                 <table class="table table-bordered table-hover table-sm text-normal">
                     <thead class="thead-light">
                     <tr class="text-center">
                         <th></th>
-                        <th>Payment ID</th>
-                        <th>Enrollment ID</th>
-                        <th>Full name</th>
-                        <th>Username</th>
-                        <th>Email</th>
-                        <th>Mobile number</th>
-                        <th>Address</th>
-                        <th>Payment Mode</th>
-                        <th>Payment Date</th>
-                        <th>Payment Account Number</th>
-                        <th>Bank Name</th>
-                        <th>Amount</th>
-                        <th>Check Number</th>
-                        <th>Status</th>
+                        <th>Student Id</th>
+                        <th>Student Name</th>
 
                     </tr>
                     </thead>
                     <tbody>
-                    <?php foreach ($details as $det) { ?>
-                        <tr>
-                            <th class="px-3"><button type="button" class="btn btn-primary" data-toggle="modal"
-                                                     data-target="#exampleModalLong">View</button></th>
-                            <th class="px-3">1</th>
-                            <th class="px-3">2453</th>
-                            <th class="px-3">Sushma Shrestha</th>
-                            <th class="px-3">Sushma123</th>
-                            <th class="px-3">xsa@cdsd.cdc</th>
-                            <th class="px-3">9999999999</th>
-                            <th class="px-3">Chauthe</th>
-                            <th class="px-3">Khalti</th>
-                            <th class="px-3">2022-03-21</th>
-                            <th class="px-3">098654212452323</th>
-                            <th class="px-3">Nabil bank</th>
-                            <th class="px-3">10000</th>
-                            <th class="px-3">56786</th>
-                            <th class="px-3">Completed</th>
-                        </tr>
 
-                        <?php
-                    }
-                    ?>
+                        <tr>
+                            <th></th>
+                            <th class="px-3"><?php echo $detail->getStudentId();    ?></th>
+                            <th class="px-3"><?php echo $detail->getStudentName();    ?></th>
+
 
                     </tbody>
                 </table>
+    <table class="table table-bordered table-hover table-sm text-normal">
+                <thead class="thead-light">
+                <tr class="text-center">
+                    <th></th>
+                    <th>Enrollment Id</th>
+                    <th>Course Id</th>
+                    <th>Course Name</th>
+                    <th>Student Id</th>
+                    <th>Student Name</th>
+                    <th>User Name</th>
+                    <th>Enrollment Date</th>
+                    <th>Expiry Date</th>
+                    <th>Status</th>
+                    <th>Updated By</th>
+                    <th>Updated Date</th>
+                </tr>
+                </thead>
+                    <?php
+                    foreach ($eds as $ed){
+                    ?>
+
+
+                    <tbody>
+
+                    <tr>
+                        <th class="px-3"><button type="button" class="btn btn-primary" data-toggle="modal"
+                                                 data-target="#enrollment<?php echo $ed->getEnrollmentId(); ?>">View</button></th>
+                        <th class="px-3"><?php echo $ed->getEnrollmentId();?></th>
+                        <th class="px-3"><?php echo $ed->getCourseId();?></th>
+                        <th class="px-3"><?php echo $ed->getCourseName();?></th>
+                        <th class="px-3"><?php echo $ed->getStudentId();?></th>
+                        <th class="px-3"><?php echo $ed->getStudentName();?></th>
+                        <th class="px-3"><?php echo $ed->getUserName();?></th>
+                        <th class="px-3"><?php echo $ed->getEnrollmentDate();?></th>
+                        <th class="px-3"><?php echo $ed->getExpiryDate();?></th>
+                        <th class="px-3"><?php echo $ed->getStatus();?></th>
+                        <th class="px-3"><?php echo $ed->getUpdatedBy();?></th>
+                        <th class="px-3"><?php echo $ed->getUpdatedDate();?></th>
+
+
+                    </tbody>
+                        <?php
+                    }
+                        ?>
+                </table>
             </div>
-            <nav aria-label="Page navigation example" class="mb-5">
-                <ul class="pagination justify-content-center">
-                    <li class="page-item">
-                        <a class="page-link text-primary" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-                    <li class="page-item"><a class="page-link text-primary" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link text-primary" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link text-primary" href="#">3</a></li>
-                    <li class="page-item"><a class="page-link text-primary" href="#">4</a></li>
-                    <li class="page-item"><a class="page-link text-primary" href="#">5</a></li>
-                    <li class="page-item">
-                        <a class="page-link text-primary" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
+
+                <?php
+            }
+                ?>
+
+            <?php
+            foreach ($edetails as $det){
+                $eds = $ged->getFullEnrollmentDetails($det->getStudentId());
+                foreach ($eds as $ed){
+            ?>
+            <div class="modal fade" id="enrollment<?php echo $ed->getEnrollmentId(); ?>" tabindex="-1" role="dialog"
                  aria-labelledby="exampleModalLongTitle" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Student details</h5>
+                            <h5 class="modal-title" id="enrollment">Student details</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                         <div class="modal-body">
-
+                            <form action="enrollment.php" method="post"  enctype="multipart/form-data">
+                            <div class="row align-items-center my-2">
+                                <div class="col-md-5 text-orangered font-weight-bold fs-6">
+                                    <label for="mobileNo" class="form-label">Enrollment Id</label>
+                                </div>
+                                <div class="col-md-7">
+                                    <input type="tel" name="enrollmentid" id="enrollmentid" class="form-control inputcolor fs-6" placeholder="EnrollmentId" aria-label="EnrollmentId" value="<?php echo $ed->getEnrollmentId(); ?>" readonly>
+                                </div>
+                            </div>
                             <div class="row align-items-center my-2">
                                 <div class="col-md-5 text-orangered font-weight-bold fs-6">
                                     <label for="fullName" class="form-label">Full Name</label>
-
                                 </div>
-                                <div class="col-md-7 text-blue-shade fs-6">
-                                    Sushma Shrestha
+                                <div class="col-md-7">
+                                    <input type="text" name="fullName" required id="fullName" class="form-control inputcolor fs-6" placeholder="Full Name" aria-label="fullName" value="<?php echo $ed->getStudentName(); ?>" readonly>
+                                </div>
+                            </div>
+
+                            <div class="row align-items-center my-2">
+
+                                <div class="col-md-5 text-orangered font-weight-bold fs-6">
+                                    <label for="courseName" class="form-label">Course name : </label>
+                                </div>
+                                <div class="col-md-7">
+                                    <input type="text" name="course_name" class="form-control inputcolor fs-6" name="courseName" placeholder="Course name" aria-label="courseName" id="courseName" value="<?php echo $ed->getCourseName(); ?>" readonly>
                                 </div>
                             </div>
                             <div class="row my-2 align-items-center">
                                 <div class="col-md-5 text-orangered font-weight-bold fs-6">
-                                    <label for="userName" class="form-label">Username</label>
+                                    <label for="activeStatus" class="form-label">Status</label>
                                 </div>
-                                <div class="col-md-7 text-blue-shade fs-6">
-                                    Sushma123
-                                </div>
-                            </div>
-                            <div class="row align-items-center my-2">
-                                <div class="col-md-5 text-orangered font-weight-bold fs-6">
-                                    <label for="email" class="form-label">E-mail</label>
-                                </div>
-                                <div class="col-md-7 text-blue-shade fs-6">
-                                    xsa@cdsd.cdc
-                                </div>
-                            </div>
-
-                            <div class="row align-items-center my-2">
-                                <div class="col-md-5 text-orangered font-weight-bold fs-6">
-                                    <label for="mobileNo" class="form-label">Mobile Number</label>
-                                </div>
-                                <div class="col-md-7 text-blue-shade fs-6">
-                                    9999999999
-                                </div>
-                            </div>
-
-                            <div class="row align-items-center my-2">
-                                <div class="col-md-5 text-orangered font-weight-bold fs-6">
-                                    <label for="address" class="form-label">Address</label>
-                                </div>
-                                <div class="col-md-7 text-blue-shade fs-6">
-                                    Chauthe
-                                </div>
-                            </div>
-
-                            <div class="row align-items-center my-2">
-                                <div class="col-md-5 text-orangered font-weight-bold fs-6">
-                                    <label for="Payment mode" class="form-label">Payment Mode</label>
-                                </div>
-                                <div class="col-md-7 text-blue-shade fs-6">
-                                    Khalti
-                                </div>
-                            </div>
-
-                            <div class="row align-items-center my-2">
-                                <div class="col-md-5 text-orangered font-weight-bold fs-6">
-                                    <label for="paymentDate" class="form-label">Payment Date</label>
-                                </div>
-                                <div class="col-md-7 text-blue-shade fs-6">
-                                    2022-03-21
-                                </div>
-                            </div>
-                            <div class="row align-items-center my-2">
-                                <div class="col-md-5 text-orangered font-weight-bold fs-6">
-                                    <label class="form-label">Payment Account Number</label>
-                                </div>
-                                <div class="col-md-7 text-blue-shade fs-6">
-                                    098654212452323
-                                </div>
-                            </div>
-                            <div class="row align-items-center my-2">
-                                <div class="col-md-5 text-orangered font-weight-bold fs-6">
-                                    <label class="form-label">Bank Name</label>
-                                </div>
-                                <div class="col-md-7 text-blue-shade fs-6">
-                                    Nabil Bank
-                                </div>
-                            </div>
-                            <div class="row align-items-center my-2">
-                                <div class="col-md-5 text-orangered font-weight-bold fs-6">
-                                    <label class="form-label">Amount</label>
-                                </div>
-                                <div class="col-md-7 text-blue-shade fs-6">
-                                    10000
-                                </div>
-                            </div>
-                            <div class="row align-items-center my-2">
-                                <div class="col-md-5 text-orangered font-weight-bold fs-6">
-                                    <label class="form-label">Check Number</label>
-                                </div>
-                                <div class="col-md-7 text-blue-shade fs-6">
-                                    56786
-                                </div>
-                            </div>
-
-                            <div class="row my-2 align-items-center">
-                                <div class="col-md-5 text-orangered font-weight-bold fs-6">
-                                    <label for="status" class="form-label">Status</label>
-                                </div>
-                                <div class="col-md-7 text-blue-shade fs-6">
-                                    Completed
+                                <div class="col-md-7">
+                                    <select name="estatus" id="estatus" class="form-select form-select-lg inputcolor fs-6">
+                                        <option selected value="na">
+                                            <?php echo $ed->getStatus();?>
+                                        </option>
+                                        <option value="1">
+                                            Enrolled
+                                        </option>
+                                        <option value="2">
+                                            Processing
+                                        </option>
+                                        <option value="3">
+                                            Cancelled
+                                        </option>
+                                    </select>
                                 </div>
                             </div>
 
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" name="updateEnrollment" class="btn btn-primary">Save changes</button>
                         </div>
+                        </form>
                     </div>
                 </div>
             </div>
-
+                <?php
+            }
+            }
+                ?>
         </div>
     </div>
 

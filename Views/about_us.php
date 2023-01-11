@@ -10,14 +10,14 @@ include 'header.php';
 <section class="ftco-section">
     <div class="container">
         <div class="col-12 mx-auto">
-            <p class="h1 text text-center text-primary">About Dynamic Solution</p>
+            <p class="h1 text text-center text-primary">About NCC Engineering</p>
             <p class="text-center">
-                <span class="h6 mx-3">By. Dynamic Solution</span>
+                <span class="h6 mx-3">By. Ncc Engineering</span>
                 <span class="fs-6 mx-3">View Count</span>
             </p>
             <div class="text-center pt-3 mt-3">
-                <p style="font-size: 26px;"><strong>About Dynamic Solution</strong></p>
-                <p style="font-size: 16px;"><a href="" style="text-decoration:none; color:#535967;">By.Dynamic Solution</a> </p>
+                <p style="font-size: 26px;"><strong>About NCC ENgineering</strong></p>
+                <p style="font-size: 16px;"><a href="" style="text-decoration:none; color:#535967;">By.NCC Engineering</a> </p>
             </div>
 
             <div class="text-center">

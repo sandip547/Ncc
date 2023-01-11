@@ -4,6 +4,7 @@ require_once("../Controllers/Registration/RegController.php");
 require_once("../Models/RegistrationModels/StudentUser.php");
 require_once("../Models/RegistrationModels/CheckUsername.php");
 require_once("../Models/RegistrationModels/CheckPasswordConfirm.php");
+require_once ("../SendMail/SendMail.php");
 require_once("Notification/Notification.php");
 $rc = new RegController();
 
@@ -14,11 +15,20 @@ if(isset($_POST["register"])){
     }
 
     if($rc->checkPassword($_POST["password"],$_POST['cpassword'])){
-    $rc->insertUserDetails(new StudentUser($_POST["firstname"], $_POST["lastname"], $_POST["dob"], $_POST["email"], $_POST["gender"],
-        $_POST["username"], $_POST["password"], $_POST["mobilenumber"], $_POST["address"],
-        date("Y-m-d h:i:s")));
         $notify = new Notification();
+    if($rc->insertUserDetails(new StudentUser($_POST["firstname"]." ".$_POST["lastname"], $_POST["dob"], $_POST["email"], $_POST["gender"],
+        $_POST["username"], $_POST["password"], $_POST["mobilenumber"], $_POST["address"],
+        date("Y-m-d h:i:s")))){
+        $sm = new SendMail();
+        $sm->sendEnrolledSuccessEmail("Registration Successfull","",$_POST["email"]);
+        $notify->redirectLoginPage();
         $notify->alertRegistrationSuccess();
+    }
+    else{
+        $notify->alertNotSuccess();
+    }
+
+
     }
 
 }

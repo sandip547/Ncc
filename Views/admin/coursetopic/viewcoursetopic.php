@@ -37,8 +37,8 @@ $details = $ct->getCourseNamesTopicId();
                                             <th>Duration</th>
                                             <th>Entered By</th>
                                             <th>Entered Date</th>
-                                            <th>Updated Date</th>
-                                            <th>Update By</th>
+                                            <th>Update Date</th>
+                                            <th>Updated By</th>
 
                                         </tr>
                                         </thead>

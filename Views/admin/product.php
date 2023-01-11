@@ -1,5 +1,5 @@
 <?php
-session_start();
+
 $page = 'product';
 include 'admin header.php';
 require_once("../../Models/ProductModels/ProductDisplay.php");

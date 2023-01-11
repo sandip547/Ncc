@@ -8,16 +8,7 @@ $details = $ct->getCourseNamesTopicId();
     <?php foreach ($details as $det) { ?>
     <table class="table table-bordered table-hover table-sm text-normal">
         <thead class="thead-light">
-        <tr class="text-center">
-            <th>Course Id</th>
-            <th>Course Name</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <th  class="px-3" align="center" ><?php echo $det; ?></th>
-            <th  class="px-3" align="center"><?php echo $pd->getProductName($det); ?></th>
-        </tr>
+
         <?php $topics = $cv->getVideoDetails($det);?>
         <div class="modal-body">
 

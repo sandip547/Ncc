@@ -7,11 +7,11 @@ $catlist = $pc->getcategoryNameId();
         <div class="col-md-6 my-3">
             <label for="courseName" class="form-label text-blue-shade">Course name</label>
             <input type="text" class="form-control inputcolor fs-6" placeholder="Course name" name="cname"
-                aria-label="courseName" id="courseName">
+                aria-label="courseName" id="courseName" required>
         </div>
         <div class="col-md-6 my-3">
             <label for="level" class="form-label text-blue-shade">Level</label>
-            <select name="category" id="category" class="form-select form-select-lg inputcolor fs-6">
+            <select name="category" id="category" class="form-select form-select-lg inputcolor fs-6" required>
                 <option value="na">
                     Select Category
                 </option>
@@ -30,7 +30,7 @@ $catlist = $pc->getcategoryNameId();
         <div class="col-md-6 my-3">
             <label for="duration" class="form-label text-blue-shade">Duration (in hour)</label>
             <div id="time-span" class="form-control inputcolor fs-6 align-items-center d-flex">
-                <input type="text" class="form-control inputcolor fs-6" name="chour" placeholder="hour:min:sec" />
+                <input type="text" class="form-control inputcolor fs-6" name="chour" placeholder="hour:min:sec" required/>
 
             </div>
         </div>
@@ -38,12 +38,12 @@ $catlist = $pc->getcategoryNameId();
         <div class="col-md-6 my-3">
             <label for="Price" class="form-label text-blue-shade">Price</label>
             <input type="number" id="price" class="form-control inputcolor fs-6" name="cprice" placeholder="Price"
-                aria-label="Price">
+                aria-label="Price" required>
         </div>
         <div class="col-md-6 my-3">
             <label for="enrollmentValidity" class="form-label text-blue-shade">Enrollment Validity (0 for
                 lifetime)</label>
-            <select name="enrollvalidity" id="enrollvalidity" class="form-select form-select-lg inputcolor fs-6">
+            <select name="enrollvalidity" id="enrollvalidity" class="form-select form-select-lg inputcolor fs-6" required>
                 <option value="na">
                     Select Enrollment Validity
                 </option>
@@ -66,7 +66,7 @@ $catlist = $pc->getcategoryNameId();
 
         <div class="col-md-6 my-3">
             <label for="level" class="form-label text-blue-shade">Level</label>
-            <select name="level" id="level" class="form-select form-select-lg inputcolor fs-6">
+            <select name="level" id="level" class="form-select form-select-lg inputcolor fs-6" required>
                 <option value="na">
                     Select course level
                 </option>
@@ -83,7 +83,7 @@ $catlist = $pc->getcategoryNameId();
         </div>
         <div class="col-md-6 my-3">
             <label for="activeStatus" class="form-label text-blue-shade">Active Status</label>
-            <select name="activeStatus" id="activeStatus" class="form-select form-select-lg inputcolor fs-6">
+            <select name="activeStatus" id="activeStatus" class="form-select form-select-lg inputcolor fs-6" required>
                 <option value="1">
                     Active
                 </option>
@@ -95,22 +95,22 @@ $catlist = $pc->getcategoryNameId();
         <div class="my-3">
             <label for="description" class="form-label text-blue-shade">Description</label><br>
             <textarea name="description" id="description" rows="4" class="col-md-12"
-                placeholder="Write course description here..."></textarea>
+                placeholder="Write course description here..." required></textarea>
         </div>
         <div class="my-3">
             <label for="targetAudience" class="form-label text-blue-shade">Target Audience</label><br>
             <textarea name="targetAudience" id="targetAudience" rows="4" class="col-md-12"
-                placeholder="Write course target audience here..."></textarea>
+                placeholder="Write course target audience here..." required></textarea>
         </div>
         <div class="my-3">
             <label for="learning" class="form-label text-blue-shade">Course Learning</label><br>
             <textarea name="learning" id="learning" rows="4" class="col-md-12"
-                placeholder="Write course learning here..."></textarea>
+                placeholder="Write course learning here..." required></textarea>
         </div>
         <div class="my-3">
             <label for="requirements" class="form-label text-blue-shade">Course Requirements</label><br>
             <textarea name="requirements" id="requirements" rows="4" class="col-md-12"
-                placeholder="Write course requirements here..."></textarea>
+                placeholder="Write course requirements here..." required></textarea>
         </div>
 
         <div class="my-3">

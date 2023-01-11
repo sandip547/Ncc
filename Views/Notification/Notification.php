@@ -33,6 +33,11 @@ class Notification{
 <?php
 
     }
+    function redirectLoginPage(){
+        ?>
+        <script>window.location.href="login.php";</script>
+        <?php
+    }
     function alertNotSuccess($alert_message){
         ?>
         <div id="simpleModal" class="modal" tabindex="-1" role="dialog">

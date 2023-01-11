@@ -1,7 +1,6 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 
 <?php
-session_start();
 $page = 'video';
 include 'admin header.php';
 require_once("../../Models/ProductModels/GetProductIdName.php");

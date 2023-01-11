@@ -116,6 +116,7 @@ window.alert("please enter username and password");
     } else {
 
       $_SESSION['admin'] = $this->usertype;
+        $_SESSION['user'] = $type;
     }
   }
   function getCount()

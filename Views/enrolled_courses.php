@@ -54,14 +54,14 @@ $gc = new GetProductDetails();
                                             <div class="bg-primary text-light p-1 rounded-1"><?php echo $p_details->getLevel(); ?></div>
                                             <i class="bi bi-bookmark"></i>
                                         </div>
-                                        <img src="<?php echo $p_details->getImage(); ?>" alt="" class="img-fluid">
+                                        <img src="Views/<?php echo $p_details->getImage(); ?>" alt="" class="img-fluid">
                                     </div>
                                     <i class="bi bi-star text-warning"></i>
                                     <i class="bi bi-star text-warning"></i>
                                     <i class="bi bi-star text-warning"></i>
                                     <i class="bi bi-star text-warning"></i>
                                     <i class="bi bi-star text-warning"></i>
-                                    <p class="fs-5"><a href="#"><?php echo $p_details->getProductName(); ?></a></p>
+                                    <p class="fs-5"><a href="course_review_page.php?course_id=<?php echo $p_details->getProductId(); ?>"><?php echo $p_details->getProductName(); ?></a></p>
                                     <p> <i class="bi bi-person"></i> <?php echo $p_details->getDuration(); ?></p>
                                     <p> <span class="rounded-circle p-1 bg-primary text-light"> NCC</span> by Ncc Engineering</p>
 
@@ -95,14 +95,14 @@ $gc = new GetProductDetails();
                                                 <div class="bg-primary text-light p-1 rounded-1"><?php echo $p_details->getLevel(); ?></div>
                                                 <i class="bi bi-bookmark"></i>
                                             </div>
-                                            <img src="<?php echo $p_details->getImage(); ?>" alt="" class="img-fluid">
+                                            <img src="Views/<?php echo $p_details->getImage();?>" alt="" class="img-fluid">
                                         </div>
                                         <i class="bi bi-star text-warning"></i>
                                         <i class="bi bi-star text-warning"></i>
                                         <i class="bi bi-star text-warning"></i>
                                         <i class="bi bi-star text-warning"></i>
                                         <i class="bi bi-star text-warning"></i>
-                                        <p class="fs-5"><a href="#"><?php echo $p_details->getProductName(); ?></a></p>
+                                        <p class="fs-5"><a href="course_review_page.php?course_id=<?php echo $p_details->getProductId();?>" ><?php echo $p_details->getProductName(); ?></a></p>
                                         <p> <i class="bi bi-person"></i> <?php echo $p_details->getDuration(); ?></p>
                                         <p> <span class="rounded-circle p-1 bg-primary text-light"> NCC</span> by Ncc Engineering</p>
 

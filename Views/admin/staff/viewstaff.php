@@ -61,8 +61,8 @@ $details = $td->getTeacherDetails();
                     <th class="px-3"><?php echo $det->getSubjectExpertise(); ?></th>
                     <th class="px-3"><?php echo $det->getNoOfExperienceLabel(); ?></th>
                     <th class="px-3"><a target="__blank" href="<?php echo $det->getCvLocation(); ?>"><?php echo  !empty($det->getCvLocation()) ? "download" : ""; ?></a></th>
-                    <th class="px-3"><?php echo $det->getActiveStatus(); ?></th>
-                    <th class="px-3"><?php echo $det->getType(); ?></th>
+                    <th class="px-3"><?php echo $td->getStatusName($det->getActiveStatus()); ?></th>
+                    <th class="px-3"><?php echo $td->getTypeUser($det->getType()); ?></th>
                     <th class="px-3"><?php echo $det->getUserName(); ?></th>
                     <th class="px-3"><?php echo $det->getPassword(); ?></th>
                     <th class="px-3"><?php echo $det->getRetireDate(); ?></th>

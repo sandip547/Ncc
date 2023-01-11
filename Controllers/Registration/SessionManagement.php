@@ -23,6 +23,13 @@ class SessionManagement{
             <?php
         }
     }
+    function checkLoginAgainSessionAdmin($username,$type){
+        if($username && $type){
+            ?>
+            <script> window.location.href="product.php"</script>;
+            <?php
+        }
+    }
 
     function checkIndexPage($username,$type){
         if($username && $type){

@@ -102,6 +102,9 @@ $sm->logOutSession(isset($_GET["logout"]));
               <li class="nav-item"><a href="index.php" class="nav-link mx-1 ml-5 pl-4 text-light">Home</a></li>
               <li class="nav-item"><a href="all_course.php" class="nav-link mx-1 text-light">All Courses</a></li>
               <li class="nav-item"><a href="blog.php" class="nav-link mx-1 text-light">Blog</a></li>
+                <?php
+                if(!$_SESSION['username']){
+                ?>
               <li class="nav-item dropdown">
                 <button type="button" id="menusdrop" class="nav-link dropdown-toggle text-light button px-0 py-2 m-0" data-target="#regis" aria-controls="regis" aria-label="Toggle menu" role="button" data-toggle="collapse" aria-expanded="false">
                   Registration
@@ -115,9 +118,13 @@ $sm->logOutSession(isset($_GET["logout"]));
                   </li>
                 </ul>
               </li>
+                <?php
+                }
+                ?>
+
               <li class="nav-item"><a href="about_us.php" class="nav-link mx-1 text-light">About Us</a></li>
-              <li class="nav-item"><a href="dashboard.php" class="nav-link mx-1 text-light active">Welcome</a></li>
-              <li class="nav-item"><a href="student_scholarship.php" class="nav-link mx-1 text-light">Student Scholarship</a></li>
+
+
               <li class="nav-item"><a href="cart.php" class="nav-link mx-1 text-light">My Cart</a></li>
               <li class="nav-item"><a href="logged_in_header.php?logout=1" class="nav-link mx-1 text-light" name="logout">Logout></i></a></li>
 

@@ -1,5 +1,4 @@
 <?php
-session_start();
 $page = 'payment';
 include 'admin header.php';
 $details = ['', '', '', '', '',];

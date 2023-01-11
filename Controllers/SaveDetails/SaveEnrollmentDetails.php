@@ -1,10 +1,12 @@
 <?php
-require_once("../../DatabaseConnection/DatabaseConnection.php");
-require_once("../../Models/Enrollment/Enrollment.php");
+//require_once("../../DatabaseConnection/DatabaseConnection.php");
+
 class SaveEnrollmentDetails{
     private $conn;
+    private $status;
     function __construct(){
         $this->conn = new DatabaseConnection();
+        $this->status = 2;
     }
 
     function getExpiryDateRes($code){
@@ -36,19 +38,44 @@ class SaveEnrollmentDetails{
 
     }
 
-    function saveEnrollment($se){
+    function getEnrollStudentCourseId($sid){
+        $query ="select courseid from enrollment where enrollmentid=?";
+        $result = $this->conn->executePrepareReturn($query,"i",array($sid));
+        return mysqli_fetch_row($result)[0];
+    }
 
-        $query = "insert into Enrollment(courseId,studentId,enrollDate,expiryDate,status) values(?,?,?,?,?)";
-        $this->conn->executePrepare($query,"iissi",array($se->getCourseId(),$se->getStudentId(),$se->getEnrollDate(),$se->getExpiryDate(),
-                                                               $se->getStatus()));
-       mysqli_close($this->conn->getConnection());
+    function saveEnrollment($se){
+        $check= false;
+        $query = "insert into Enrollment(courseId,studentId,status) values(?,?,?)";
+        if($this->conn->executePrepare($query,"iii",array($se->getCourseId(),$se->getStudentId(),
+                                                               $this->status))){
+            $check= true;
+        }
+
+        return $check;
+    }
+
+    function getStudentIdEnrollment($enid){
+        $query = "select studentId from enrollment where enrollmentid=?";
+        $result = $this->conn->executePrepareReturn($query,"i",array($enid));
+        return mysqli_fetch_row($result)[0];
+    }
+
+    function getEmailOfEnrolledUser($userid){
+        $query = "select email from student where studentid=?";
+        $result = $this->conn->executePrepareReturn($query,"i",array($userid));
+        return mysqli_fetch_row($result)[0];
     }
 
     function changeEnrollementStatus($st){
-
-        $query = "update Enrollment set status=? where courseId=? and studentId=?";
-        $this->conn->executePrepare($query,"iii",array($st->getStatus(),$st->getCourseId(),$st->getStudentId()));
-        mysqli_close($this->conn->getConnection());
+        $check = false;
+        $query = "update Enrollment set status=?,enrolldate=?,expirydate=?,updatedby=?,updatedate=? where enrollmentId=?";
+        if($this->conn->executePrepare($query,"issisi",array($st->getStatus(),date("y-m-d"),
+            $this->getExpiryDateRes($this->getEnrollmentValidityCode($this->getEnrollStudentCourseId($st->getEnrollmentId()))),
+            $st->getUpdatedBy(),$st->getUpdatedDate(),$st->getEnrollmentId()))){
+                $check = true;
+        }
+        return $check;
 
     }
 
@@ -58,6 +85,7 @@ class SaveEnrollmentDetails{
         $this->conn->executePrepare($query,"iii",array($st->getStatus(),$st->getCourseId(),$st->getStudentId()));
         $this->conn->close();
     }
+
 
 }
 //$se = new SaveEnrollmentDetails();

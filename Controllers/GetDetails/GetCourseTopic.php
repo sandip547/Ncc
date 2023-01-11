@@ -12,6 +12,19 @@ class GetCourseTopic
         $this->connection = new DatabaseConnection();
     }
 
+    public function getCourseTopicCount($courseId)
+    {
+        $query = "SELECT COUNT(courseId) as co FROM coursetopic WHERE courseId=?";
+        $result = $this->connection->executePrepareReturn($query,"i", array($courseId));
+        return mysqli_fetch_row($result)[0];
+    }
+
+    function getCourseTotalDuration($courseId){
+        $query = "SELECT  SEC_TO_TIME( SUM( TIME_TO_SEC( `duration` ) ) ) AS timeSum  
+        FROM coursetopic WHERE courseId=?";
+        $result = $this->connection->executePrepareReturn($query,"i", array($courseId));
+        return mysqli_fetch_row($result)[0];
+    }
     function getCourseTopics($id)
     {
         $query = "select * from coursetopic where courseid = '$id' ";
@@ -32,6 +45,17 @@ class GetCourseTopic
         }
         return $topicName;
     }
+
+    function getCourseTopicNameReview($courseid){
+        $query = "select topicid,topicName,duration from coursetopic where courseid = '$courseid'";
+        $result = $this->connection->executeQuery($query);
+        $topicReviewName = array();
+        while ($row = mysqli_fetch_array($result)){
+            array_push($topicReviewName,new GetTopicReview($row[0],$row[1],$row[2]));
+        }
+        return $topicReviewName;
+    }
+
     function getCourseNames(){
         $query = "select courseid,courseName from course";
         $result = $this->connection->executeQuery($query);

@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 $page = 'staff';
 include 'admin header.php';
 require_once("../../Models/Staff/StaffGet.php");

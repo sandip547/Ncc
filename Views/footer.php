@@ -7,9 +7,9 @@
             	<h5 class="text-primary fw-bold">Contact Us</h5>
             	<div class="block-23 mb-3">
 	              <ul>
-	                <li class="pt-3"><i class="icon icon-map-marker text-primary"></i><span>Sinamangal-9, GairigaunTinkuney, Kathmandu, Nepal</span></li>
+	                <li class="pt-3"><i class="icon icon-map-marker text-primary"></i><span> NayaBazar, Pokhara, Nepal</span></li>
 	                <li class="py-0 m-0"><a href="#"><i class="icon icon-phone text-primary"></i>9816969180</a></li>
-	                <li class="py-0 m-0"><a href="#"><i class="icon icon-envelope fill text-primary"></i>dspl.nepal20@gmail.com</a></li>
+	                <li class="py-0 m-0"><a href="#"><i class="icon icon-envelope fill text-primary"></i>nccengineering@gmail.com</a></li>
 	              </ul>
 	            </div>
               <ul class="ftco-footer-social list-unstyled float-md-left float-lft mt-5">
@@ -23,11 +23,11 @@
             <div class="mb-4">
               <h5 class="text-primary fw-bold">Quick Links</h5>
               <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">Home</a></li>
-                <li><a href="#" class="py-2 d-block">Blog</a></li>
-                <li><a href="#" class="py-2 d-block">Dashboard</a></li>
-                <li><a href="#" class="py-2 d-block">Instructor Registration</a></li>
-                <li><a href="#" class="py-2 d-block">My Account</a></li>
+                <li><a href="index" class="py-2 d-block">Home</a></li>
+                <li><a href="about_us" class="py-2 d-block">About Us</a></li>
+                <li><a href="all_course" class="py-2 d-block">All Courses</a></li>
+                <li><a href="blog" class="py-2 d-block">Blog</a></li>
+                <li><a href="student_registration" class="py-2 d-block">Student Registration</a></li>
               </ul>
             </div>
           </div>
@@ -47,7 +47,7 @@
              <div class="mb-4">
               <h5 class="text-primary fw-bold">About Us</h5>
               <ul class="list-unstyled">
-                <li><a href="#" class="py-2 d-block">Dynamic Solution</a></li>
+                <li><a href="#" class="py-2 d-block">NCC Engineering</a></li>
                 <li><a href="#" class="py-2 d-block">Terms and condition</a></li>
                 <li><a href="#" class="py-2 d-block">Privacy Policy</a></li>
               </ul>
@@ -61,7 +61,6 @@
         </div>
         <div class="row">
           <div class="col-md-12 text-center">
-            <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | Dynamic Solution Pvt Ltd.</p>
           </div>
         </div>
       </div>

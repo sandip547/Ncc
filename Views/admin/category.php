@@ -1,5 +1,4 @@
 <?php
-session_start();
 $page = 'category';
 include 'admin header.php';
 require_once ("../../Models/ProductModels/CategoryGet.php");

@@ -3,9 +3,9 @@ header("Cache-Control: no cache");
 require_once("../../DatabaseConnection/DatabaseConnection.php");
 require_once("../../Controllers/Registration/SessionManagement.php");
 require_once("../../DatabaseConnection/DatabaseConnection.php");
-$sm = new SessionManagement();
-$sm->checkLoginAgainSession(isset($_SESSION["username"]),isset($_SESSION["user"]));
-include 'headerlogin.php';
+require_once ("headerlogin.php");
+$sm->checkLoginAgainSessionAdmin(isset($_SESSION["admin"]),isset($_SESSION["user"]));
+
 require_once("../../Controllers/Authentication/Authentication.php");
 require_once("../../Models/RegistrationModels/Login.php");
 $auth = new Authentication();

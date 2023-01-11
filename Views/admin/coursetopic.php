@@ -2,7 +2,7 @@
 
 use Cassandra\Date;
 
-session_start();
+
 $page = 'coursetopic';
 include 'admin header.php';
 require_once("../../Models/ProductModels/GetProductIdName.php");

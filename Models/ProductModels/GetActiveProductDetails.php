@@ -1,5 +1,6 @@
 <?php
 class GetActiveProductDetails{
+    private $product_id;
     private $product_name;
     private $level;
     private $image;
@@ -15,14 +16,35 @@ class GetActiveProductDetails{
      * @param $price
      * @param $enrollment_validity
      */
-    public function __construct($product_name, $level, $image, $duration, $price, $enrollment_validity)
+    public function __construct($product_id,$product_name, $level, $image, $duration, $price, $enrollment_validity)
     {
+        $this->product_id = $product_id;
+        $this->product_name = $product_name;
+        $this->level = $level;
+        $this->image = $image;
+        $this->duration = $duration;
         $this->product_name = $product_name;
         $this->level = $level;
         $this->image = $image;
         $this->duration = $duration;
         $this->price = $price;
         $this->enrollment_validity = $enrollment_validity;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getProductId()
+    {
+        return $this->product_id;
+    }
+
+    /**
+     * @param mixed $product_id
+     */
+    public function setProductId($product_id)
+    {
+        $this->product_id = $product_id;
     }
 
     /**

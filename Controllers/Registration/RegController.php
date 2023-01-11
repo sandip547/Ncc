@@ -60,21 +60,24 @@ class RegController
 
     function insertUserDetails($studentuser)
     {
+        $check = false;
         $fullname = $studentuser->getTsUser()->getFullName();
-
         $query = "insert into student(fullname,dob,email,gender,username,password,mobileNo,address,registrationdate,activestatus) values(?,?,?,?,?,?,?,?,?,?)";
-        $result = $this->connection->executePrepare($query, "sssisssssi", array(
+        if($result = $this->connection->executePrepare($query, "sssisssssi", array(
             $fullname, $studentuser->getTsUser()->getDob(), $studentuser->getTsUser()->getEmail(),
             $studentuser->getTsUser()->getGender(), $studentuser->getTsUser()->getUsername(),
             $this->encrypt->encrypt($studentuser->getTsUser()->getPassword()), $studentuser->getTsUser()->getMob(),
             $studentuser->getTsUser()->getAddresses(), $studentuser->getRegistrationDate(),
             $studentuser->getTsUser()->getActiveStatus()
-        ));
+        ))){
+            $check=true;
+        }
         mysqli_close($this->connection->getConnection());
         if (!$result) {
             echo "please provide other username";
         } else {
         }
+        return $check;
     }
 
     function updateUserDetails($studentuser)

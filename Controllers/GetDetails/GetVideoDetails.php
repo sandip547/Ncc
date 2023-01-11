@@ -16,6 +16,11 @@ coursetopic WHERE coursetopic.topicId=videos.topicId and coursetopic.courseId=?"
         $result = $this->connection->executePrepareReturn($query, "i", array($courseId));
 
     }
+    function getVideoReview($topicId){
+        $query = "SELECT topicId,link,detail FROM `videos` WHERE topicid=?";
+        $result = $this->connection->executePrepareReturn($query, "i", array($topicId));
+        return mysqli_fetch_row($result);
+    }
 
     function getVideoDetails($ci)
     {

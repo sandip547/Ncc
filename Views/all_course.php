@@ -5,11 +5,25 @@ require_once("../Models/ProductModels/ProductDisplay.php");
 require_once("../DatabaseConnection/DatabaseConnection.php");
 $gp = new GetProductDetails();
 $res =$gp->getProductDisplayDetails();
-if(isset($_GET["addtocart"])){
 
-}
 
 ?>
+    <script>
+        function getSearchTopic(course_name)
+        {
+
+            var html = $.ajax({
+                type: "POST",
+                url: "GetSearchResult.php",
+                data: "course_name="+course_name ,
+                async: false
+            }).responseText;
+            if(html){
+                $("#search_name").html(html).show();
+            }
+        }
+
+    </script>
 <!-- All course page -->
 <div class="col-md-10 m-auto">
     <div class="d-flex flex-wrap">
@@ -17,9 +31,10 @@ if(isset($_GET["addtocart"])){
             <div class="row">
                 <div class="input-group pr-5 py-5">
                     <!-- <div class="form-outline"> -->
-                    <input type="search" id="form1" class="form-control" />
-                    <!-- <label class="form-label" for="form1">Search</label> -->
-                    <!-- </div> -->
+                    <input type="search" onchange="getSearchTopic(this.value)" name="course_name" id="course_name" class="form-control" />
+            <div style="position:relative;" id="search_name">
+
+            </div>
                     <button type="button" class="bg-primary text-light px-3" style="border: none;">
                         <i class="bi bi-search"></i>
                     </button>
@@ -97,7 +112,7 @@ if(isset($_GET["addtocart"])){
                     </select>
                 </div>
                 <div>
-                    15 courses
+                    <?php echo $gp->getCourseCount();?> courses
                 </div>
             </div>
             <hr class="bg-primary" />
@@ -114,13 +129,9 @@ if(isset($_GET["addtocart"])){
                                 <div class="bg-primary text-light p-1 rounded-1"><?php echo $product->getLevel();  ?></div>
                                 <i class="bi bi-bookmark"></i>
                             </div>
-                            <img src="<?php echo $product->getImage(); ?>" alt="" class="img-fluid">
+                            <img src="Views/<?php echo $product->getImage(); ?>" alt="" class="img-fluid" height="250px">
                         </div>
-                        <i class="bi bi-star text-warning"></i>
-                        <i class="bi bi-star text-warning"></i>
-                        <i class="bi bi-star text-warning"></i>
-                        <i class="bi bi-star text-warning"></i>
-                        <i class="bi bi-star text-warning"></i>
+
                         <p class="fs-5"><a href="course_review_page.php?course_id=<?php echo $product->getProductId(); ?>"><?php echo $product->getProductName();?></a></p>
                         <p> <i class="bi bi-person"></i> <?php echo $product->getDuration();?> <i class="bi bi-clock"></i> 18h</p>
 
@@ -128,7 +139,7 @@ if(isset($_GET["addtocart"])){
                         <hr class="bg-primary" />
                         <div class="fw-bold d-flex justify-content-between">
                             <div>NPR <?php echo $product->getPrice(); ?></div>
-                            <div> <a href=""><i class="bi bi-cart3"></i> Enroll</a></div>
+                            <div> <a href="cart.php?course_id=<?php echo $product->getProductId(); ?>&course_name=<?php echo $product->getProductName();?>&course_price=<?php echo $product->getPrice(); ?>"<i class="bi bi-cart3"></i> Enroll</a></div>
                         </div>
                     </div>
                 </div>
@@ -161,52 +172,7 @@ if(isset($_GET["addtocart"])){
   </nav>
         </div>
     </div>
-    <div>
-        <p class="text-center mt-4 fs-1 text-blue-shade"> Membership </p>
-    </div>
-    <div>
-        <div class="row d-flex flex-wrap justify-content-center align-items-center text-center">
-            <div class="col-lg-6 col-md-6 col-sm-10 my-3 ftco-animate">
-                <div class="bg-primary text-light text-center p-1">
-                    <!-- <div class=""> -->
-                    <h3 class="text-light">6 Monthly Membership</h3>
-                    Best plan for you
-                    <!-- </div> -->
-                </div>
-                <div class="d-flex justify-content-center bg-warning">
-                    <div class="bg-white rounded-circle m-2" style="width: 50px; height: 50px;">
-                        <i class="bi bi-star" style="color: black; font-size: 28px;"></i>
-                    </div>
-                </div>
-                <div class="mt-3">
-                    <p style="font-family:'Taviraj';"><span style="font-size: 18px; color: #535967;">Npr</span> <span style="font-size: 32px; color: #535967;">35000 </span> <span style="font-size: 20px; color: black;"><sub>/ 6 Month</sub></span></p>
-                    <p> <i class="bi bi-check text-success"></i> 6 month membership</p>
-                    <p><i class="bi bi-check text-success"></i> Access to all Courses</p>
-                    <p><i class="bi bi-check text-success"></i> Live course and New Course</p>
-                    <button class="btn btn-primary mt-3 px-5 py-3">Buy Now</button>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-6 col-sm-10 my-3 ftco-animate">
-                <div class="bg-primary text-light text-center p-1">
-                    <!-- <div class=""> -->
-                    <h3 class="text-light">1 Year Membership</h3>
-                    Best plan for you
-                    <!-- </div> -->
-                </div>
-                <div class="d-flex justify-content-center bg-warning">
-                    <div class="bg-white rounded-circle m-2" style="width: 50px; height: 50px;">
-                        <i class="bi bi-star" style="color: black; font-size: 28px;"></i>
-                    </div>
-                </div>
-                <div class="mt-3">
-                    <p style="font-family:'Taviraj';"><span style="font-size: 18px; color: #535967;">Npr</span> <span style="font-size: 32px; color: #535967;">50000 </span> <span style="font-size: 20px; color: black;"><sub>/ 1 Year</sub></span></p>
-                    <p> <i class="bi bi-check text-success"></i> One Year membership</p>
-                    <p><i class="bi bi-check text-success"></i> Access to all Courses</p>
-                    <p><i class="bi bi-check text-success"></i> Live course and New Course</p>
-                    <button class="btn btn-primary mt-3 px-5 py-3 ">Buy Now</button>
-                </div>
-            </div>
-        </div>
+
 
         <div class="text-center mt-5">
             <p style="color: #535967; font-size:24px;">Words of People who learned

@@ -64,22 +64,28 @@ $sm->logOutSession(isset($_GET["logout"]));
                             <li class="nav-item"><a href="index.php" class="nav-link mx-1 text-light">Home</a></li>
                             <li class="nav-item"><a href="all_course.php" class="nav-link mx-1 text-light">All Courses</a></li>
                             <li class="nav-item"><a href="blog.php" class="nav-link mx-1 text-light">Blog</a></li>
-                            <li class="nav-item dropdown">
-                                <button type="button" id="menusdrop" class="nav-link dropdown-toggle text-light button px-0 py-2 m-0" data-target="#regis" aria-controls="regis" aria-label="Toggle menu" role="button" data-toggle="collapse" aria-expanded="false">
-                                    Registration
-                                </button>
-                                <ul class="nav dropdown-menu m-0 p-0 px-1 bg-light collapse" id="regis">
-                                    <li class="nav-item w-100">
-                                        <a class="nav-link fontul" href="teacher_registration.php">Teacher Registration</a>
-                                    </li>
-                                    <li class="nav-item w-100">
-                                        <a class="nav-link fontul" href="student_registration.php">Student Registration</a>
-                                    </li>
-                                </ul>
-                            </li>
+                            <?php
+                            if(!isset($_SESSION['username'])){
+                                ?>
+                                <li class="nav-item dropdown">
+                                    <button type="button" id="menusdrop" class="nav-link dropdown-toggle text-light button px-0 py-2 m-0" data-target="#regis" aria-controls="regis" aria-label="Toggle menu" role="button" data-toggle="collapse" aria-expanded="false">
+                                        Registration
+                                    </button>
+                                    <ul class="nav dropdown-menu m-0 p-0 px-1 bg-light collapse" id="regis">
+                                        <li class="nav-item w-100">
+                                            <a class="nav-link fontul" href="teacher_registration.php">Teacher Registration</a>
+                                        </li>
+                                        <li class="nav-item w-100">
+                                            <a class="nav-link fontul" href="student_registration.php">Student Registration</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <?php
+                            }
+                            ?>
                             <?php $sm->checkLoginHeader(isset($_SESSION["username"]),isset($_SESSION["user"]));?>
                             <li class="nav-item"><a href="about_us.php" class="nav-link mx-1 text-light">About Us</a></li>
-                            <li class="nav-item"><a href="student_scholarship.php" class="nav-link mx-1 text-light">Student Scholarship</a></li>
+
                             <li class="nav-item"><a href="cart.php" class="nav-link mx-1 text-light">My Cart</a></li>
 
                             <?php $sm->checkLogoutButton(isset($_SESSION["username"]),isset($_SESSION["user"]));?>
