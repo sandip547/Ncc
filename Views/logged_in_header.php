@@ -8,12 +8,16 @@ require_once("../Controllers/GetDetails/GetStudentDetails.php");
 require_once("../Controllers/GetDetails/GetEnrollmentDetails.php");
 require_once("../Models/RegistrationModels/GetStudentUsername.php");
 require_once("../Controllers/GetDetails/GetProductDetails.php");
+require_once ('../Controllers/SaveDetails/SaveProduct.php');
+$reg = new SaveProduct();
 $sm = new SessionManagement();
 $sm->sessionStart();
 $sm->checkLoginSession(isset($_SESSION["username"]),isset($_SESSION["user"]));
 $sm->logOutSession(isset($_GET["logout"]));
+$gsd = new GetStudentDetails();
 
 ?>
+
 <!-- Header to be used when user is logged in -->
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +26,7 @@ $sm->logOutSession(isset($_GET["logout"]));
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>NCC Engineering</title>
   <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 
   <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css?<?php echo time(); ?>">
@@ -48,12 +52,31 @@ $sm->logOutSession(isset($_GET["logout"]));
   <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css?<?php echo time(); ?>">
   <link rel="stylesheet" href="css/dashboard.css?<?php echo time(); ?>">
   <link rel="stylesheet" href="css/profile.css?<?php echo time(); ?>">
-
+    <script src="js/jquery.min.js?<?php echo time(); ?>"></script>
   <style>
 
   </style>
 </head>
-
+<script>
+    $(document).ready(function() {
+        $('#profileimage').change(function(){
+            var file_data = $('#profileimage').prop('files')[0];
+            var form_data = new FormData();
+            form_data.append('file', file_data);
+            $.ajax({
+                url: "profileimagesave.php",
+                type: "POST",
+                data: form_data,
+                contentType: false,
+                cache: false,
+                processData:false,
+                success: function(data){
+                    console.log(data);
+                }
+            });
+        });
+    });
+</script>
 <body>
 
   <div>
@@ -99,9 +122,9 @@ $sm->logOutSession(isset($_GET["logout"]));
                   </li>
                 </ul>
               </li>
-              <li class="nav-item"><a href="index.php" class="nav-link mx-1 ml-5 pl-4 text-light">Home</a></li>
-              <li class="nav-item"><a href="all_course.php" class="nav-link mx-1 text-light">All Courses</a></li>
-              <li class="nav-item"><a href="blog.php" class="nav-link mx-1 text-light">Blog</a></li>
+              <li class="nav-item"><a href="index" class="nav-link mx-1 ml-5 pl-4 text-light">Home</a></li>
+              <li class="nav-item"><a href="all_course" class="nav-link mx-1 text-light">All Courses</a></li>
+              <li class="nav-item"><a href="blog" class="nav-link mx-1 text-light">Blog</a></li>
                 <?php
                 if(!$_SESSION['username']){
                 ?>
@@ -111,10 +134,10 @@ $sm->logOutSession(isset($_GET["logout"]));
                 </button>
                 <ul class="nav dropdown-menu m-0 p-0 px-1 bg-light collapse" id="regis">
                   <li class="nav-item w-100">
-                    <a class="nav-link fontul" href="teacher_registration.php">Teacher Registration</a>
+                    <a class="nav-link fontul" href="teacher_registration">Teacher Registration</a>
                   </li>
                   <li class="nav-item w-100">
-                    <a class="nav-link fontul" href="student_registration.php">Student Registration</a>
+                    <a class="nav-link fontul" href="student_registration">Student Registration</a>
                   </li>
                 </ul>
               </li>
@@ -125,8 +148,8 @@ $sm->logOutSession(isset($_GET["logout"]));
               <li class="nav-item"><a href="about_us.php" class="nav-link mx-1 text-light">About Us</a></li>
 
 
-              <li class="nav-item"><a href="cart.php" class="nav-link mx-1 text-light">My Cart</a></li>
-              <li class="nav-item"><a href="logged_in_header.php?logout=1" class="nav-link mx-1 text-light" name="logout">Logout></i></a></li>
+              <li class="nav-item"><a href="cart" class="nav-link mx-1 text-light">My Cart</a></li>
+              <li class="nav-item"><a href="logged_in_header?logout=1" class="nav-link mx-1 text-light" name="logout">Logout></i></a></li>
 
             </ul>
           </div>
@@ -197,12 +220,37 @@ $sm->logOutSession(isset($_GET["logout"]));
         <div class="flex-wrap col-md-10 d-flex align-items-center justify-content-between course-info" id="user-info">
           <div class="flex-wrap d-flex align-items-center">
             <div>
-              <img class="rounded-circle mb-1" src="images/profile.jpg" width="150px" height="150px" alt="User Image">
+
+                <?php
+                $imgval = $reg->getProfileImage($_SESSION['username']);
+                if($gsd->getGender($_SESSION['username'])==1 && $imgval==NULL){
+                    ?>
+                    <img class="rounded-circle mb-1" src="images/Male.png" width="150px" height="150px" alt="User Image">
+                <?php
+                }elseif($gsd->getGender($_SESSION['username'])==2 && $imgval==NULL){
+                    ?>
+                    <img class="rounded-circle mb-1" src="images/Female.png" width="150px" height="150px" alt="User Image">
+                <?php
+                } elseif($imgval!=NULL){
+                    ?>
+                    <img class="rounded-circle mb-1" src="<?php echo $reg->getProfileImage($_SESSION['username']);?>" width="150px" height="150px" alt="User Image">
+                <?php
+                }
+                ?>
+                <br>
+                <?php
+                if($imgval== NULL){
+                ?>
+                    <input type="file" name="profileimage" id="profileimage">
+                <?php
+                }
+                ?>
             </div>
             <div>
-              <p class="h5 font-weight-bold mx-3"><?php if(isset($_SESSION["username"])){echo $_SESSION["username"];} ?></p>
+                <p class="h5 font-weight-bold mx-3"><?php if(isset($_SESSION["username"])){echo $_SESSION["username"];} ?></p>
             </div>
           </div>
+
           <a href="teacher_registration.php" class="text-light px-3 py-2 borderstyle bg-primary" id="be-a-teacher"><i class="bi bi-person-fill">&nbsp; </i>BECOME AN INSTRUCTOR</a>
 
         </div>

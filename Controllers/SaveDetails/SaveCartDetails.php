@@ -64,7 +64,7 @@ class SaveCartDetails
 
         $ct = new CalculateTotal();
         $count = 0;
-        print_r($_SESSION['listelements']);
+
         foreach ($_SESSION["listelements"] as $element) {
             if($element->getProductId() == $id) {
                 unset($_SESSION['listelements'][$count ]);
@@ -73,13 +73,15 @@ class SaveCartDetails
             $count= $count + 1;
         }
         $_SESSION['listelements'] = array_values($_SESSION['listelements']);
-        print_r($_SESSION['listelements']);
         $_SESSION['count'] = $_SESSION['count'] -1;
         #remove decrease the value of all total also
-        if($_SESSION['count'] >= 0){
+        if($_SESSION['count'] > 0){
+
+            $ct->cTotal();
+        }
+        else{
             $_SESSION['count'] = 0;
             $_SESSION['allTotal'] = 0;
-            $ct->cTotal();
         }
 
         ?>

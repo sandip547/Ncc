@@ -17,7 +17,7 @@ class CalculateTotal
                 $quan = 1;
                 $value = $ci->addToCart($price, 1);
                 $alltotal = $alltotal + $value;
-                echo $alltotal."he";
+
 
             }
             $_SESSION['allTotal'] = $alltotal;

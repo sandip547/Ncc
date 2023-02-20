@@ -34,7 +34,12 @@ class GetStudentDetails
         }
         return $status_name;
     }
-
+    function getGender($username){
+        $query = "select gender from student where username=?";
+        $result = $this->connection->executePrepareReturn($query, "s", array($username));
+        $row = mysqli_fetch_row($result);
+        return $row[0];
+    }
     function getStudentIdOn($username)
     {
         $query = "select studentId from student where username=?";
@@ -43,6 +48,15 @@ class GetStudentDetails
         return $row[0];
     }
 
+    function getEnrolldedStudentEmail($courseId){
+        $query = "select s.email from student s inner join enrollment e on s.studentId=e.studentId WHERE courseid=? and e.status=1";
+        $result = $this->connection->executePrepare($query,"i", $courseId);
+        $emails = array();
+        while ($row = mysqli_fetch_array($result)){
+            array_push($emails, $row[0]);
+        }
+        return $emails;
+    }
     function getStudentDetails()
     {
         $query = "select studentId,fullName,dob,email,gender,userName,mobileNo,address,registrationDate,activeStatus,lastLogin from student";

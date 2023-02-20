@@ -66,7 +66,12 @@ class GetCourseTopic
 
         return $courseName;
     }
+    function  getTopicCount($courseid){
+        $query ="SELECT COUNT(course.courseId) from course INNER JOIN coursetopic on coursetopic.courseId=course.courseId where course.courseId=?";
+        $result = $this->connection->executePrepareReturn($query,"i",array($courseid));
+        return mysqli_fetch_row($result)[0];
 
+    }
     function getCourseNamesTopicId(){
         $query = "select distinct courseid from course";
         $result = $this->connection->executeQuery($query);

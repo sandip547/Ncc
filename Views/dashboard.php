@@ -3,6 +3,8 @@
 header("Cache-Control: no cache");
 include 'logged_in_header.php';
 $ec = new GetEnrollmentDetails();
+
+
 ?>
 
 <!-- User Dashboard -->

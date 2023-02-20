@@ -9,6 +9,23 @@ class GetVideoDetailsCourse
         $this->connection = new DatabaseConnection();
     }
 
+    function getEncodedUrl($link){
+        $api_url = "https://api-ssl.bitly.com/v4/bitlinks";
+        $token = "a5cb9d5869bf5d0b18decdb3c3ca114381ffcc49";
+        $long_url = "$link";
+
+        $ch = curl_init($api_url);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode(["long_url" => $long_url]));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+            "Authorization: Bearer $token",
+            "Content-Type: application/json"
+        ]);
+
+        $arr_result = json_decode(curl_exec($ch));
+        return $arr_result->link;
+    }
+
     function getTopicId($courseId)
     {
         $query = "SELECT videos.videoId,videos.topicId,videos.srNo,videos.link,videos.detail FROM `videos` INNER JOIN

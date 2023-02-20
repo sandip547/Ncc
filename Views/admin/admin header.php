@@ -135,6 +135,12 @@ $sm->checkLoginSession(isset($_SESSION["admin"]), isset($_SESSION["type"]));
                                 aria-selected="true"><i class="bi bi-camera-reels-fill"> &nbsp; &nbsp;</i>Video</a>
                         </li>
                         <li class="nav-item">
+                            <a class="<?php if ($page == 'enrolledStudentList') {
+                                echo 'active';
+                            } ?> nav-link custom-tab textsss" href="enrolledStudentList.php" aria-controls="enrollist"
+                               aria-selected="true"><i class="bi bi-mortarboard-fill"> &nbsp; &nbsp;</i>Enrolled Student List</a>
+                        </li>
+                        <li class="nav-item">
 
                         <li class="nav-item">
                             <a class="nav-link custom-tab textsss" href="product.php?logout=1" aria-selected="true"><i

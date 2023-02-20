@@ -22,7 +22,7 @@ if(isset($_GET["sendEnrollment"])){
             $check = true;
         }
     else{
-        $notify->alertRegistrationSuccess("Enrollment","Your Enrollment is not successful");
+        $notify->alertRegistrationSuccess("Enrollment","Your Enrollment is not successful Please check if you are already enrolled in this course");
     }
 
     }

@@ -1,5 +1,5 @@
 <?php
-require_once("../../DatabaseConnection/DatabaseConnection.php");
+//require_once("../../DatabaseConnection/DatabaseConnection.php");
 // require_once("../../Models/ProductModels/Product.php");
 // require_once("../../Models/ProductModels/ProductGet.php");
 // require_once("../../Models/ProductModels/ProductTopic.php");
@@ -23,6 +23,24 @@ class SaveProduct
     {
         $query = "SELECT courseId FROM course WHERE courseName = ?";
         $result = $this->connection->executePrepareReturn($query, "s", array($product_name));
+        return mysqli_fetch_row($result)[0];
+    }
+
+    function saveProfileImage($profile_image){
+
+        $target_dir = "profileimages/";
+
+        $target_file = $target_dir.$profile_image->getProfileImage();
+        $uploadOk = move_uploaded_file($_FILES['file']['tmp_name'], $target_file);
+        if($uploadOk){
+            $query = "update student set profile_image = ? where username=?";
+            $this->connection->executePrepareReturn($query, "ss",array($target_file,$profile_image->getStudentId()));
+        }
+    }
+
+    function getProfileImage($username){
+        $query = "select profile_image from student where username=?";
+        $result = $this->connection->executePrepareReturn($query, "s", array($username));
         return mysqli_fetch_row($result)[0];
     }
 

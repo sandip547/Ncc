@@ -55,6 +55,16 @@ class SaveEnrollmentDetails{
         return $check;
     }
 
+    function changeEnrollmentDateNull($studentId,$courseId){
+
+        $query = "update enrollment set enrollDate=?,expiryDate=?,status=? where studentId=? and courseId=?";
+        $querydelete = "delete from enrollment where studentId=? and courseId=?";
+        $this->conn->executePrepare($querydelete,"ii",array($studentId,(int)$courseId));
+        //$this->conn->executePrepare($query,"ssiii",array("0000-00-00 00:00:00","0000-00-00 00:00:00",3,$studentId,(int)$courseId));
+
+
+    }
+
     function getStudentIdEnrollment($enid){
         $query = "select studentId from enrollment where enrollmentid=?";
         $result = $this->conn->executePrepareReturn($query,"i",array($enid));

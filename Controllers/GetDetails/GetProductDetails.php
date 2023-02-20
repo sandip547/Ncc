@@ -89,6 +89,7 @@ class GetProductDetails
         }
         return $level_name;
     }
+
     function getEnrollmentValidityName($level){
         $level_name = "";
         if ($level == 0) {
@@ -128,6 +129,16 @@ class GetProductDetails
             array_push($product_display, new ProductDisplay($row[0],$row[1], $this->getLevel($row[2]), $row[3], $row[4], $row[5]));
         }
         return $product_display;
+    }
+    function getEnrollmentDays($id,$courseId){
+        $sql = $sql = "select enrolldate,expiryDate from enrollment where studentId = '$id' and courseid='$courseId' ";
+        $res = $this->connection->executeQuery($sql);
+        $datedif = mysqli_fetch_row($res);
+        $date = date("Y-m-d h:i:s");
+        $sqldays = "SELECT DATEDIFF('$datedif[1]','$date')";
+        $datediffres = $this->connection->executeQuery($sqldays);
+
+        return mysqli_fetch_row($datediffres)[0];
     }
 
     function getActiveProductDetailsId($username){

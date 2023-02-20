@@ -8,6 +8,15 @@ class GetEnrollmentDetails{
         $this->conn = new DatabaseConnection();
 
     }
+    function getEnrolledStudentEmailList($course_id){
+        $query = "select student.studentId,student.fullName,student.email from student inner JOIN enrollment on student.studentId=enrollment.studentId WHERE enrollment.courseId=? and enrollment.status = 1";
+        $result = $this->conn->executePrepareReturn($query,"i",array($course_id));
+        $emaillist = array();
+        while($row = mysqli_fetch_array($result)){
+            array_push($emaillist, new GetEnrolledStudentEmail($row[0],$row[1],$row[2]));
+        }
+        return $emaillist;
+    }
     function getStudentIdEnrollment($username){
         $sql = "SELECT studentid FROM student WHERE username=?";
         $result = $this->conn->executePrepareReturn($sql,"s",array($username));
@@ -87,6 +96,7 @@ class GetEnrollmentDetails{
         $result = $this->conn->executePrepareReturn($query, "i", array($student_id));
         return mysqli_fetch_row($result)[0];
     }
+
 
     function getFullEnrollmentDetails($enroll){
         $query = "SELECT * FROM enrollment where studentId = ? Order by enrollDate Desc ";

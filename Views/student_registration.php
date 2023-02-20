@@ -1,5 +1,22 @@
+
 <?php
-include 'header.php';
+include 'header.php';?>
+<script>
+    function getPasswordStrength(password)
+    {
+        var html = $.ajax({
+            type: "POST",
+            url: "passwordStrengthChecker.php",
+            data: "password="+password ,
+            async: false
+        }).responseText;
+        if(html){
+            $("#passcheck").html(html);
+        }
+    }
+
+</script>
+<?php
 require_once("../Controllers/Registration/RegController.php");
 require_once("../Models/RegistrationModels/StudentUser.php");
 require_once("../Models/RegistrationModels/CheckUsername.php");
@@ -16,17 +33,21 @@ if(isset($_POST["register"])){
 
     if($rc->checkPassword($_POST["password"],$_POST['cpassword'])){
         $notify = new Notification();
-    if($rc->insertUserDetails(new StudentUser($_POST["firstname"]." ".$_POST["lastname"], $_POST["dob"], $_POST["email"], $_POST["gender"],
-        $_POST["username"], $_POST["password"], $_POST["mobilenumber"], $_POST["address"],
-        date("Y-m-d h:i:s")))){
-        $sm = new SendMail();
-        $sm->sendEnrolledSuccessEmail("Registration Successfull","",$_POST["email"]);
-        $notify->redirectLoginPage();
-        $notify->alertRegistrationSuccess();
-    }
-    else{
-        $notify->alertNotSuccess();
-    }
+
+        if ($rc->insertUserDetails(new StudentUser($_POST["firstname"] . " " . $_POST["lastname"], $_POST["dob"], $_POST["email"], $_POST["gender"],
+            $_POST["username"], $_POST["password"], $_POST["mobilenumber"], $_POST["address"],
+            date("Y-m-d h:i:s")))) {
+            $sm = new SendMail();
+            $sm->sendEnrolledSuccessEmail("Registration Successfull", "", $_POST["email"]);
+            $notify->redirectLoginPage();
+            $notify->alertRegistrationSuccess();
+        }
+        else{
+            $notify->alertNotSuccess("Registration not successful");
+        }
+
+
+
 
 
     }
@@ -79,7 +100,10 @@ if(isset($_POST["register"])){
         </div>
       <div class="col-md-6 my-3">
           <label for="password" class="form-label text-blue-shade">Password</label>
-          <input type="password" class="form-control inputcolor" placeholder="Password" id="password" name="password" aria-label="Password" required>
+          <input type="password" onchange="getPasswordStrength(this.value)" class="form-control inputcolor" placeholder="Password" id="password" name="password" aria-label="Password" required>
+          <div id="passcheck">
+
+          </div>
       </div>
       <div class="col-md-6 my-3">
           <label for="confirmpassword" class="form-label text-blue-shade">Password Confirmation</label>

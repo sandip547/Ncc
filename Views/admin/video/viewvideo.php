@@ -5,7 +5,10 @@ $pd = new GetProductDetails();
 $details = $ct->getCourseNamesTopicId();
 ?>
 <div class="table-responsive my-5">
-    <?php foreach ($details as $det) { ?>
+    <?php foreach ($details as $det) {
+
+        ?>
+
     <table class="table table-bordered table-hover table-sm text-normal">
         <thead class="thead-light">
 

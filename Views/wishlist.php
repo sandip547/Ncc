@@ -11,6 +11,10 @@ $logged = true;
 <div class="text-justify p-0 m-0 tab-pane active course-info" id="dashboard" role="tabpanel" aria-labelledby="dashboard-tab">
 
 <p class="h5 text-dark font-weight-bold">My Wishlist</p>
+    <hr class="bg-primary"/>
+    <!-- <div class="row d-flex">
+    </div> -->
+    <p class="h6 text-dark ">No Wishlist</p>
     <!-- Wishlist page
     <hr class="bg-primary"/>
   <div class="col-md-10">

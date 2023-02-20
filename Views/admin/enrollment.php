@@ -1,6 +1,6 @@
 <?php
 
-$page = 'payment';
+$page = 'enrollment';
 include 'admin header.php';
 require_once ("../../Models/Enrollment/GetStudentIdName.php");
 require_once ("../../Models/Enrollment/ChangeEnrollmentStatus.php");
@@ -194,6 +194,8 @@ if(isset($_POST["updateEnrollment"])){
             }
                 ?>
         </div>
+
+
     </div>
 
     </main>

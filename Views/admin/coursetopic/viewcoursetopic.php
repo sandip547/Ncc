@@ -8,7 +8,11 @@ $details = $ct->getCourseNamesTopicId();
 
 <p class="h5 text-dark font-weight-bold">Course Topics</p>
 <div class="table-responsive my-5">
-    <?php foreach ($details as $det) { ?>
+    <?php foreach ($details as $det) {
+        if($ct->getTopicCount($det)>0){
+
+        ?>
+
     <table class="table table-bordered table-hover table-sm text-normal">
         <thead class="thead-light">
             <tr class="text-center">
@@ -76,6 +80,7 @@ $details = $ct->getCourseNamesTopicId();
         </tbody>
     </table>
         <?php
+        }
     }
     ?>
 </div>

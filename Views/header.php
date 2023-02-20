@@ -15,7 +15,7 @@ $sm->logOutSession(isset($_GET["logout"]));
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>NCC Engineering</title>
     <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800,900" rel="stylesheet">
 
     <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css?<?php echo time(); ?>">
@@ -61,9 +61,9 @@ $sm->logOutSession(isset($_GET["logout"]));
                     </button>
                     <div class="collapse navbar-collapse" id="ftco-navs">
                         <ul class="nav navbar-nav ml-auto">
-                            <li class="nav-item"><a href="index.php" class="nav-link mx-1 text-light">Home</a></li>
-                            <li class="nav-item"><a href="all_course.php" class="nav-link mx-1 text-light">All Courses</a></li>
-                            <li class="nav-item"><a href="blog.php" class="nav-link mx-1 text-light">Blog</a></li>
+                            <li class="nav-item"><a href="index" class="nav-link mx-1 text-light">Home</a></li>
+                            <li class="nav-item"><a href="all_course" class="nav-link mx-1 text-light">All Courses</a></li>
+                            <li class="nav-item"><a href="blog" class="nav-link mx-1 text-light">Blog</a></li>
                             <?php
                             if(!isset($_SESSION['username'])){
                                 ?>
@@ -73,10 +73,10 @@ $sm->logOutSession(isset($_GET["logout"]));
                                     </button>
                                     <ul class="nav dropdown-menu m-0 p-0 px-1 bg-light collapse" id="regis">
                                         <li class="nav-item w-100">
-                                            <a class="nav-link fontul" href="teacher_registration.php">Teacher Registration</a>
+                                            <a class="nav-link fontul" href="teacher_registration">Teacher Registration</a>
                                         </li>
                                         <li class="nav-item w-100">
-                                            <a class="nav-link fontul" href="student_registration.php">Student Registration</a>
+                                            <a class="nav-link fontul" href="student_registration">Student Registration</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -84,9 +84,9 @@ $sm->logOutSession(isset($_GET["logout"]));
                             }
                             ?>
                             <?php $sm->checkLoginHeader(isset($_SESSION["username"]),isset($_SESSION["user"]));?>
-                            <li class="nav-item"><a href="about_us.php" class="nav-link mx-1 text-light">About Us</a></li>
+                            <li class="nav-item"><a href="about_us" class="nav-link mx-1 text-light">About Us</a></li>
 
-                            <li class="nav-item"><a href="cart.php" class="nav-link mx-1 text-light">My Cart</a></li>
+                            <li class="nav-item"><a href="cart" class="nav-link mx-1 text-light">My Cart</a></li>
 
                             <?php $sm->checkLogoutButton(isset($_SESSION["username"]),isset($_SESSION["user"]));?>
 

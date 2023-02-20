@@ -6,7 +6,6 @@ include 'header.php';
 $sm = new SessionManagement();
 $sm->checkLoginSession(isset($_SESSION["username"]),isset($_SESSION["user"]));
 $sc = new SaveCartDetails();
-echo $_SESSION['count'];
 if(isset($_REQUEST['code'])){
     $sc->removeElemetFromCart($_REQUEST['code']);
 }
@@ -17,7 +16,7 @@ if(isset($_GET["course_id"]) && isset($_GET["course_name"]) && isset($_GET["cour
     }
 
 }
-print_r($_SESSION['listelements']);
+
 
 ?>
 

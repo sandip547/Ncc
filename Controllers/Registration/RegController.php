@@ -36,6 +36,11 @@ class RegController
         }
         return $check;
     }
+    function checkPasswordStrength($password){
+        $password_regex = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/";
+        return preg_match($password_regex, $password); // returns 0
+
+    }
 
     function checkUserName($username)
     {
@@ -74,7 +79,7 @@ class RegController
         }
         mysqli_close($this->connection->getConnection());
         if (!$result) {
-            echo "please provide other username";
+
         } else {
         }
         return $check;
@@ -93,6 +98,10 @@ class RegController
         ));
         mysqli_close($this->connection->getConnection());
     }
+
+
+
+
 
     function deleteUserDetails($du)
     {   $check = false;

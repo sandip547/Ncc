@@ -34,6 +34,16 @@ class GetComments{
         }
         return $m_comments;
     }
+
+    function getCourseComments($course_id){
+        $query = "SELECT comments.studentId,student.profile_image,comments.comment,student.fullname from comments INNER JOIN student on comments.studentId=student.studentId where comments.courseId=?";
+        $c_comments = array();
+        $result = $this->connection->executePrepareReturn($query,"i",array($course_id));
+        while($row = mysqli_fetch_array($result)){
+            array_push($c_comments,new GetUserComments($row[0],$row[1],$row[2],$row[3]));
+        }
+        return $c_comments;
+    }
 }
 /*$gc = new GetComments();
 $res = $gc->getProductComments(7);
